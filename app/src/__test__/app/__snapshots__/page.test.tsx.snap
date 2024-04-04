@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`render home page to same of the snapshot 1`] = `
+<div>
+  <main
+    class="flex min-h-screen flex-col items-center justify-between p-24"
+  >
+    <div>
+      <h1>
+        BeatHub
+      </h1>
+      <p>
+        Ahora si bro a trabajar se ha dichooo!
+      </p>
+    </div>
+  </main>
+</div>
+`;
