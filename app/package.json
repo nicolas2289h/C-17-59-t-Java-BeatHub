@@ -6,22 +6,31 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest"
   },
   "dependencies": {
+    "@nanostores/react": "0.7.2",
+    "@tanstack/react-query": "5.28.14",
+    "nanostores": "0.10.2",
+    "next": "13.5.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "next": "13.5.3"
+    "react-hot-toast": "2.4.1"
   },
   "devDependencies": {
-    "typescript": "latest",
-    "@types/react": "latest",
+    "@testing-library/react": "^14.2.2",
     "@types/node": "latest",
+    "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "jsdom": "^24.0.0",
     "postcss": "latest",
     "tailwindcss": "latest",
-    "eslint": "latest",
-    "eslint-config-next": "latest"
+    "typescript": "latest",
+    "vitest": "^1.4.0"
   }
 }

@@ -1,9 +1,10 @@
-export default function Home() {
+import { ClientLogin } from "@/components/app/login/ClientLogin";
+
+export default function Login() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div>
-        <h1>BeatHub</h1>
-        <p>Ahora si bro a trabajar se ha dichooo!</p>
+        <ClientLogin />
       </div>
     </main>
   );
