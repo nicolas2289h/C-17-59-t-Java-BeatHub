@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#app {
+  display: grid;
+  grid-template-areas:
+    "main"
+    "footer";
+  grid-template-rows: 1fr 4rem;
+}
+
+@font-face {
+  font-family: "Miker";
+  src: url(/fonts/Milker.otf) format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+.font-miker {
+  font-family: "Miker", sans-serif;
+}
