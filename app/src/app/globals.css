@@ -7,7 +7,7 @@
   grid-template-areas:
     "main"
     "footer";
-  grid-template-rows: 1fr 4rem;
+  grid-template-rows: 1fr 6rem;
 }
 
 @font-face {

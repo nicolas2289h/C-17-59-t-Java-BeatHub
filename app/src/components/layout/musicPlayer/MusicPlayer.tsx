@@ -4,6 +4,8 @@ import {
   IconPlayerPauseFilled,
   IconPlayerPlayFilled,
   IconPlayerStopFilled,
+  IconPlayerTrackNextFilled,
+  IconPlayerTrackPrevFilled,
 } from "@tabler/icons-react";
 import { useRef, useState } from "react";
 import ReactPlayer from "react-player";
@@ -68,56 +70,115 @@ export const MusicPlayer = () => {
     }
     setEnded(false);
   };
+
+  const handleonChangeRange = (e: any) => {
+    if (!playerRef.current) return;
+
+    (playerRef.current as ReactPlayer).seekTo(
+      e.target.value * (playerRef.current as ReactPlayer).getDuration()
+    );
+  };
   return (
-    <section className="sticky flex justify-center items-center w-full h-[4rem] bottom-0 bg-secundario overflow-hidden">
-      {startPlayer && (
-        <div className="absolute opacity-40 z-10 pointer-events-none w-screen h-screen">
-          <ReactPlayer
-            className=""
-            width="100%"
-            height="100%"
-            url={`https://www.youtube.com/watch?v=${"ewvYDxeOhN4"}`}
-            config={{
-              youtube: {
-                playerVars: {
-                  fs: 1,
-                  controls: 0,
-                  modestbranding: 1,
-                  autoplay: true,
-                },
-              },
-            }}
-            ref={playerRef}
-            playing={playing}
-            onPause={() => setPause(true)}
-            onPlay={handlePlay}
-            onEnded={() => setEnded(true)}
-            onDuration={handleDuration}
-            onProgress={handleProgress}
-            volume={volume}
+    <>
+      <section className="sticky flex justify-center items-center w-full h-[6rem] bottom-0 bg-secundario">
+        <div className=" absolute hover:top-[-1rem] top-0 w-full z-30 flex opacity-70 hover:opacity-100 overflow-hidden duration-200 h-1 hover:h-[2rem]">
+          <div
+            className=" z-40 h-[2rem] absolute left-0 bg-red-800 ease-linear duration-1000"
+            style={{ width: `${progress * 100}%` }}
+          />
+          <div
+            className="z-30 h-[2rem] absolute left-0 bg-red-500"
+            style={{ width: `${100}%` }}
+          />
+          <p className="z-50 absolute flex top-[.2rem] ml-4 text-terciario">
+            {progressDuration}
+          </p>
+          <p className="z-50 absolute right-0 flex top-[.2rem] mr-4 text-terciario">
+            {duration}
+          </p>
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step={0.01}
+            value={progress}
+            onChange={handleonChangeRange}
+            className="z-50 w-full absolute opacity-0 cursor-pointer h-[2rem]"
           />
         </div>
-      )}
-      <button type="button" className="z-20" onClick={handlePlayButtonClick}>
-        {!startPlayer && (
-          <IconPlayerStopFilled
-            className="text-primario active:scale-110 duration-75"
-            size={60}
-          />
-        )}
-        {playing && startPlayer && (
-          <IconPlayerPauseFilled
-            className="text-primario active:scale-110 duration-75"
-            size={60}
-          />
-        )}
-        {!playing && startPlayer && (
-          <IconPlayerPlayFilled
-            className="text-primario active:scale-110 duration-75"
-            size={60}
-          />
-        )}
-      </button>
-    </section>
+        <div className="flex absolute justify-center items-center w-full h-[6rem] overflow-hidden">
+          {startPlayer && (
+            <div className="absolute opacity-60 blur-xl z-10 pointer-events-none w-screen h-screen">
+              <ReactPlayer
+                className="scale-x-150"
+                width="100%"
+                height="100%"
+                url={`https://www.youtube.com/watch?v=${"viDyXXRwwL8"}`}
+                config={{
+                  youtube: {
+                    playerVars: {
+                      fs: 1,
+                      controls: 0,
+                      modestbranding: 1,
+                      autoplay: true,
+                    },
+                  },
+                }}
+                ref={playerRef}
+                playing={playing}
+                onPause={() => setPause(true)}
+                onPlay={handlePlay}
+                onEnded={() => setEnded(true)}
+                onDuration={handleDuration}
+                onProgress={handleProgress}
+                volume={volume}
+              />
+            </div>
+          )}
+        </div>
+        <div className="z-20 flex items-center justify-center gap-5">
+          <button
+            type="button"
+            className=""
+            onClick={() => console.log("last song")}
+          >
+            <IconPlayerTrackPrevFilled
+              className="text-terciario duration-75 active:scale-125 opacity-75 hover:opacity-100 hover:scale-105"
+              size={30}
+            />
+          </button>
+          <button type="button" className="" onClick={handlePlayButtonClick}>
+            {!startPlayer && (
+              <IconPlayerStopFilled
+                className="text-primario active:scale-125 opacity-75 hover:opacity-100 hover:scale-105 duration-75"
+                size={60}
+              />
+            )}
+            {playing && startPlayer && (
+              <IconPlayerPauseFilled
+                className="text-primario active:scale-125 opacity-75 hover:opacity-100 hover:scale-105 duration-75"
+                size={60}
+              />
+            )}
+            {!playing && startPlayer && (
+              <IconPlayerPlayFilled
+                className="text-primario active:scale-125 opacity-75 hover:opacity-100 hover:scale-105 duration-75"
+                size={60}
+              />
+            )}
+          </button>
+          <button
+            type="button"
+            className="z-20"
+            onClick={() => console.log("next song")}
+          >
+            <IconPlayerTrackNextFilled
+              className="text-terciario duration-75 active:scale-125 opacity-75 hover:opacity-100 hover:scale-105"
+              size={30}
+            />
+          </button>
+        </div>
+      </section>
+    </>
   );
 };
