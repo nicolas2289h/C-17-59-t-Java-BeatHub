@@ -100,13 +100,22 @@ export const MusicPlayer = () => {
       )}
       <button type="button" className="z-20" onClick={handlePlayButtonClick}>
         {!startPlayer && (
-          <IconPlayerStopFilled className="text-primario" size={60} />
+          <IconPlayerStopFilled
+            className="text-primario active:scale-110 duration-75"
+            size={60}
+          />
         )}
         {playing && startPlayer && (
-          <IconPlayerPauseFilled className="text-primario" size={60} />
+          <IconPlayerPauseFilled
+            className="text-primario active:scale-110 duration-75"
+            size={60}
+          />
         )}
         {!playing && startPlayer && (
-          <IconPlayerPlayFilled className="text-primario" size={60} />
+          <IconPlayerPlayFilled
+            className="text-primario active:scale-110 duration-75"
+            size={60}
+          />
         )}
       </button>
     </section>
