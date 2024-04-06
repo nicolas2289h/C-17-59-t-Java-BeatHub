@@ -28,13 +28,13 @@ export const Header = () => {
         </Link>
         <Link
           className="hover:text-slate-200 duration-100 ease-out"
-          href="/iniciar sesion"
+          href="/login"
         >
           Iniciar Sesion
         </Link>
         <Link
           className="hover:text-slate-200 duration-100 ease-out"
-          href="/search"
+          href="/buscar"
         >
           <IconSearch stroke={3} size={30} />
         </Link>
