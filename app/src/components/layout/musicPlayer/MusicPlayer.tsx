@@ -8,7 +8,7 @@ import {
   IconPlayerTrackNextFilled,
   IconPlayerTrackPrevFilled,
 } from "@tabler/icons-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactPlayer from "react-player";
 
 export const MusicPlayer = () => {
@@ -94,6 +94,13 @@ export const MusicPlayer = () => {
       }
     }
   };
+  useEffect(() => {
+    if (ended) {
+      handleNextSong();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ended]);
+
   const handlePrevSong = () => {
     if (!selectedBeat) {
       $SelectedBeat.set(beats[0]);
