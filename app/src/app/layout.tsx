@@ -22,10 +22,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <Providers>
-        <body
-          id="app"
-          className={`${inter.className} bg-slate-900 text-slate-200 relative`}
-        >
+        <body id="app" className={`${inter.className} relative`}>
           <Header />
           <Toaster />
           <main className="[grid-area:main] mt-[4rem]">{children}</main>

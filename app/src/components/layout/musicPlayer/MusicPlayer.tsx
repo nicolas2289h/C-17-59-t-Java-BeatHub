@@ -69,7 +69,7 @@ export const MusicPlayer = () => {
     setEnded(false);
   };
   return (
-    <section className="sticky flex justify-center items-center w-full h-[4rem] bottom-0 bg-primario overflow-hidden">
+    <section className="sticky flex justify-center items-center w-full h-[4rem] bottom-0 bg-secundario overflow-hidden">
       {startPlayer && (
         <div className="absolute opacity-40 z-10 pointer-events-none w-screen h-screen">
           <ReactPlayer
@@ -99,9 +99,15 @@ export const MusicPlayer = () => {
         </div>
       )}
       <button type="button" className="z-20" onClick={handlePlayButtonClick}>
-        {!startPlayer && <IconPlayerStopFilled size={60} />}
-        {playing && startPlayer && <IconPlayerPauseFilled size={60} />}
-        {!playing && startPlayer && <IconPlayerPlayFilled size={60} />}
+        {!startPlayer && (
+          <IconPlayerStopFilled className="text-primario" size={60} />
+        )}
+        {playing && startPlayer && (
+          <IconPlayerPauseFilled className="text-primario" size={60} />
+        )}
+        {!playing && startPlayer && (
+          <IconPlayerPlayFilled className="text-primario" size={60} />
+        )}
       </button>
     </section>
   );

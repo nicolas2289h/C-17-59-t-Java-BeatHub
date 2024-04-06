@@ -16,10 +16,9 @@ const config: Config = {
       colors: {
         blanco: "#ffffff",
         negro: "#000814",
-        primario: "#F91130",
-        /* secundario: "#003566",
-        terciario: "#ffc300",
-        cuaternario: "#ffd60a", */
+        primario: "#FFFEFA",
+        secundario: "#060606",
+        terciario: "#FAFAFA",
       },
     },
   },

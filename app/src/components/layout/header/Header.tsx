@@ -1,24 +1,12 @@
+import { IconSearch, IconShoppingCart } from "@tabler/icons-react";
 import Link from "next/link";
 
 export const Header = () => {
   return (
-    <header className="w-full h-[5rem] flex bg-primario text-blanco px-4 fixed">
-      <h1 className="w-1/4 font-miker flex items-center text-3xl ">Beat Hub</h1>
-      <div className="w-full font-miker gap-8 flex justify-end items-center text-2xl">
+    <header className="w-full h-[5rem] flex bg-secundario text-primario fixed shadow-xl px-[10rem]">
+      <nav className="w-full font-milker gap-8 flex justify-between items-center text-xl">
         <Link className="hover:text-slate-200 duration-100 ease-out" href="/">
-          Inicio
-        </Link>
-        <Link
-          className="hover:text-slate-200 duration-100 ease-out"
-          href="/perfil"
-        >
-          Perfil
-        </Link>
-        <Link
-          className="hover:text-slate-200 duration-100 ease-out"
-          href="/beats"
-        >
-          Beats
+          Beat Hub
         </Link>
         <Link
           className="hover:text-slate-200 duration-100 ease-out"
@@ -28,11 +16,35 @@ export const Header = () => {
         </Link>
         <Link
           className="hover:text-slate-200 duration-100 ease-out"
+          href="/beats"
+        >
+          Beats
+        </Link>
+        <Link
+          className="hover:text-slate-200 duration-100 ease-out"
+          href="/info"
+        >
+          Info
+        </Link>
+        <Link
+          className="hover:text-slate-200 duration-100 ease-out"
+          href="/iniciar sesion"
+        >
+          Iniciar Sesion
+        </Link>
+        <Link
+          className="hover:text-slate-200 duration-100 ease-out"
+          href="/search"
+        >
+          <IconSearch stroke={3} size={30} />
+        </Link>
+        <Link
+          className="hover:text-slate-200 duration-100 ease-out"
           href="/carrito"
         >
-          Carrito
+          <IconShoppingCart stroke={3} size={30} />
         </Link>
-      </div>
+      </nav>
     </header>
   );
 };
