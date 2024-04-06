@@ -1,9 +1,10 @@
 "use client";
 
+import { $Beats, $SelectedBeat } from "@/stores/beats";
+import { useStore } from "@nanostores/react";
 import {
   IconPlayerPauseFilled,
   IconPlayerPlayFilled,
-  IconPlayerStopFilled,
   IconPlayerTrackNextFilled,
   IconPlayerTrackPrevFilled,
 } from "@tabler/icons-react";
@@ -11,8 +12,9 @@ import { useRef, useState } from "react";
 import ReactPlayer from "react-player";
 
 export const MusicPlayer = () => {
+  const beats = useStore($Beats);
+  const selectedBeat = useStore($SelectedBeat);
   const [playing, setPlaying] = useState<boolean>(true);
-  const [startPlayer, setStartPlayer] = useState<boolean>(false);
 
   const [pause, setPause] = useState<boolean>(false);
   const [ended, setEnded] = useState<boolean>(false);
@@ -60,8 +62,8 @@ export const MusicPlayer = () => {
   };
   const handlePlayButtonClick = (e: any) => {
     e.preventDefault();
-    if (!startPlayer) {
-      setStartPlayer(true);
+    if (!selectedBeat) {
+      $SelectedBeat.set(beats[0]);
     }
     if (playing) {
       setPlaying(false);
@@ -77,6 +79,34 @@ export const MusicPlayer = () => {
     (playerRef.current as ReactPlayer).seekTo(
       e.target.value * (playerRef.current as ReactPlayer).getDuration()
     );
+  };
+  const handleNextSong = () => {
+    if (!selectedBeat) {
+      $SelectedBeat.set(beats[0]);
+    } else {
+      const currentIndex = beats.findIndex(
+        (beat) => beat.id === selectedBeat.id
+      );
+      if (currentIndex === beats.length - 1) {
+        $SelectedBeat.set(beats[0]);
+      } else {
+        $SelectedBeat.set(beats[currentIndex + 1]);
+      }
+    }
+  };
+  const handlePrevSong = () => {
+    if (!selectedBeat) {
+      $SelectedBeat.set(beats[0]);
+    } else {
+      const currentIndex = beats.findIndex(
+        (beat) => beat.id === selectedBeat.id
+      );
+      if (currentIndex === 0) {
+        $SelectedBeat.set(beats[beats.length - 1]);
+      } else {
+        $SelectedBeat.set(beats[currentIndex - 1]);
+      }
+    }
   };
   return (
     <>
@@ -107,13 +137,13 @@ export const MusicPlayer = () => {
           />
         </div>
         <div className="flex absolute justify-center items-center w-full h-[6rem] overflow-hidden">
-          {startPlayer && (
-            <div className="absolute opacity-60 blur-xl z-10 pointer-events-none w-screen h-screen">
+          <div className="absolute opacity-60 blur-xl z-10 pointer-events-none w-screen h-screen">
+            {selectedBeat && (
               <ReactPlayer
                 className="scale-x-150"
                 width="100%"
                 height="100%"
-                url={`https://www.youtube.com/watch?v=${"viDyXXRwwL8"}`}
+                url={`https://www.youtube.com/watch?v=${selectedBeat.url}`}
                 config={{
                   youtube: {
                     playerVars: {
@@ -133,45 +163,31 @@ export const MusicPlayer = () => {
                 onProgress={handleProgress}
                 volume={volume}
               />
-            </div>
-          )}
+            )}
+          </div>
         </div>
         <div className="z-20 flex items-center justify-center gap-5">
-          <button
-            type="button"
-            className=""
-            onClick={() => console.log("last song")}
-          >
+          <button type="button" className="" onClick={handlePrevSong}>
             <IconPlayerTrackPrevFilled
               className="text-terciario duration-75 active:scale-125 opacity-75 hover:opacity-100 hover:scale-105"
               size={30}
             />
           </button>
           <button type="button" className="" onClick={handlePlayButtonClick}>
-            {!startPlayer && (
-              <IconPlayerStopFilled
-                className="text-primario active:scale-125 opacity-75 hover:opacity-100 hover:scale-105 duration-75"
-                size={60}
-              />
-            )}
-            {playing && startPlayer && (
+            {playing && selectedBeat && (
               <IconPlayerPauseFilled
                 className="text-primario active:scale-125 opacity-75 hover:opacity-100 hover:scale-105 duration-75"
                 size={60}
               />
             )}
-            {!playing && startPlayer && (
+            {(!playing || !selectedBeat) && (
               <IconPlayerPlayFilled
                 className="text-primario active:scale-125 opacity-75 hover:opacity-100 hover:scale-105 duration-75"
                 size={60}
               />
             )}
           </button>
-          <button
-            type="button"
-            className="z-20"
-            onClick={() => console.log("next song")}
-          >
+          <button type="button" className="z-20" onClick={handleNextSong}>
             <IconPlayerTrackNextFilled
               className="text-terciario duration-75 active:scale-125 opacity-75 hover:opacity-100 hover:scale-105"
               size={30}

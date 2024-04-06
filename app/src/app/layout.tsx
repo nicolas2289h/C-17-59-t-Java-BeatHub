@@ -25,7 +25,8 @@ export default function RootLayout({
         <body id="app" className={`${inter.className} relative`}>
           <Header />
           <Toaster />
-          <main className="[grid-area:main] mt-[4rem]">{children}</main>
+
+          <main className="[grid-area:main] mt-[3rem]">{children}</main>
           <MusicPlayer />
           <Footer />
         </body>
