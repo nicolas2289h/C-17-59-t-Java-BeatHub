@@ -5,4 +5,6 @@
 const domain = process.env.NEXT_PUBLIC_DOMAIN;
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
-export { domain, baseUrl };
+/* -------------------------------TextVariables-------------------------------- */
+const mainPlayListName = "Todo el Catalogo";
+export { domain, baseUrl, mainPlayListName };

@@ -1,5 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
+import {
+  getLocalStorage,
+  setLocalStorage,
+} from "@/components/utils/handleLocalStorage";
+import { mainPlayListName } from "@/constants";
 import { $Beats, $PlayList, $SelectedBeat } from "@/stores/beats";
 import { useStore } from "@nanostores/react";
 import {
@@ -8,7 +14,8 @@ import {
   IconPlayerTrackNextFilled,
   IconPlayerTrackPrevFilled,
 } from "@tabler/icons-react";
-import { useEffect, useRef, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
 import ReactPlayer from "react-player";
 
 export const MusicPlayer = () => {
@@ -16,8 +23,6 @@ export const MusicPlayer = () => {
   const playlist = useStore($PlayList);
   const selectedBeat = useStore($SelectedBeat);
   const [playing, setPlaying] = useState<boolean>(true);
-
-  const [pause, setPause] = useState<boolean>(false);
   const [ended, setEnded] = useState<boolean>(false);
   const [progressDuration, setprogressDuration] = useState<string>("0:00");
   const [progress, setProgress] = useState<number>(0);
@@ -25,7 +30,6 @@ export const MusicPlayer = () => {
   const playerRef = useRef(null);
   const [volume, setVolume] = useState<number>(0.75);
   const handlePlay = () => {
-    setPause(false);
     setEnded(false);
     setPlaying(true);
   };
@@ -65,6 +69,8 @@ export const MusicPlayer = () => {
     e.preventDefault();
     if (!selectedBeat) {
       $SelectedBeat.set(beats[0]);
+      setLocalStorage(`localSelectedBeat`, beats[0]);
+      setLocalStorage(`localPlayList`, { name: mainPlayListName, beats });
     }
     if (playing) {
       setPlaying(false);
@@ -82,17 +88,26 @@ export const MusicPlayer = () => {
     );
   };
   const handleNextSong = () => {
-    const { beats: playlistBeats } = playlist;
+    const { beats: playlistBeats, name } = playlist;
     if (!selectedBeat) {
       $SelectedBeat.set(beats[0]);
+      setLocalStorage(`localSelectedBeat`, beats[0]);
+      setLocalStorage(`localPlayList`, { name: mainPlayListName, beats });
+      setPlaying(true);
+      setEnded(false);
     } else {
       const currentIndex = playlistBeats.findIndex(
         (beat) => beat.id === selectedBeat.id
       );
+      setPlaying(true);
+      setEnded(false);
+      setLocalStorage(`localPlayList`, { name, beats: playlistBeats });
       if (currentIndex === playlistBeats.length - 1) {
         $SelectedBeat.set(playlistBeats[0]);
+        setLocalStorage(`localSelectedBeat`, playlistBeats[0]);
       } else {
         $SelectedBeat.set(playlistBeats[currentIndex + 1]);
+        setLocalStorage(`localSelectedBeat`, playlistBeats[currentIndex + 1]);
       }
     }
   };
@@ -102,22 +117,87 @@ export const MusicPlayer = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ended]);
+  useEffect(() => {
+    if (
+      localStorage.getItem(`localSelectedBeat`) &&
+      localStorage.getItem(`localPlayList`)
+    ) {
+      $SelectedBeat.set(getLocalStorage(`localSelectedBeat`));
+      $PlayList.set(getLocalStorage(`localPlayList`));
+      setTimeout(() => {
+        setPlaying(false);
+      }, 200);
+    }
+  }, []);
+  useEffect(() => {
+    if (selectedBeat) {
+      setPlaying(true);
+      setEnded(false);
+    }
+  }, [selectedBeat]);
 
+  useEffect(() => {
+    if (selectedBeat) {
+      toast.custom(
+        (t) => (
+          <div
+            className={`${
+              t.visible ? "animate-enter" : "animate-leave"
+            } shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 mt-[3rem] flex flex-col p-2`}
+          >
+            <div className="flex flex-col justify-center">
+              <img
+                src={`https://img.youtube.com/vi/${selectedBeat.url}/mqdefault.jpg`}
+                alt={`imagen de ${selectedBeat.name}`}
+                className="rounded-xl w-full h-[5rem] object-cover"
+              />
+              <div className="flex flex-col items-baseline gap-1 py-1">
+                <h3 className="text-secundario/80 font-semibold">
+                  {selectedBeat.name}
+                </h3>
+                <h4 className="text-sm text-secundario/50">
+                  {selectedBeat.producer.name}
+                </h4>
+              </div>
+            </div>
+          </div>
+        ),
+        { id: "beat-toast", duration: 5000, position: "top-right" }
+      );
+    }
+
+    return () => {
+      toast.dismiss();
+    };
+  }, [selectedBeat]);
   const handlePrevSong = () => {
-    const { beats: playlistBeats } = playlist;
+    const { beats: playlistBeats, name } = playlist;
     if (!selectedBeat) {
       $SelectedBeat.set(beats[0]);
+      setLocalStorage(`localSelectedBeat`, beats[0]);
+      setLocalStorage(`localPlayList`, { name: mainPlayListName, beats });
+      setPlaying(true);
+      setEnded(false);
     } else {
       const currentIndex = playlistBeats.findIndex(
         (beat) => beat.id === selectedBeat.id
       );
+      setPlaying(true);
+      setEnded(false);
+      setLocalStorage(`localPlayList`, { name, beats: playlistBeats });
       if (currentIndex === 0) {
         $SelectedBeat.set(playlistBeats[playlistBeats.length - 1]);
+        setLocalStorage(
+          `localSelectedBeat`,
+          playlistBeats[playlistBeats.length - 1]
+        );
       } else {
         $SelectedBeat.set(playlistBeats[currentIndex - 1]);
+        setLocalStorage(`localSelectedBeat`, playlistBeats[currentIndex - 1]);
       }
     }
   };
+
   return (
     <>
       <section className="sticky flex justify-center items-center w-full h-[6rem] bottom-0 bg-secundario">
@@ -150,7 +230,7 @@ export const MusicPlayer = () => {
           <div className="absolute blur-3xl z-10 pointer-events-none w-screen h-screen">
             {selectedBeat && (
               <ReactPlayer
-                className="scale-x-150 opacity-20"
+                className="scale-x-150 opacity-10"
                 width="100%"
                 height="100%"
                 url={`https://www.youtube.com/watch?v=${selectedBeat.url}`}
@@ -166,7 +246,6 @@ export const MusicPlayer = () => {
                 }}
                 ref={playerRef}
                 playing={playing}
-                onPause={() => setPause(true)}
                 onPlay={handlePlay}
                 onEnded={() => setEnded(true)}
                 onDuration={handleDuration}

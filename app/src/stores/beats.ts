@@ -2,7 +2,7 @@ import { atom } from "nanostores";
 const beats = [
   {
     id: 1,
-    name: "beat 1",
+    name: "Crazy Duck",
     description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
     url: "viDyXXRwwL8",
     bpm: 120,
@@ -16,10 +16,14 @@ const beats = [
       },
     ],
     featured: false,
+    producer: {
+      id: 4,
+      name: "Trafalgar Beats",
+    },
   },
   {
     id: 2,
-    name: "beat 2",
+    name: "Gansta Paradise",
     description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
     url: "ewvYDxeOhN4",
     bpm: 140,
@@ -33,10 +37,14 @@ const beats = [
       },
     ],
     featured: true,
+    producer: {
+      id: 3,
+      name: "Trafalgar Beats",
+    },
   },
   {
     id: 3,
-    name: "beat 3",
+    name: "Laugh",
     description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
     url: "yJ4qaV-B22I",
     bpm: 145,
@@ -50,10 +58,14 @@ const beats = [
       },
     ],
     featured: true,
+    producer: {
+      id: 1,
+      name: "Jhon Doe",
+    },
   },
   {
     id: 4,
-    name: "beat 4",
+    name: "Me dice",
     description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
     url: "btsfpOe9NZo",
     bpm: 90,
@@ -67,10 +79,14 @@ const beats = [
       },
     ],
     featured: false,
+    producer: {
+      id: 1,
+      name: "Jhon Doe",
+    },
   },
   {
     id: 5,
-    name: "beat 5",
+    name: "China",
     description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
     url: "b2VXgrXi0yk",
     bpm: 95,
@@ -84,6 +100,10 @@ const beats = [
       },
     ],
     featured: true,
+    producer: {
+      id: 2,
+      name: "Dj Pablito",
+    },
   },
 ];
 interface Beat {
@@ -100,6 +120,10 @@ interface Beat {
     start: number;
     end: number;
   }[];
+  producer: {
+    id: number;
+    name: string;
+  };
 }
 interface PlayList {
   name: string;
