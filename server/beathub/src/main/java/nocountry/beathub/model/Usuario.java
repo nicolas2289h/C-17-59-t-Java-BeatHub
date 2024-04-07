@@ -18,7 +18,7 @@ public abstract class Usuario {
     private Long Id;
     private String name;
     private String lastname;
-    private String usarname;
+    private String username;
     private String password;
     private String email;
 }
