@@ -15,6 +15,7 @@ const beats = [
         end: 0.2,
       },
     ],
+    featured: false,
   },
   {
     id: 2,
@@ -31,6 +32,7 @@ const beats = [
         end: 0.2,
       },
     ],
+    featured: true,
   },
   {
     id: 3,
@@ -47,6 +49,7 @@ const beats = [
         end: 0.2,
       },
     ],
+    featured: true,
   },
   {
     id: 4,
@@ -63,6 +66,7 @@ const beats = [
         end: 0.2,
       },
     ],
+    featured: false,
   },
   {
     id: 5,
@@ -79,6 +83,7 @@ const beats = [
         end: 0.2,
       },
     ],
+    featured: true,
   },
 ];
 interface Beat {
@@ -89,12 +94,22 @@ interface Beat {
   bpm: number;
   key: string;
   genre: string;
+  featured: boolean;
   structure: {
     name: string;
     start: number;
     end: number;
   }[];
 }
+interface PlayList {
+  name: string;
+  beats: Beat[];
+}
+export type PropsPlayList = PlayList;
 export type PropsBeat = Beat;
 export const $Beats = atom<PropsBeat[]>(beats);
 export const $SelectedBeat = atom<PropsBeat | null>(null);
+export const $PlayList = atom<PropsPlayList>({
+  name: "Todo el Catalogo",
+  beats: beats,
+});

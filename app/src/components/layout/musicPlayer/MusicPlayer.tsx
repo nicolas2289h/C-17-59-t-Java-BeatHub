@@ -1,6 +1,6 @@
 "use client";
 
-import { $Beats, $SelectedBeat } from "@/stores/beats";
+import { $Beats, $PlayList, $SelectedBeat } from "@/stores/beats";
 import { useStore } from "@nanostores/react";
 import {
   IconPlayerPauseFilled,
@@ -13,6 +13,7 @@ import ReactPlayer from "react-player";
 
 export const MusicPlayer = () => {
   const beats = useStore($Beats);
+  const playlist = useStore($PlayList);
   const selectedBeat = useStore($SelectedBeat);
   const [playing, setPlaying] = useState<boolean>(true);
 
@@ -81,16 +82,17 @@ export const MusicPlayer = () => {
     );
   };
   const handleNextSong = () => {
+    const { beats: playlistBeats } = playlist;
     if (!selectedBeat) {
       $SelectedBeat.set(beats[0]);
     } else {
-      const currentIndex = beats.findIndex(
+      const currentIndex = playlistBeats.findIndex(
         (beat) => beat.id === selectedBeat.id
       );
-      if (currentIndex === beats.length - 1) {
-        $SelectedBeat.set(beats[0]);
+      if (currentIndex === playlistBeats.length - 1) {
+        $SelectedBeat.set(playlistBeats[0]);
       } else {
-        $SelectedBeat.set(beats[currentIndex + 1]);
+        $SelectedBeat.set(playlistBeats[currentIndex + 1]);
       }
     }
   };
@@ -102,16 +104,17 @@ export const MusicPlayer = () => {
   }, [ended]);
 
   const handlePrevSong = () => {
+    const { beats: playlistBeats } = playlist;
     if (!selectedBeat) {
       $SelectedBeat.set(beats[0]);
     } else {
-      const currentIndex = beats.findIndex(
+      const currentIndex = playlistBeats.findIndex(
         (beat) => beat.id === selectedBeat.id
       );
       if (currentIndex === 0) {
-        $SelectedBeat.set(beats[beats.length - 1]);
+        $SelectedBeat.set(playlistBeats[playlistBeats.length - 1]);
       } else {
-        $SelectedBeat.set(beats[currentIndex - 1]);
+        $SelectedBeat.set(playlistBeats[currentIndex - 1]);
       }
     }
   };
@@ -144,10 +147,10 @@ export const MusicPlayer = () => {
           />
         </div>
         <div className="flex absolute justify-center items-center w-full h-[6rem] overflow-hidden">
-          <div className="absolute opacity-60 blur-xl z-10 pointer-events-none w-screen h-screen">
+          <div className="absolute blur-3xl z-10 pointer-events-none w-screen h-screen">
             {selectedBeat && (
               <ReactPlayer
-                className="scale-x-150"
+                className="scale-x-150 opacity-20"
                 width="100%"
                 height="100%"
                 url={`https://www.youtube.com/watch?v=${selectedBeat.url}`}
@@ -200,6 +203,11 @@ export const MusicPlayer = () => {
               size={30}
             />
           </button>
+          {selectedBeat && (
+            <p className="opacity-20 hover:opacity-100 bottom-0 left-0 absolute text-terciario duration-100">
+              Reproduciendo: {playlist.name}
+            </p>
+          )}
         </div>
       </section>
     </>
