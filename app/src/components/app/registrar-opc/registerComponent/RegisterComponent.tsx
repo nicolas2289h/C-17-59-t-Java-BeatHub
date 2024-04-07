@@ -1,16 +1,21 @@
-const RegisterComponent = () => {
+interface Props {
+    title: string;
+}
+
+
+const RegisterComponent = ({ title }: Props) => {
     return (
-        <div className='bg-zinc-300 grid grid-cols-5 gap-4'>
-            <figure className="w-[150px] h-[75px] bg-gray-500 col-span-2">
+        <div className='bg-zinc-300 grid grid-cols-5 gap-4 mb-11'>
+            <figure className="w-[100%] h-[100%] min-h-350 bg-gray-500 col-span-2">
 
             </figure>
             <div className="col-span-3">
-                <h3>Productor</h3>
+                <h3 className="my-5">{title}</h3>
                 <ul>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum aut velit id fuga eligendi ut voluptatem ipsa reiciendis a adipisci, nisi ducimus veniam consequatur in? Quas facilis quae beatae cupiditate?</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates beatae blanditiis sunt eum sed similique tempore facilis qui, neque magnam. Magni placeat fugiat a quae minima quas sint temporibus dolorum?</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, nostrum ipsa? Reiciendis ab officia, porro a exercitationem culpa perspiciatis eius quasi consequuntur fugiat. Ullam eligendi reiciendis ut a fugiat repudiandae.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa dicta amet dolor ab numquam, temporibus error, id consequuntur rem voluptatibus, molestiae at vitae adipisci sed minus impedit mollitia magnam. Quibusdam?</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+                    <li className="mb-10">Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
                 </ul>
             </div>
         </div>
