@@ -3,6 +3,7 @@ package nocountry.beathub.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import nocountry.beathub.exception.ErrorDetails;
+import nocountry.beathub.exception.HibernateOperationException;
 import nocountry.beathub.exception.IdNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,5 +49,17 @@ public class ControllerExceptionAdvice {
         errorDetails.setMessage(ex.getMessage());
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDetails);
+    }
+
+
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler({HibernateOperationException.class, })
+    public ResponseEntity<ErrorDetails> handleHIbernateOperationException(HibernateOperationException ex) {
+
+        ErrorDetails errorDetails = new ErrorDetails();
+        errorDetails.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value() + " HIBERNATE_ERROR");
+        errorDetails.setMessage(ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorDetails);
     }
 }
