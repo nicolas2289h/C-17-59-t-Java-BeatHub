@@ -1,3 +1,4 @@
+import { mainPlayListName } from "@/constants";
 import { atom } from "nanostores";
 const beats = [
   {
@@ -10,15 +11,105 @@ const beats = [
     genre: "Trap",
     structure: [
       {
-        name: "Intro",
+        id: 1,
+        name: "intro",
         start: 0,
-        end: 0.2,
+        end: 0.1,
+      },
+      {
+        id: 2,
+        name: "verse",
+        start: 0.1,
+        end: 0.3,
+      },
+      {
+        id: 3,
+        name: "chorus",
+        start: 0.3,
+        end: 0.5,
+      },
+      {
+        id: 4,
+        name: "verse",
+        start: 0.5,
+        end: 0.6,
+      },
+      {
+        id: 5,
+        name: "bridge",
+        start: 0.6,
+        end: 0.65,
+      },
+      {
+        id: 6,
+        name: "chorus",
+        start: 0.65,
+        end: 0.95,
+      },
+      {
+        id: 7,
+        name: "outro",
+        start: 0.95,
+        end: 1,
       },
     ],
     featured: false,
     producer: {
       id: 4,
       name: "Trafalgar Beats",
+    },
+    license: {
+      id: 1,
+      name: "Licencia Exclusiva",
+      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      price: 200,
+      duration: "2 años",
+      features: [
+        {
+          id: 1,
+          name: "Uso Comercial",
+        },
+        {
+          id: 2,
+          name: "Streaming Ilimitado",
+        },
+        {
+          id: 3,
+          name: "Distribución Ilimitada",
+        },
+        {
+          id: 4,
+          name: "Venta Ilimitada",
+        },
+        {
+          id: 5,
+          name: "Monetización Ilimitada",
+        },
+        {
+          id: 6,
+          name: "Sin Regalías",
+        },
+        {
+          id: 7,
+          name: "Sin Créditos",
+        },
+        {
+          id: 8,
+          name: "Sin Limitaciones de Audiencia",
+        },
+        {
+          id: 9,
+          name: "Sin Limitaciones Geográficas",
+        },
+        {
+          id: 10,
+          name: "Sin Limitaciones de Plataforma",
+        },
+        {
+          id: 11,
+          name: "Sin Limitaciones de Copias",
+        },
+      ],
     },
   },
   {
@@ -31,15 +122,105 @@ const beats = [
     genre: "Trap",
     structure: [
       {
-        name: "Intro",
+        id: 1,
+        name: "intro",
         start: 0,
-        end: 0.2,
+        end: 0.1,
+      },
+      {
+        id: 2,
+        name: "verse",
+        start: 0.1,
+        end: 0.3,
+      },
+      {
+        id: 3,
+        name: "chorus",
+        start: 0.3,
+        end: 0.5,
+      },
+      {
+        id: 4,
+        name: "verse",
+        start: 0.5,
+        end: 0.6,
+      },
+      {
+        id: 5,
+        name: "bridge",
+        start: 0.6,
+        end: 0.65,
+      },
+      {
+        id: 6,
+        name: "chorus",
+        start: 0.65,
+        end: 0.95,
+      },
+      {
+        id: 7,
+        name: "outro",
+        start: 0.95,
+        end: 1,
       },
     ],
     featured: true,
     producer: {
       id: 3,
       name: "Trafalgar Beats",
+    },
+    license: {
+      id: 1,
+      name: "Licencia Exclusiva",
+      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      price: 200,
+      duration: "2 años",
+      features: [
+        {
+          id: 1,
+          name: "Uso Comercial",
+        },
+        {
+          id: 2,
+          name: "Streaming Ilimitado",
+        },
+        {
+          id: 3,
+          name: "Distribución Ilimitada",
+        },
+        {
+          id: 4,
+          name: "Venta Ilimitada",
+        },
+        {
+          id: 5,
+          name: "Monetización Ilimitada",
+        },
+        {
+          id: 6,
+          name: "Sin Regalías",
+        },
+        {
+          id: 7,
+          name: "Sin Créditos",
+        },
+        {
+          id: 8,
+          name: "Sin Limitaciones de Audiencia",
+        },
+        {
+          id: 9,
+          name: "Sin Limitaciones Geográficas",
+        },
+        {
+          id: 10,
+          name: "Sin Limitaciones de Plataforma",
+        },
+        {
+          id: 11,
+          name: "Sin Limitaciones de Copias",
+        },
+      ],
     },
   },
   {
@@ -52,15 +233,105 @@ const beats = [
     genre: "Drill",
     structure: [
       {
-        name: "Intro",
+        id: 1,
+        name: "intro",
         start: 0,
-        end: 0.2,
+        end: 0.1,
+      },
+      {
+        id: 2,
+        name: "verse",
+        start: 0.1,
+        end: 0.3,
+      },
+      {
+        id: 3,
+        name: "chorus",
+        start: 0.3,
+        end: 0.5,
+      },
+      {
+        id: 4,
+        name: "verse",
+        start: 0.5,
+        end: 0.6,
+      },
+      {
+        id: 5,
+        name: "bridge",
+        start: 0.6,
+        end: 0.65,
+      },
+      {
+        id: 6,
+        name: "chorus",
+        start: 0.65,
+        end: 0.95,
+      },
+      {
+        id: 7,
+        name: "outro",
+        start: 0.95,
+        end: 1,
       },
     ],
     featured: true,
     producer: {
       id: 1,
       name: "Jhon Doe",
+    },
+    license: {
+      id: 1,
+      name: "Licencia Exclusiva",
+      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      price: 200,
+      duration: "2 años",
+      features: [
+        {
+          id: 1,
+          name: "Uso Comercial",
+        },
+        {
+          id: 2,
+          name: "Streaming Ilimitado",
+        },
+        {
+          id: 3,
+          name: "Distribución Ilimitada",
+        },
+        {
+          id: 4,
+          name: "Venta Ilimitada",
+        },
+        {
+          id: 5,
+          name: "Monetización Ilimitada",
+        },
+        {
+          id: 6,
+          name: "Sin Regalías",
+        },
+        {
+          id: 7,
+          name: "Sin Créditos",
+        },
+        {
+          id: 8,
+          name: "Sin Limitaciones de Audiencia",
+        },
+        {
+          id: 9,
+          name: "Sin Limitaciones Geográficas",
+        },
+        {
+          id: 10,
+          name: "Sin Limitaciones de Plataforma",
+        },
+        {
+          id: 11,
+          name: "Sin Limitaciones de Copias",
+        },
+      ],
     },
   },
   {
@@ -73,15 +344,105 @@ const beats = [
     genre: "Reggaeton",
     structure: [
       {
-        name: "Intro",
+        id: 1,
+        name: "intro",
         start: 0,
-        end: 0.2,
+        end: 0.1,
+      },
+      {
+        id: 2,
+        name: "verse",
+        start: 0.1,
+        end: 0.3,
+      },
+      {
+        id: 3,
+        name: "chorus",
+        start: 0.3,
+        end: 0.5,
+      },
+      {
+        id: 4,
+        name: "verse",
+        start: 0.5,
+        end: 0.6,
+      },
+      {
+        id: 5,
+        name: "bridge",
+        start: 0.6,
+        end: 0.65,
+      },
+      {
+        id: 6,
+        name: "chorus",
+        start: 0.65,
+        end: 0.95,
+      },
+      {
+        id: 7,
+        name: "outro",
+        start: 0.95,
+        end: 1,
       },
     ],
     featured: false,
     producer: {
       id: 1,
       name: "Jhon Doe",
+    },
+    license: {
+      id: 1,
+      name: "Licencia Exclusiva",
+      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      price: 200,
+      duration: "2 años",
+      features: [
+        {
+          id: 1,
+          name: "Uso Comercial",
+        },
+        {
+          id: 2,
+          name: "Streaming Ilimitado",
+        },
+        {
+          id: 3,
+          name: "Distribución Ilimitada",
+        },
+        {
+          id: 4,
+          name: "Venta Ilimitada",
+        },
+        {
+          id: 5,
+          name: "Monetización Ilimitada",
+        },
+        {
+          id: 6,
+          name: "Sin Regalías",
+        },
+        {
+          id: 7,
+          name: "Sin Créditos",
+        },
+        {
+          id: 8,
+          name: "Sin Limitaciones de Audiencia",
+        },
+        {
+          id: 9,
+          name: "Sin Limitaciones Geográficas",
+        },
+        {
+          id: 10,
+          name: "Sin Limitaciones de Plataforma",
+        },
+        {
+          id: 11,
+          name: "Sin Limitaciones de Copias",
+        },
+      ],
     },
   },
   {
@@ -94,15 +455,882 @@ const beats = [
     genre: "DanceHall",
     structure: [
       {
-        name: "Intro",
+        id: 1,
+        name: "intro",
         start: 0,
-        end: 0.2,
+        end: 0.1,
+      },
+      {
+        id: 2,
+        name: "verse",
+        start: 0.1,
+        end: 0.3,
+      },
+      {
+        id: 3,
+        name: "chorus",
+        start: 0.3,
+        end: 0.5,
+      },
+      {
+        id: 4,
+        name: "verse",
+        start: 0.5,
+        end: 0.6,
+      },
+      {
+        id: 5,
+        name: "bridge",
+        start: 0.6,
+        end: 0.65,
+      },
+      {
+        id: 6,
+        name: "chorus",
+        start: 0.65,
+        end: 0.95,
+      },
+      {
+        id: 7,
+        name: "outro",
+        start: 0.95,
+        end: 1,
       },
     ],
     featured: true,
     producer: {
       id: 2,
       name: "Dj Pablito",
+    },
+    license: {
+      id: 1,
+      name: "Licencia Exclusiva",
+      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      price: 200,
+      duration: "2 años",
+      features: [
+        {
+          id: 1,
+          name: "Uso Comercial",
+        },
+        {
+          id: 2,
+          name: "Streaming Ilimitado",
+        },
+        {
+          id: 3,
+          name: "Distribución Ilimitada",
+        },
+        {
+          id: 4,
+          name: "Venta Ilimitada",
+        },
+        {
+          id: 5,
+          name: "Monetización Ilimitada",
+        },
+        {
+          id: 6,
+          name: "Sin Regalías",
+        },
+        {
+          id: 7,
+          name: "Sin Créditos",
+        },
+        {
+          id: 8,
+          name: "Sin Limitaciones de Audiencia",
+        },
+        {
+          id: 9,
+          name: "Sin Limitaciones Geográficas",
+        },
+        {
+          id: 10,
+          name: "Sin Limitaciones de Plataforma",
+        },
+        {
+          id: 11,
+          name: "Sin Limitaciones de Copias",
+        },
+      ],
+    },
+  },
+  {
+    id: 7,
+    name: "Cupido",
+    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+    url: "0onih8VuXpg",
+    bpm: 90,
+    key: "D",
+    genre: "Dancehall",
+    structure: [
+      {
+        id: 1,
+        name: "intro",
+        start: 0,
+        end: 0.1,
+      },
+      {
+        id: 2,
+        name: "verse",
+        start: 0.1,
+        end: 0.3,
+      },
+      {
+        id: 3,
+        name: "chorus",
+        start: 0.3,
+        end: 0.5,
+      },
+      {
+        id: 4,
+        name: "verse",
+        start: 0.5,
+        end: 0.6,
+      },
+      {
+        id: 5,
+        name: "bridge",
+        start: 0.6,
+        end: 0.65,
+      },
+      {
+        id: 6,
+        name: "chorus",
+        start: 0.65,
+        end: 0.95,
+      },
+      {
+        id: 7,
+        name: "outro",
+        start: 0.95,
+        end: 1,
+      },
+    ],
+    featured: false,
+    producer: {
+      id: 11,
+      name: "Ocean Rhythms",
+    },
+    license: {
+      id: 1,
+      name: "Licencia Exclusiva",
+      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      price: 200,
+      duration: "2 años",
+      features: [
+        {
+          id: 1,
+          name: "Uso Comercial",
+        },
+        {
+          id: 2,
+          name: "Streaming Ilimitado",
+        },
+        {
+          id: 3,
+          name: "Distribución Ilimitada",
+        },
+        {
+          id: 4,
+          name: "Venta Ilimitada",
+        },
+        {
+          id: 5,
+          name: "Monetización Ilimitada",
+        },
+        {
+          id: 6,
+          name: "Sin Regalías",
+        },
+        {
+          id: 7,
+          name: "Sin Créditos",
+        },
+        {
+          id: 8,
+          name: "Sin Limitaciones de Audiencia",
+        },
+        {
+          id: 9,
+          name: "Sin Limitaciones Geográficas",
+        },
+        {
+          id: 10,
+          name: "Sin Limitaciones de Plataforma",
+        },
+        {
+          id: 11,
+          name: "Sin Limitaciones de Copias",
+        },
+      ],
+    },
+  },
+  {
+    id: 8,
+    name: "Dale Fuego",
+    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+    url: "pjg_ZjH__fU",
+    bpm: 95,
+    key: "Am",
+    genre: "Hip Hop",
+    structure: [
+      {
+        id: 1,
+        name: "intro",
+        start: 0,
+        end: 0.1,
+      },
+      {
+        id: 2,
+        name: "verse",
+        start: 0.1,
+        end: 0.3,
+      },
+      {
+        id: 3,
+        name: "chorus",
+        start: 0.3,
+        end: 0.5,
+      },
+      {
+        id: 4,
+        name: "verse",
+        start: 0.5,
+        end: 0.6,
+      },
+      {
+        id: 5,
+        name: "bridge",
+        start: 0.6,
+        end: 0.65,
+      },
+      {
+        id: 6,
+        name: "chorus",
+        start: 0.65,
+        end: 0.95,
+      },
+      {
+        id: 7,
+        name: "outro",
+        start: 0.95,
+        end: 1,
+      },
+    ],
+    featured: false,
+    producer: {
+      id: 12,
+      name: "Harmony Productions",
+    },
+    license: {
+      id: 1,
+      name: "Licencia Exclusiva",
+      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      price: 200,
+      duration: "2 años",
+      features: [
+        {
+          id: 1,
+          name: "Uso Comercial",
+        },
+        {
+          id: 2,
+          name: "Streaming Ilimitado",
+        },
+        {
+          id: 3,
+          name: "Distribución Ilimitada",
+        },
+        {
+          id: 4,
+          name: "Venta Ilimitada",
+        },
+        {
+          id: 5,
+          name: "Monetización Ilimitada",
+        },
+        {
+          id: 6,
+          name: "Sin Regalías",
+        },
+        {
+          id: 7,
+          name: "Sin Créditos",
+        },
+        {
+          id: 8,
+          name: "Sin Limitaciones de Audiencia",
+        },
+        {
+          id: 9,
+          name: "Sin Limitaciones Geográficas",
+        },
+        {
+          id: 10,
+          name: "Sin Limitaciones de Plataforma",
+        },
+        {
+          id: 11,
+          name: "Sin Limitaciones de Copias",
+        },
+      ],
+    },
+  },
+  {
+    id: 9,
+    name: "Estoy Volando",
+    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+    url: "a_oVE3NOs-E",
+    bpm: 85,
+    key: "G",
+    genre: "Hip Hop",
+    structure: [
+      {
+        id: 1,
+        name: "intro",
+        start: 0,
+        end: 0.1,
+      },
+      {
+        id: 2,
+        name: "verse",
+        start: 0.1,
+        end: 0.3,
+      },
+      {
+        id: 3,
+        name: "chorus",
+        start: 0.3,
+        end: 0.5,
+      },
+      {
+        id: 4,
+        name: "verse",
+        start: 0.5,
+        end: 0.6,
+      },
+      {
+        id: 5,
+        name: "bridge",
+        start: 0.6,
+        end: 0.65,
+      },
+      {
+        id: 6,
+        name: "chorus",
+        start: 0.65,
+        end: 0.95,
+      },
+      {
+        id: 7,
+        name: "outro",
+        start: 0.95,
+        end: 1,
+      },
+    ],
+    featured: true,
+    producer: {
+      id: 13,
+      name: "Melody Forge",
+    },
+    license: {
+      id: 1,
+      name: "Licencia Exclusiva",
+      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      price: 200,
+      duration: "2 años",
+      features: [
+        {
+          id: 1,
+          name: "Uso Comercial",
+        },
+        {
+          id: 2,
+          name: "Streaming Ilimitado",
+        },
+        {
+          id: 3,
+          name: "Distribución Ilimitada",
+        },
+        {
+          id: 4,
+          name: "Venta Ilimitada",
+        },
+        {
+          id: 5,
+          name: "Monetización Ilimitada",
+        },
+        {
+          id: 6,
+          name: "Sin Regalías",
+        },
+        {
+          id: 7,
+          name: "Sin Créditos",
+        },
+        {
+          id: 8,
+          name: "Sin Limitaciones de Audiencia",
+        },
+        {
+          id: 9,
+          name: "Sin Limitaciones Geográficas",
+        },
+        {
+          id: 10,
+          name: "Sin Limitaciones de Plataforma",
+        },
+        {
+          id: 11,
+          name: "Sin Limitaciones de Copias",
+        },
+      ],
+    },
+  },
+  {
+    id: 10,
+    name: "One Call",
+    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+    url: "Mo7ewSP_G5I",
+    bpm: 105,
+    key: "F",
+    genre: "Dancehall",
+    structure: [
+      {
+        id: 1,
+        name: "intro",
+        start: 0,
+        end: 0.1,
+      },
+      {
+        id: 2,
+        name: "verse",
+        start: 0.1,
+        end: 0.3,
+      },
+      {
+        id: 3,
+        name: "chorus",
+        start: 0.3,
+        end: 0.5,
+      },
+      {
+        id: 4,
+        name: "verse",
+        start: 0.5,
+        end: 0.6,
+      },
+      {
+        id: 5,
+        name: "bridge",
+        start: 0.6,
+        end: 0.65,
+      },
+      {
+        id: 6,
+        name: "chorus",
+        start: 0.65,
+        end: 0.95,
+      },
+      {
+        id: 7,
+        name: "outro",
+        start: 0.95,
+        end: 1,
+      },
+    ],
+    featured: false,
+    producer: {
+      id: 14,
+      name: "Rhythm Foundry",
+    },
+    license: {
+      id: 1,
+      name: "Licencia Exclusiva",
+      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      price: 200,
+      duration: "2 años",
+      features: [
+        {
+          id: 1,
+          name: "Uso Comercial",
+        },
+        {
+          id: 2,
+          name: "Streaming Ilimitado",
+        },
+        {
+          id: 3,
+          name: "Distribución Ilimitada",
+        },
+        {
+          id: 4,
+          name: "Venta Ilimitada",
+        },
+        {
+          id: 5,
+          name: "Monetización Ilimitada",
+        },
+        {
+          id: 6,
+          name: "Sin Regalías",
+        },
+        {
+          id: 7,
+          name: "Sin Créditos",
+        },
+        {
+          id: 8,
+          name: "Sin Limitaciones de Audiencia",
+        },
+        {
+          id: 9,
+          name: "Sin Limitaciones Geográficas",
+        },
+        {
+          id: 10,
+          name: "Sin Limitaciones de Plataforma",
+        },
+        {
+          id: 11,
+          name: "Sin Limitaciones de Copias",
+        },
+      ],
+    },
+  },
+  {
+    id: 11,
+    name: "Profano",
+    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+    url: "6CHXPeM4jM4",
+    bpm: 110,
+    key: "Dm",
+    genre: "Trap",
+    structure: [
+      {
+        id: 1,
+        name: "intro",
+        start: 0,
+        end: 0.1,
+      },
+      {
+        id: 2,
+        name: "verse",
+        start: 0.1,
+        end: 0.3,
+      },
+      {
+        id: 3,
+        name: "chorus",
+        start: 0.3,
+        end: 0.5,
+      },
+      {
+        id: 4,
+        name: "verse",
+        start: 0.5,
+        end: 0.6,
+      },
+      {
+        id: 5,
+        name: "bridge",
+        start: 0.6,
+        end: 0.65,
+      },
+      {
+        id: 6,
+        name: "chorus",
+        start: 0.65,
+        end: 0.95,
+      },
+      {
+        id: 7,
+        name: "outro",
+        start: 0.95,
+        end: 1,
+      },
+    ],
+    featured: false,
+    producer: {
+      id: 15,
+      name: "Beat Crafters",
+    },
+    license: {
+      id: 1,
+      name: "Licencia Exclusiva",
+      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      price: 200,
+      duration: "2 años",
+      features: [
+        {
+          id: 1,
+          name: "Uso Comercial",
+        },
+        {
+          id: 2,
+          name: "Streaming Ilimitado",
+        },
+        {
+          id: 3,
+          name: "Distribución Ilimitada",
+        },
+        {
+          id: 4,
+          name: "Venta Ilimitada",
+        },
+        {
+          id: 5,
+          name: "Monetización Ilimitada",
+        },
+        {
+          id: 6,
+          name: "Sin Regalías",
+        },
+        {
+          id: 7,
+          name: "Sin Créditos",
+        },
+        {
+          id: 8,
+          name: "Sin Limitaciones de Audiencia",
+        },
+        {
+          id: 9,
+          name: "Sin Limitaciones Geográficas",
+        },
+        {
+          id: 10,
+          name: "Sin Limitaciones de Plataforma",
+        },
+        {
+          id: 11,
+          name: "Sin Limitaciones de Copias",
+        },
+      ],
+    },
+  },
+  {
+    id: 12,
+    name: "Nah Change",
+    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+    url: "7OyLRQdF1hc",
+    bpm: 120,
+    key: "E",
+    genre: "Dancehall",
+    structure: [
+      {
+        id: 1,
+        name: "intro",
+        start: 0,
+        end: 0.1,
+      },
+      {
+        id: 2,
+        name: "verse",
+        start: 0.1,
+        end: 0.3,
+      },
+      {
+        id: 3,
+        name: "chorus",
+        start: 0.3,
+        end: 0.5,
+      },
+      {
+        id: 4,
+        name: "verse",
+        start: 0.5,
+        end: 0.6,
+      },
+      {
+        id: 5,
+        name: "bridge",
+        start: 0.6,
+        end: 0.65,
+      },
+      {
+        id: 6,
+        name: "chorus",
+        start: 0.65,
+        end: 0.95,
+      },
+      {
+        id: 7,
+        name: "outro",
+        start: 0.95,
+        end: 1,
+      },
+    ],
+    featured: true,
+    producer: {
+      id: 16,
+      name: "Cadence Creators",
+    },
+    license: {
+      id: 1,
+      name: "Licencia Exclusiva",
+      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      price: 200,
+      duration: "2 años",
+      features: [
+        {
+          id: 1,
+          name: "Uso Comercial",
+        },
+        {
+          id: 2,
+          name: "Streaming Ilimitado",
+        },
+        {
+          id: 3,
+          name: "Distribución Ilimitada",
+        },
+        {
+          id: 4,
+          name: "Venta Ilimitada",
+        },
+        {
+          id: 5,
+          name: "Monetización Ilimitada",
+        },
+        {
+          id: 6,
+          name: "Sin Regalías",
+        },
+        {
+          id: 7,
+          name: "Sin Créditos",
+        },
+        {
+          id: 8,
+          name: "Sin Limitaciones de Audiencia",
+        },
+        {
+          id: 9,
+          name: "Sin Limitaciones Geográficas",
+        },
+        {
+          id: 10,
+          name: "Sin Limitaciones de Plataforma",
+        },
+        {
+          id: 11,
+          name: "Sin Limitaciones de Copias",
+        },
+      ],
+    },
+  },
+  {
+    id: 13,
+    name: "YOVNGCHIMI",
+    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+    url: "jNl-g4RPayc",
+    bpm: 130,
+    key: "Bm",
+    genre: "Drill",
+    structure: [
+      {
+        id: 1,
+        name: "intro",
+        start: 0,
+        end: 0.1,
+      },
+      {
+        id: 2,
+        name: "verse",
+        start: 0.1,
+        end: 0.3,
+      },
+      {
+        id: 3,
+        name: "chorus",
+        start: 0.3,
+        end: 0.5,
+      },
+      {
+        id: 4,
+        name: "verse",
+        start: 0.5,
+        end: 0.6,
+      },
+      {
+        id: 5,
+        name: "bridge",
+        start: 0.6,
+        end: 0.65,
+      },
+      {
+        id: 6,
+        name: "chorus",
+        start: 0.65,
+        end: 0.95,
+      },
+      {
+        id: 7,
+        name: "outro",
+        start: 0.95,
+        end: 1,
+      },
+    ],
+    featured: false,
+    producer: {
+      id: 17,
+      name: "Beat Architects",
+    },
+    license: {
+      id: 1,
+      name: "Licencia Exclusiva",
+      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      price: 200,
+      duration: "2 años",
+      features: [
+        {
+          id: 1,
+          name: "Uso Comercial",
+        },
+        {
+          id: 2,
+          name: "Streaming Ilimitado",
+        },
+        {
+          id: 3,
+          name: "Distribución Ilimitada",
+        },
+        {
+          id: 4,
+          name: "Venta Ilimitada",
+        },
+        {
+          id: 5,
+          name: "Monetización Ilimitada",
+        },
+        {
+          id: 6,
+          name: "Sin Regalías",
+        },
+        {
+          id: 7,
+          name: "Sin Créditos",
+        },
+        {
+          id: 8,
+          name: "Sin Limitaciones de Audiencia",
+        },
+        {
+          id: 9,
+          name: "Sin Limitaciones Geográficas",
+        },
+        {
+          id: 10,
+          name: "Sin Limitaciones de Plataforma",
+        },
+        {
+          id: 11,
+          name: "Sin Limitaciones de Copias",
+        },
+      ],
     },
   },
 ];
@@ -124,6 +1352,17 @@ interface Beat {
     id: number;
     name: string;
   };
+  license: {
+    id: number;
+    name: string;
+    description: string;
+    price: number;
+    duration: string;
+    features: {
+      id: number;
+      name: string;
+    }[];
+  };
 }
 interface PlayList {
   name: string;
@@ -134,6 +1373,6 @@ export type PropsBeat = Beat;
 export const $Beats = atom<PropsBeat[]>(beats);
 export const $SelectedBeat = atom<PropsBeat | null>(null);
 export const $PlayList = atom<PropsPlayList>({
-  name: "Todo el Catalogo",
+  name: mainPlayListName,
   beats: beats,
 });

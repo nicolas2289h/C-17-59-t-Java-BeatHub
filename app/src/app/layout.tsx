@@ -21,15 +21,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <Providers>
-        <body id="app" className={`${inter.className} relative`}>
-          <Header />
-          <Toaster />
-          <main className="[grid-area:main] mt-[3rem]">{children}</main>
-          <MusicPlayer />
-          <Footer />
-        </body>
-      </Providers>
+      <body
+        className={`${inter.className} relative bg-terciario overflow-x-hidden`}
+      >
+        <Providers>
+          <div id="app">
+            <Header />
+            <Toaster />
+            <main className="[grid-area:main] mt-[3rem]">{children}</main>
+            <MusicPlayer />
+            <Footer />
+          </div>
+        </Providers>
+      </body>
     </html>
   );
 }
