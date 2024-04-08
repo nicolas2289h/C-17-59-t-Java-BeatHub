@@ -23,7 +23,7 @@ public class Beat {
     private String genero;
 
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn (name = "lic_beat_id", referencedColumnName = "IdLic")
     private Licencia miLicencia;
 }
