@@ -13,6 +13,9 @@ import {
   IconPlayerPlayFilled,
   IconPlayerTrackNextFilled,
   IconPlayerTrackPrevFilled,
+  IconVolume,
+  IconVolume2,
+  IconVolumeOff,
 } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
@@ -321,15 +324,27 @@ export const MusicPlayer = () => {
                 />
               </button>
             </div>
-            <input
-              type="range"
-              min={0}
-              max={1}
-              step={0.1}
-              value={volume !== null ? volume : 0.5}
-              onChange={(e) => setVolume(parseFloat(e.target.value))}
-              className="MusicPlayer-volumen"
-            />
+            <div className="flex gap-1 justify-center items-center w-[10rem]">
+              {volume === 0 ? (
+                <IconVolumeOff
+                  className="text-terciario opacity-75"
+                  size={20}
+                />
+              ) : volume > 0 && volume < 0.5 ? (
+                <IconVolume2 className="text-terciario opacity-75" size={20} />
+              ) : (
+                <IconVolume className="text-terciario opacity-75" size={20} />
+              )}
+              <input
+                type="range"
+                min={0}
+                max={1}
+                step={0.1}
+                value={volume !== null ? volume : 0.5}
+                onChange={(e) => setVolume(parseFloat(e.target.value))}
+                className="MusicPlayer-volumen duration-75 opacity-75 hover:opacity-100 hover:scale-105"
+              />
+            </div>
             <div className="absolute right-4">
               {selectedBeat && (
                 <MusicPlayerButtonAddToCart beat={selectedBeat} />
