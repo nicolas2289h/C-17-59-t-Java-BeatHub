@@ -54,6 +54,7 @@ const beats = [
       },
     ],
     featured: false,
+    price: 200,
     producer: {
       id: 4,
       name: "Trafalgar Beats",
@@ -62,7 +63,6 @@ const beats = [
       id: 1,
       name: "Licencia Exclusiva",
       description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
-      price: 200,
       duration: "2 años",
       features: [
         {
@@ -169,11 +169,11 @@ const beats = [
       id: 3,
       name: "Trafalgar Beats",
     },
+    price: 100,
     license: {
       id: 1,
       name: "Licencia Exclusiva",
       description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
-      price: 200,
       duration: "2 años",
       features: [
         {
@@ -276,6 +276,7 @@ const beats = [
       },
     ],
     featured: true,
+    price: 400,
     producer: {
       id: 1,
       name: "Jhon Doe",
@@ -284,7 +285,6 @@ const beats = [
       id: 1,
       name: "Licencia Exclusiva",
       description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
-      price: 200,
       duration: "2 años",
       features: [
         {
@@ -387,6 +387,7 @@ const beats = [
       },
     ],
     featured: false,
+    price: 200,
     producer: {
       id: 1,
       name: "Jhon Doe",
@@ -395,7 +396,6 @@ const beats = [
       id: 1,
       name: "Licencia Exclusiva",
       description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
-      price: 200,
       duration: "2 años",
       features: [
         {
@@ -502,11 +502,11 @@ const beats = [
       id: 2,
       name: "Dj Pablito",
     },
+    price: 50,
     license: {
       id: 1,
       name: "Licencia Exclusiva",
       description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
-      price: 200,
       duration: "2 años",
       features: [
         {
@@ -609,6 +609,7 @@ const beats = [
       },
     ],
     featured: false,
+    price: 200,
     producer: {
       id: 11,
       name: "Ocean Rhythms",
@@ -617,7 +618,6 @@ const beats = [
       id: 1,
       name: "Licencia Exclusiva",
       description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
-      price: 200,
       duration: "2 años",
       features: [
         {
@@ -724,11 +724,11 @@ const beats = [
       id: 12,
       name: "Harmony Productions",
     },
+    price: 1000,
     license: {
       id: 1,
       name: "Licencia Exclusiva",
       description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
-      price: 200,
       duration: "2 años",
       features: [
         {
@@ -831,6 +831,7 @@ const beats = [
       },
     ],
     featured: true,
+    price: 75,
     producer: {
       id: 13,
       name: "Melody Forge",
@@ -839,7 +840,6 @@ const beats = [
       id: 1,
       name: "Licencia Exclusiva",
       description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
-      price: 200,
       duration: "2 años",
       features: [
         {
@@ -941,6 +941,7 @@ const beats = [
         end: 1,
       },
     ],
+    price: 200,
     featured: false,
     producer: {
       id: 14,
@@ -950,7 +951,6 @@ const beats = [
       id: 1,
       name: "Licencia Exclusiva",
       description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
-      price: 200,
       duration: "2 años",
       features: [
         {
@@ -1052,6 +1052,7 @@ const beats = [
         end: 1,
       },
     ],
+    price: 150,
     featured: false,
     producer: {
       id: 15,
@@ -1061,7 +1062,6 @@ const beats = [
       id: 1,
       name: "Licencia Exclusiva",
       description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
-      price: 200,
       duration: "2 años",
       features: [
         {
@@ -1163,6 +1163,7 @@ const beats = [
         end: 1,
       },
     ],
+    price: 200,
     featured: true,
     producer: {
       id: 16,
@@ -1172,7 +1173,6 @@ const beats = [
       id: 1,
       name: "Licencia Exclusiva",
       description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
-      price: 200,
       duration: "2 años",
       features: [
         {
@@ -1275,6 +1275,7 @@ const beats = [
       },
     ],
     featured: false,
+    price: 100,
     producer: {
       id: 17,
       name: "Beat Architects",
@@ -1283,7 +1284,6 @@ const beats = [
       id: 1,
       name: "Licencia Exclusiva",
       description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
-      price: 200,
       duration: "2 años",
       features: [
         {
@@ -1348,6 +1348,7 @@ interface Beat {
     start: number;
     end: number;
   }[];
+  price: number;
   producer: {
     id: number;
     name: string;
@@ -1356,7 +1357,6 @@ interface Beat {
     id: number;
     name: string;
     description: string;
-    price: number;
     duration: string;
     features: {
       id: number;
@@ -1376,3 +1376,4 @@ export const $PlayList = atom<PropsPlayList>({
   name: mainPlayListName,
   beats: beats,
 });
+export const $ShoppingCart = atom<PropsBeat[] | null>(null);

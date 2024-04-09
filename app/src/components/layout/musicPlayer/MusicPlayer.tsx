@@ -14,9 +14,10 @@ import {
   IconPlayerTrackNextFilled,
   IconPlayerTrackPrevFilled,
 } from "@tabler/icons-react";
-import { use, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import ReactPlayer from "react-player";
+import { MusicPlayerButtonAddToCart } from "./MusicPlayerButtonAddToCart";
 
 export const MusicPlayer = () => {
   const beats = useStore($Beats);
@@ -69,8 +70,8 @@ export const MusicPlayer = () => {
     e.preventDefault();
     if (!selectedBeat) {
       $SelectedBeat.set(beats[0]);
-      setLocalStorage(`localSelectedBeat`, beats[0]);
-      setLocalStorage(`localPlayList`, { name: mainPlayListName, beats });
+      /* setLocalStorage(`localSelectedBeat`, beats[0]);
+      setLocalStorage(`localPlayList`, { name: mainPlayListName, beats }); */
     }
     if (playing) {
       setPlaying(false);
@@ -91,8 +92,9 @@ export const MusicPlayer = () => {
     const { beats: playlistBeats, name } = playlist;
     if (!selectedBeat) {
       $SelectedBeat.set(beats[0]);
-      setLocalStorage(`localSelectedBeat`, beats[0]);
-      setLocalStorage(`localPlayList`, { name: mainPlayListName, beats });
+      $PlayList.set({ name: mainPlayListName, beats });
+      /* setLocalStorage(`localSelectedBeat`, beats[0]);
+      setLocalStorage(`localPlayList`, { name: mainPlayListName, beats }); */
       setPlaying(true);
       setEnded(false);
     } else {
@@ -101,13 +103,14 @@ export const MusicPlayer = () => {
       );
       setPlaying(true);
       setEnded(false);
-      setLocalStorage(`localPlayList`, { name, beats: playlistBeats });
+      $PlayList.set({ name, beats: playlistBeats });
+      /* setLocalStorage(`localPlayList`, { name, beats: playlistBeats }); */
       if (currentIndex === playlistBeats.length - 1) {
         $SelectedBeat.set(playlistBeats[0]);
-        setLocalStorage(`localSelectedBeat`, playlistBeats[0]);
+        /* setLocalStorage(`localSelectedBeat`, playlistBeats[0]); */
       } else {
         $SelectedBeat.set(playlistBeats[currentIndex + 1]);
-        setLocalStorage(`localSelectedBeat`, playlistBeats[currentIndex + 1]);
+        /*  setLocalStorage(`localSelectedBeat`, playlistBeats[currentIndex + 1]); */
       }
     }
   };
@@ -120,7 +123,7 @@ export const MusicPlayer = () => {
   useEffect(() => {
     setLocalStorage(`volumen`, volume);
   }, [volume]);
-  useEffect(() => {
+  /* useEffect(() => {
     if (
       localStorage.getItem(`localSelectedBeat`) &&
       localStorage.getItem(`localPlayList`)
@@ -131,7 +134,7 @@ export const MusicPlayer = () => {
         setPlaying(false);
       }, 200);
     }
-  }, []);
+  }, []); */
   useEffect(() => {
     if (selectedBeat) {
       setPlaying(true);
@@ -177,8 +180,9 @@ export const MusicPlayer = () => {
     const { beats: playlistBeats, name } = playlist;
     if (!selectedBeat) {
       $SelectedBeat.set(beats[0]);
-      setLocalStorage(`localSelectedBeat`, beats[0]);
-      setLocalStorage(`localPlayList`, { name: mainPlayListName, beats });
+      $PlayList.set({ name: mainPlayListName, beats });
+      /* setLocalStorage(`localSelectedBeat`, beats[0]);
+      setLocalStorage(`localPlayList`, { name: mainPlayListName, beats }); */
       setPlaying(true);
       setEnded(false);
     } else {
@@ -187,76 +191,78 @@ export const MusicPlayer = () => {
       );
       setPlaying(true);
       setEnded(false);
-      setLocalStorage(`localPlayList`, { name, beats: playlistBeats });
+      $PlayList.set({ name, beats: playlistBeats });
+      /* setLocalStorage(`localPlayList`, { name, beats: playlistBeats }); */
       if (currentIndex === 0) {
         $SelectedBeat.set(playlistBeats[playlistBeats.length - 1]);
-        setLocalStorage(
+        /* setLocalStorage(
           `localSelectedBeat`,
           playlistBeats[playlistBeats.length - 1]
-        );
+        ); */
       } else {
         $SelectedBeat.set(playlistBeats[currentIndex - 1]);
-        setLocalStorage(`localSelectedBeat`, playlistBeats[currentIndex - 1]);
+        /* setLocalStorage(`localSelectedBeat`, playlistBeats[currentIndex - 1]); */
       }
     }
   };
 
   return (
     <>
-      <section className="sticky flex justify-center items-center w-full h-[6rem] bottom-0 bg-secundario">
-        <div className=" absolute hover:top-[-1rem] top-0 w-full z-30 flex opacity-70 hover:opacity-100 overflow-hidden duration-200 h-1 hover:h-[2rem] peer">
-          <div
-            className=" z-40 h-[2rem] absolute left-0 bg-[#DF2935] ease-linear duration-1000"
-            style={{ width: `${progress * 100}%` }}
-          />
-          <div
-            className="z-30 h-[2rem] absolute left-0 bg-red-500"
-            style={{ width: `${100}%` }}
-          />
-          <p className="z-50 absolute flex top-[.2rem] ml-4 text-terciario">
-            {progressDuration}
-          </p>
-          <p className="z-50 absolute right-0 flex top-[.2rem] mr-4 text-terciario">
-            {duration}
-          </p>
-          <input
-            type="range"
-            min={0}
-            max={1}
-            step={0.01}
-            value={progress}
-            onChange={handleonChangeRange}
-            className="z-50 w-full absolute opacity-0 cursor-pointer h-[2rem]"
-          />
-        </div>
-
-        <div
-          className="opacity-100 peer-hover:opacity-0 top-[-.2rem] pointer-events-none z-30 h-[.7rem] w-[.7rem] rounded-full absolute bg-[#DF2935]"
-          style={{
-            left: `${progress * 100 - 0.3}%`,
-            transition: "left 1s linear",
-          }}
-        />
-
-        {selectedBeat?.structure.map((section, index) => (
-          <div
-            key={index}
-            className="opacity-0 peer-hover:opacity-100 z-50 h-[.5rem] top-[-1.5rem] absolute duration-100 ease-linear"
-            style={{
-              left: `${section.start * 100}%`,
-              width: `${(section.end - section.start) * 100}%`,
-              backgroundColor:
-                beatStructure[section.name as keyof typeof beatStructure].color,
-            }}
-          >
-            <small className="flex items-center justify-center top-[-1rem] bg-primario/70 rounded-md p-1 text-center absolute left-1/2 transform -translate-x-1/2 shadow-xl">
-              {beatStructure[section.name as keyof typeof beatStructure].name}
-            </small>
+      {selectedBeat && (
+        <section className="sticky flex justify-center items-center w-full h-[6rem] bottom-0 bg-secundario">
+          <div className=" absolute hover:top-[-1rem] top-0 w-full z-30 flex opacity-70 hover:opacity-100 overflow-hidden duration-200 h-1 hover:h-[2rem] peer">
+            <div
+              className=" z-40 h-[2rem] absolute left-0 bg-[#DF2935] ease-linear duration-1000"
+              style={{ width: `${progress * 100}%` }}
+            />
+            <div
+              className="z-30 h-[2rem] absolute left-0 bg-red-500"
+              style={{ width: `${100}%` }}
+            />
+            <p className="z-50 absolute flex top-[.2rem] ml-4 text-terciario">
+              {progressDuration}
+            </p>
+            <p className="z-50 absolute right-0 flex top-[.2rem] mr-4 text-terciario">
+              {duration}
+            </p>
+            <input
+              type="range"
+              min={0}
+              max={1}
+              step={0.01}
+              value={progress}
+              onChange={handleonChangeRange}
+              className="z-50 w-full absolute opacity-0 cursor-pointer h-[2rem]"
+            />
           </div>
-        ))}
-        <div className="flex absolute justify-center items-center w-full h-[6rem] overflow-hidden">
-          <div className="absolute blur-3xl z-10 pointer-events-none w-screen h-screen">
-            {selectedBeat && (
+
+          <div
+            className="opacity-100 peer-hover:opacity-0 top-[-.2rem] pointer-events-none z-30 h-[.7rem] w-[.7rem] rounded-full absolute bg-[#DF2935]"
+            style={{
+              left: `${progress * 100 - 0.3}%`,
+              transition: "left 1s linear",
+            }}
+          />
+
+          {selectedBeat?.structure.map((section, index) => (
+            <div
+              key={index}
+              className="opacity-0 peer-hover:opacity-100 z-50 h-[.5rem] top-[-1.5rem] absolute duration-100 ease-linear"
+              style={{
+                left: `${section.start * 100}%`,
+                width: `${(section.end - section.start) * 100}%`,
+                backgroundColor:
+                  beatStructure[section.name as keyof typeof beatStructure]
+                    .color,
+              }}
+            >
+              <small className="flex items-center justify-center top-[-1rem] bg-primario/70 rounded-md p-1 text-center absolute left-1/2 transform -translate-x-1/2 shadow-xl">
+                {beatStructure[section.name as keyof typeof beatStructure].name}
+              </small>
+            </div>
+          ))}
+          <div className="flex absolute justify-center items-center w-full h-[6rem] overflow-hidden">
+            <div className="absolute blur-3xl z-10 pointer-events-none w-screen h-screen">
               <ReactPlayer
                 className="scale-x-150 opacity-20"
                 width="100%"
@@ -280,54 +286,71 @@ export const MusicPlayer = () => {
                 onProgress={handleProgress}
                 volume={volume}
               />
+            </div>
+          </div>
+          <div className="z-20 flex flex-col items-center justify-center gap-2 ">
+            <div className="flex items-center justify-center gap-5">
+              <button type="button" className="" onClick={handlePrevSong}>
+                <IconPlayerTrackPrevFilled
+                  className="text-terciario duration-75 active:scale-125 opacity-75 hover:opacity-100 hover:scale-105"
+                  size={30}
+                />
+              </button>
+              <button
+                type="button"
+                className=""
+                onClick={handlePlayButtonClick}
+              >
+                {playing && selectedBeat && (
+                  <IconPlayerPauseFilled
+                    className="text-primario active:scale-125 opacity-75 hover:opacity-100 hover:scale-105 duration-75"
+                    size={60}
+                  />
+                )}
+                {(!playing || !selectedBeat) && (
+                  <IconPlayerPlayFilled
+                    className="text-primario active:scale-125 opacity-75 hover:opacity-100 hover:scale-105 duration-75"
+                    size={60}
+                  />
+                )}
+              </button>
+              <button type="button" className="z-20" onClick={handleNextSong}>
+                <IconPlayerTrackNextFilled
+                  className="text-terciario duration-75 active:scale-125 opacity-75 hover:opacity-100 hover:scale-105"
+                  size={30}
+                />
+              </button>
+            </div>
+            <input
+              type="range"
+              min={0}
+              max={1}
+              step={0.1}
+              value={volume !== null ? volume : 0.5}
+              onChange={(e) => setVolume(parseFloat(e.target.value))}
+              className="MusicPlayer-volumen"
+            />
+            <div className="absolute right-4">
+              {selectedBeat && (
+                <MusicPlayerButtonAddToCart beat={selectedBeat} />
+              )}
+            </div>
+            {selectedBeat && (
+              <div className="bottom-0 left-0 absolute flex flex-col gap-1 ">
+                <p className="opacity-20 font-bold hover:opacity-100 text-terciario duration-100">
+                  {selectedBeat.name}
+                </p>
+                <p className="opacity-20 hover:opacity-100 text-terciario duration-100">
+                  Por {selectedBeat.producer.name}
+                </p>
+                <p className="opacity-20 text-sm hover:opacity-100 text-terciario duration-100">
+                  Playlist: {playlist.name}
+                </p>
+              </div>
             )}
           </div>
-        </div>
-        <div className="z-20 flex flex-col items-center justify-center gap-2 ">
-          <div className="flex items-center justify-center gap-5">
-            <button type="button" className="" onClick={handlePrevSong}>
-              <IconPlayerTrackPrevFilled
-                className="text-terciario duration-75 active:scale-125 opacity-75 hover:opacity-100 hover:scale-105"
-                size={30}
-              />
-            </button>
-            <button type="button" className="" onClick={handlePlayButtonClick}>
-              {playing && selectedBeat && (
-                <IconPlayerPauseFilled
-                  className="text-primario active:scale-125 opacity-75 hover:opacity-100 hover:scale-105 duration-75"
-                  size={60}
-                />
-              )}
-              {(!playing || !selectedBeat) && (
-                <IconPlayerPlayFilled
-                  className="text-primario active:scale-125 opacity-75 hover:opacity-100 hover:scale-105 duration-75"
-                  size={60}
-                />
-              )}
-            </button>
-            <button type="button" className="z-20" onClick={handleNextSong}>
-              <IconPlayerTrackNextFilled
-                className="text-terciario duration-75 active:scale-125 opacity-75 hover:opacity-100 hover:scale-105"
-                size={30}
-              />
-            </button>
-          </div>
-          <input
-            type="range"
-            min={0}
-            max={1}
-            step={0.1}
-            value={volume !== null ? volume : 0.5}
-            onChange={(e) => setVolume(parseFloat(e.target.value))}
-            className="MusicPlayer-volumen"
-          />
-          {selectedBeat && (
-            <p className="opacity-20 hover:opacity-100 bottom-0 left-0 absolute text-terciario duration-100">
-              Reproduciendo: {playlist.name}
-            </p>
-          )}
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 };
