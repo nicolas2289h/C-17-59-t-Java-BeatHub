@@ -3,14 +3,12 @@ package nocountry.beathub.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import nocountry.beathub.dto.request.UsuarioLoginDTO;
-import nocountry.beathub.exception.CantanteExistException;
+import nocountry.beathub.exception.ArtistaExistException;
 import nocountry.beathub.exception.HibernateOperationException;
 import nocountry.beathub.exception.IncorrectPasswordException;
 import nocountry.beathub.exception.UsernameNotFoundException;
-import nocountry.beathub.model.Cantante;
-import nocountry.beathub.model.UsuarioLogin;
-import nocountry.beathub.service.CantanteService;
-import nocountry.beathub.service.ICantanteService;
+import nocountry.beathub.model.Artista;
+import nocountry.beathub.service.IArtistaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,25 +17,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cantante")
-public class CantanteController {
+@RequestMapping("/api/artista")
+public class ArtistaController {
 
 
     @Autowired
-    private ICantanteService cantanteService;
+    private IArtistaService artistaService;
 
     @Operation(
-            summary = "Registra un cantante",
+            summary = "Registra un artista",
             description = ""
     )
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody @Valid Cantante cantante) {
+    public ResponseEntity<String> registerUser(@RequestBody @Valid Artista artista) {
         try {
-            boolean estadoRegistro = cantanteService.registerCantante(cantante);
+            boolean estadoRegistro = artistaService.registerArtista(artista);
             if (estadoRegistro) {
                 return new ResponseEntity<>("Usuario registrado exitosamente.", HttpStatus.CREATED);
             }
-        } catch (CantanteExistException e) {
+        } catch (ArtistaExistException e) {
             return new ResponseEntity<>("El nombre de usuario ya fue registrado.", HttpStatus.BAD_REQUEST);
         } catch (HibernateOperationException e) {
             return new ResponseEntity<>("Error interno del servidor al intentar registrar el usuario.", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -48,13 +46,13 @@ public class CantanteController {
     }
 
     @Operation(
-            summary = "Autentica un cantante",
+            summary = "Autentica un artista",
             description = ""
     )
     @PostMapping("/login")
     public ResponseEntity<String> loginUser(@RequestBody @Valid UsuarioLoginDTO usuarioLogin)  {
         try {
-            boolean authenticated = cantanteService.loginUser(usuarioLogin.getUsername(), usuarioLogin.getPassword());
+            boolean authenticated = artistaService.loginUser(usuarioLogin.getUsername(), usuarioLogin.getPassword());
             if (authenticated) {
                 return ResponseEntity.status(HttpStatus.OK).body("Usuario autenticado");
             } else {
@@ -72,22 +70,22 @@ public class CantanteController {
     }
 
     @Operation(
-            summary = "Obtiene todos los cantantes",
+            summary = "Obtiene todos los artistas",
             description = ""
     )
-    @GetMapping("/cantantes")
-    public ResponseEntity<List<Cantante>> findAllUsers() {
-        List<Cantante> cantantes = cantanteService.findAllCantantes();
-        return new ResponseEntity<>(cantantes, HttpStatus.OK);
+    @GetMapping("/artistas")
+    public ResponseEntity<List<Artista>> findAllArtistas() {
+        List<Artista> artistas = artistaService.findAllArtistas();
+        return new ResponseEntity<>(artistas, HttpStatus.OK);
     }
 
 
 //    @Operation(
-//            summary = "Trae un cantante",
-//            description = "Busca un cantante por id"
+//            summary = "Trae un artista",
+//            description = "Busca un artista por id"
 //    )
 //    @GetMapping("/{userId}")
-//    public String getUser(@PathVariable Long cantanteId){
+//    public String getUser(@PathVariable Long artista){
 //        return "Prueba";
 //    }
 }

@@ -1,31 +1,31 @@
 package nocountry.beathub.service;
 
-import nocountry.beathub.exception.CantanteExistException;
+import nocountry.beathub.exception.ArtistaExistException;
 import nocountry.beathub.exception.HibernateOperationException;
 import nocountry.beathub.exception.IncorrectPasswordException;
 import nocountry.beathub.exception.UsernameNotFoundException;
-import nocountry.beathub.model.Cantante;
-import nocountry.beathub.repository.ICantanteRepository;
+import nocountry.beathub.model.Artista;
+import nocountry.beathub.repository.IArtistaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CantanteService implements ICantanteService{
-    private final ICantanteRepository cantanteRepository;
+public class ArtistaService implements IArtistaService {
+    private final IArtistaRepository artistaRepository;
 
-    public CantanteService(ICantanteRepository cantanteRepository) {
-        this.cantanteRepository = cantanteRepository;
+    public ArtistaService(IArtistaRepository artistaRepository) {
+        this.artistaRepository = artistaRepository;
     }
 
-    public boolean registerCantante(Cantante cantante)throws CantanteExistException,HibernateOperationException{
-        if (cantanteRepository.existsByUsername(cantante.getName())) {
-            throw new CantanteExistException("Ya se encuentra el cliente : " + cantante.getName());
+    public boolean registerArtista(Artista artista)throws ArtistaExistException,HibernateOperationException{
+        if (artistaRepository.existsByUsername(artista.getName())) {
+            throw new ArtistaExistException("Ya se encuentra el cliente : " + artista.getName());
         }
 
         try {
-            cantanteRepository.save(cantante);
+            artistaRepository.save(artista);
         } catch (Exception e) {
             throw new HibernateOperationException("Error interto: " + e.getMessage());
         }
@@ -35,15 +35,15 @@ public class CantanteService implements ICantanteService{
     }
 
     public boolean loginUser(String username, String password) throws UsernameNotFoundException, IncorrectPasswordException ,HibernateOperationException{
-        Optional<Cantante> userOptional;
+        Optional<Artista> userOptional;
         try {
-           userOptional = cantanteRepository.findByUsername(username);
+           userOptional = artistaRepository.findByUsername(username);
         } catch (Exception e) {
             throw new HibernateOperationException("Error con hibertane: " + e.getMessage());
         }
 
         if (userOptional.isPresent()) {
-            Cantante user = userOptional.get();
+            Artista user = userOptional.get();
             if (user.getPassword().equals(password)) {
                 return true;
             } else {
@@ -54,8 +54,8 @@ public class CantanteService implements ICantanteService{
         }
     }
 
-    public List<Cantante> findAllCantantes() {
-        List<Cantante> cantantes = cantanteRepository.findAll();
-        return cantantes;
+    public List<Artista> findAllArtistas() {
+        List<Artista> artistas = artistaRepository.findAll();
+        return artistas;
     }
 }

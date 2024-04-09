@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Cantante extends Usuario {
+public class Artista extends Usuario {
 
 
     private String generoMusical;
