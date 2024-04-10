@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
 
 @Getter
 @Setter
@@ -18,6 +17,7 @@ public class Beat {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long IdBeat;
     private String nombre;
+    @Column(name = "tiempo_bmp")
     private Integer tiempoBmp;
     private String tonalidad;
     private String genero;
