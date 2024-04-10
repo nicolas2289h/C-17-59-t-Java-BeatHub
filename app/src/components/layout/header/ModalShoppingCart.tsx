@@ -14,17 +14,29 @@ import { setLocalStorage } from "@/components/utils/handleLocalStorage";
 import toast from "react-hot-toast";
 import { $ShoppingCart } from "@/stores/beats";
 import { useStore } from "@nanostores/react";
-import { useFilterBeats } from "@/components/utils/hooks/useFilterBeats";
+import { randomBeat } from "@/components/utils/handleBeatFilters";
+import { RecommendedBeatsShopingCart } from "./RecommendedBeatsShopingCart";
+import { PropsFiltroUseFilterBeats } from "@/components/utils/hooks/InterfaceUseFilterBeats";
 
 export const ModalShoppingCart = () => {
   const shoppingCart = useStore($ShoppingCart);
   const total = shoppingCart?.reduce((acc, beat) => acc + beat.price, 0) || 0;
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { beatsFiltrados } = useFilterBeats({
-    /* cantidad: 3, */
-    filtrosNegativos: [{ genre: "Drill" }, { genre: "Trap" }],
-    /* filtros: [{ "producer.name": "Jhon Doe" }], */
-  });
+  const filtros: PropsFiltroUseFilterBeats[] = [
+    {
+      "producer.name":
+        shoppingCart && shoppingCart?.length > 0
+          ? randomBeat(shoppingCart || []).producer.name
+          : "",
+    },
+    {
+      genre:
+        shoppingCart && shoppingCart?.length > 0
+          ? randomBeat(shoppingCart || []).genre
+          : "",
+    },
+  ];
+
   const handleDeleteBeat = (beatId: number) => {
     const newShoppingCart = shoppingCart?.filter((beat) => beat.id !== beatId);
     if (!newShoppingCart) return;
@@ -78,6 +90,15 @@ export const ModalShoppingCart = () => {
                     </li>
                   ))}
                 </ul>
+                <section>
+                  <h2 className="text-center my-4 text-secundario/50">
+                    Recomendados
+                  </h2>
+                  <RecommendedBeatsShopingCart
+                    cantidad={3 + (shoppingCart?.length ?? 0)}
+                    filtros={filtros}
+                  />
+                </section>
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>

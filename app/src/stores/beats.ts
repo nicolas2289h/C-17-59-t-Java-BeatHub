@@ -452,7 +452,7 @@ const beats = [
     url: "b2VXgrXi0yk",
     bpm: 95,
     key: "C#m",
-    genre: "DanceHall",
+    genre: "Dancehall",
     structure: [
       {
         id: 1,

@@ -18,6 +18,7 @@ export const PositiveBeatFilter = ({
   filtros.forEach((filtro) => {
     const keys = Object.keys(filtro);
     let ArrayBusqueda: PropsBeat[] = [];
+
     keys.forEach((key) => {
       ArrayBusqueda = beats.filter((beat: PropsBeatUseFilterBeats) => {
         // Si la clave tiene un punto, significa que es una propiedad anidada
@@ -29,24 +30,20 @@ export const PositiveBeatFilter = ({
         }
       });
     });
-
-    // si ArrayBusqueda es mayor que cantidad, selecciona al azar la cantidad de elementos y los almacena en otra variable
-    if (cantidad && ArrayBusqueda.length > cantidad) {
-      const ArrayBusquedaTemp: PropsBeat[] = [];
-      while (ArrayBusquedaTemp.length < cantidad) {
-        const cancionAleatoria =
-          ArrayBusqueda[Math.floor(Math.random() * ArrayBusqueda.length)];
-        if (
-          !ArrayBusquedaTemp.find((beat) => beat.name === cancionAleatoria.name)
-        ) {
-          ArrayBusquedaTemp.push(cancionAleatoria);
-        }
-      }
-      ArrayBusqueda = ArrayBusquedaTemp;
-    }
     beatsFiltradosTemp.push(...ArrayBusqueda);
   });
-  return beatsFiltradosTemp;
+  if (cantidad && beatsFiltradosTemp.length > cantidad) {
+    const ArrayBusquedaTemp: PropsBeat[] = [];
+    while (ArrayBusquedaTemp.length < cantidad) {
+      const cancionAleatoria = randomBeat(beatsFiltradosTemp);
+      if (!ArrayBusquedaTemp.find((beat) => beat.id === cancionAleatoria.id)) {
+        ArrayBusquedaTemp.push(cancionAleatoria);
+      }
+    }
+    beatsFiltradosTemp.push(...ArrayBusquedaTemp);
+  }
+
+  return deleteDuplicatedBeats(beatsFiltradosTemp);
 };
 export const NegativeBeatFilter = ({
   filtros,
@@ -63,47 +60,52 @@ export const NegativeBeatFilter = ({
     const keys = Object.keys(filtro);
     let ArrayBusqueda: PropsBeat[] = [];
     if (beatsFiltradosTemp.length === 0) {
-      ArrayBusqueda = beats.filter((cancion) => {
-        return keys.every(
-          (key) => cancion[key as keyof PropsBeat] !== filtro[key]
-        );
+      keys.forEach((key) => {
+        ArrayBusqueda = beats.filter((beat: PropsBeatUseFilterBeats) => {
+          // Si la clave tiene un punto, significa que es una propiedad anidada
+          if (key.includes(".")) {
+            const [propiedad, subpropiedad] = key.split(".");
+            return beat[propiedad][subpropiedad] !== filtro[key];
+          } else {
+            return beat[key] !== filtro[key];
+          }
+        });
       });
       beatsFiltradosTemp.push(...ArrayBusqueda);
     } else {
-      ArrayBusqueda = beatsFiltradosTemp.filter((cancion) => {
-        return keys.every(
-          (key) => cancion[key as keyof PropsBeat] !== filtro[key]
+      keys.forEach((key) => {
+        ArrayBusqueda = beatsFiltradosTemp.filter(
+          (beat: PropsBeatUseFilterBeats) => {
+            // Si la clave tiene un punto, significa que es una propiedad anidada
+            if (key.includes(".")) {
+              const [propiedad, subpropiedad] = key.split(".");
+              return beat[propiedad][subpropiedad] !== filtro[key];
+            } else {
+              return beat[key] !== filtro[key];
+            }
+          }
         );
       });
       beatsFiltradosTemp = ArrayBusqueda;
     }
-
-    /* keys.forEach((key) => {
-      ArrayBusqueda = beats.filter((beat: PropsBeatUseFilterBeats) => {
-        // Si la clave tiene un punto, significa que es una propiedad anidada
-        if (key.includes(".")) {
-          const [propiedad, subpropiedad] = key.split(".");
-          return beat[propiedad][subpropiedad] !== filtro[key];
-        } else {
-          return beat[key] !== filtro[key];
-        }
-      });
-    }); */
-
-    // si ArrayBusqueda es mayor que cantidad, selecciona al azar la cantidad de elementos
   });
   if (cantidad && beatsFiltradosTemp.length > cantidad) {
     const ArrayBusquedaTemp: PropsBeat[] = [];
     while (ArrayBusquedaTemp.length < cantidad) {
-      const cancionAleatoria =
-        beatsFiltradosTemp[
-          Math.floor(Math.random() * beatsFiltradosTemp.length)
-        ];
+      const cancionAleatoria = randomBeat(beatsFiltradosTemp);
       if (!ArrayBusquedaTemp.find((beat) => beat.id === cancionAleatoria.id)) {
         ArrayBusquedaTemp.push(cancionAleatoria);
       }
     }
-    return ArrayBusquedaTemp;
+    beatsFiltradosTemp.push(...ArrayBusquedaTemp);
   }
-  return beatsFiltradosTemp;
+  return deleteDuplicatedBeats(beatsFiltradosTemp);
+};
+
+export const randomBeat = (beats: PropsBeat[]) => {
+  return beats[Math.floor(Math.random() * beats.length)];
+};
+
+export const deleteDuplicatedBeats = (beats: PropsBeat[]) => {
+  return Array.from(new Set(beats));
 };

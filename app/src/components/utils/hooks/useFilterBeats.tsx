@@ -1,8 +1,13 @@
 import { $Beats, PropsBeat } from "@/stores/beats";
 import { useStore } from "@nanostores/react";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { PropsUseFilterBeats } from "./InterfaceUseFilterBeats";
-import { NegativeBeatFilter, PositiveBeatFilter } from "../handleBeatFilters";
+import {
+  NegativeBeatFilter,
+  PositiveBeatFilter,
+  deleteDuplicatedBeats,
+  randomBeat,
+} from "../handleBeatFilters";
 
 export const useFilterBeats = ({
   filtros,
@@ -18,7 +23,9 @@ export const useFilterBeats = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [beatsRaw]);
-
+  useEffect(() => {
+    console.log(filtros);
+  }, [filtros]);
   const filtrarCanciones = ({ beatsRaw }: { beatsRaw: PropsBeat[] }) => {
     let beats: PropsBeat[] = beatsRaw;
     let beatsFiltradosTemp: PropsBeat[] = [];
@@ -41,13 +48,9 @@ export const useFilterBeats = ({
     }
 
     if (cantidad && cantidad < beatsFiltradosTemp.length) {
-      // vuelve a seleccionar al azar la cantidad de elementos de beatsFiltradosTemp
       const beatsFiltradosTempTemp: PropsBeat[] = [];
       while (beatsFiltradosTempTemp.length < cantidad) {
-        const cancionAleatoria =
-          beatsFiltradosTemp[
-            Math.floor(Math.random() * beatsFiltradosTemp.length)
-          ];
+        const cancionAleatoria = randomBeat(beatsFiltradosTemp);
         if (
           !beatsFiltradosTempTemp.find(
             (beat) => beat.name === cancionAleatoria.name
@@ -57,18 +60,25 @@ export const useFilterBeats = ({
         }
       }
       beatsFiltradosTemp = beatsFiltradosTempTemp;
-    }
-    while (beatsFiltradosTemp.length < cantidad!) {
-      const cancionAleatoria =
-        beats![Math.floor(Math.random() * beats!.length)];
-      if (
-        !beatsFiltradosTemp.find((beat) => beat.name === cancionAleatoria.name)
-      ) {
-        beatsFiltradosTemp.push(cancionAleatoria);
+
+      //Rellenar con bets random si no hay suficientes
+    } else if (cantidad && cantidad > beatsFiltradosTemp.length) {
+      let relleno: PropsBeat[] = [];
+      while (relleno.length < cantidad - beatsFiltradosTemp.length) {
+        const BeatsToFill = beats.length < cantidad! ? beatsRaw : beats;
+        const cancionAleatoria = randomBeat(BeatsToFill);
+        if (
+          !beatsFiltradosTemp.find((beat) => beat.id === cancionAleatoria.id) &&
+          !relleno.find((beat) => beat.id === cancionAleatoria.id)
+        ) {
+          relleno.push(cancionAleatoria);
+        }
       }
+
+      beatsFiltradosTemp.push(...relleno);
     }
 
-    setBeatsFiltrados(beatsFiltradosTemp);
+    setBeatsFiltrados(deleteDuplicatedBeats(beatsFiltradosTemp));
   };
 
   return {
