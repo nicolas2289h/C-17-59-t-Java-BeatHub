@@ -24,6 +24,6 @@ public class Beat {
 
 
     @OneToOne
-    @JoinColumn (name = "lic_beat_id", referencedColumnName = "IdLic")
+    @JoinColumn (name = "lic_beat_id", referencedColumnName = "IdLic",nullable = true)
     private Licencia miLicencia;
 }
