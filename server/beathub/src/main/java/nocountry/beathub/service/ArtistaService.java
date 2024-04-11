@@ -58,4 +58,20 @@ public class ArtistaService implements IArtistaService {
         List<Artista> artistas = artistaRepository.findAll();
         return artistas;
     }
+
+    public Artista findArtistaById(Long id) throws UsernameNotFoundException, HibernateOperationException {
+        Optional<Artista> userOptional;
+        try {
+            userOptional = artistaRepository.findById(id);
+        } catch (Exception e) {
+            throw new HibernateOperationException("Error con hibernate: " + e.getMessage());
+        }
+
+        if (userOptional.isPresent()) {
+            Artista user = userOptional.get();
+            return user;
+        } else {
+            throw new UsernameNotFoundException("Usuario no encontrado: " + id);
+        }
+    }
 }

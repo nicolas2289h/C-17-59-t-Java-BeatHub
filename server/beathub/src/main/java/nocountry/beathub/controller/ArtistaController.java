@@ -79,6 +79,22 @@ public class ArtistaController {
         return new ResponseEntity<>(artistas, HttpStatus.OK);
     }
 
+    @Operation(
+            summary = "Obtiene un artista por su ID",
+            description = "Obtiene un artista especifico almacenado la base de datos"
+    )
+    @GetMapping("/{id}")
+    public ResponseEntity<Artista> findArtistaById(@PathVariable Long id) {
+        try {
+            Artista artista = artistaService.findArtistaById(id);
+            return new ResponseEntity<>(artista, HttpStatus.OK);
+        } catch (UsernameNotFoundException e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        } catch (HibernateOperationException e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 //    @Operation(
 //            summary = "Trae un artista",

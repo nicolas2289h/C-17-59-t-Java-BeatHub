@@ -12,6 +12,8 @@ public interface IProductorService {
 
     boolean loginUser(String username, String password)throws UsernameNotFoundException, IncorrectPasswordException, HibernateOperationException;
 
-
     public List<Productor> findAllProductores();
+
+    Productor findProductorById(Long id) throws UsernameNotFoundException, HibernateOperationException;
+
 }
