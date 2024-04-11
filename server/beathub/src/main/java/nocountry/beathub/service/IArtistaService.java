@@ -14,5 +14,7 @@ public interface IArtistaService {
     boolean loginUser(String username, String password)throws UsernameNotFoundException, IncorrectPasswordException, HibernateOperationException;
 
     List<Artista> findAllArtistas();
+
+    Artista findArtistaById(Long id) throws UsernameNotFoundException, HibernateOperationException;
 }
 

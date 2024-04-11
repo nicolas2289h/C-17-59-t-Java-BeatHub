@@ -59,4 +59,20 @@ public class ProductorService implements IProductorService{
         List<Productor> productores = productorRepository.findAll();
         return productores;
     }
+
+    public Productor findProductorById(Long id) throws UsernameNotFoundException, HibernateOperationException {
+        Optional<Productor> userOptional;
+        try {
+            userOptional = productorRepository.findById(id);
+        } catch (Exception e) {
+            throw new HibernateOperationException("Error con hibernate: " + e.getMessage());
+        }
+
+        if (userOptional.isPresent()) {
+            Productor user = userOptional.get();
+            return user;
+        } else {
+            throw new UsernameNotFoundException("Usuario no encontrado: " + id);
+        }
+    }
 }

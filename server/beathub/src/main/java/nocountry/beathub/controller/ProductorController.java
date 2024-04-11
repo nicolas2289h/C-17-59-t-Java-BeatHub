@@ -25,7 +25,7 @@ public class ProductorController {
     private IProductorService productorService;
 
     @Operation(
-            summary = "Registra un artista",
+            summary = "Registra un productor",
             description = ""
     )
     @PostMapping("/register")
@@ -77,6 +77,22 @@ public class ProductorController {
     public ResponseEntity<List<Productor>> findAllProductores() {
         List<Productor> productores = productorService.findAllProductores();
         return new ResponseEntity<>(productores, HttpStatus.OK);
+    }
+
+    @Operation(
+            summary = "Obtiene un productor por su ID",
+            description = "Obtiene un productor especifico almacenado la base de datos"
+    )
+    @GetMapping("/{id}")
+    public ResponseEntity<Productor> findProductorById(@PathVariable Long id) {
+        try {
+            Productor productor = productorService.findProductorById(id);
+            return new ResponseEntity<>(productor, HttpStatus.OK);
+        } catch (UsernameNotFoundException e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        } catch (HibernateOperationException e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
