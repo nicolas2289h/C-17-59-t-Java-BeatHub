@@ -4,11 +4,11 @@ const beats = [
   {
     id: 1,
     name: "Crazy Duck",
-    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
     url: "viDyXXRwwL8",
     bpm: 120,
     key: "C",
     genre: "Trap",
+    mood: "Agresivo",
     structure: [
       {
         id: 1,
@@ -62,7 +62,7 @@ const beats = [
     license: {
       id: 1,
       name: "Licencia Exclusiva",
-      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      description: "Licencia exclusiva para uso comercial",
       duration: "2 años",
       features: [
         {
@@ -115,10 +115,10 @@ const beats = [
   {
     id: 2,
     name: "Gansta Paradise",
-    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
     url: "ewvYDxeOhN4",
     bpm: 140,
     key: "Dm",
+    mood: "Agresivo",
     genre: "Trap",
     structure: [
       {
@@ -173,7 +173,7 @@ const beats = [
     license: {
       id: 1,
       name: "Licencia Exclusiva",
-      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      description: "Licencia exclusiva para uso comercial",
       duration: "2 años",
       features: [
         {
@@ -226,10 +226,10 @@ const beats = [
   {
     id: 3,
     name: "Laugh",
-    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
     url: "yJ4qaV-B22I",
     bpm: 145,
     key: "Em",
+    mood: "Agresivo",
     genre: "Drill",
     structure: [
       {
@@ -284,7 +284,7 @@ const beats = [
     license: {
       id: 1,
       name: "Licencia Exclusiva",
-      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      description: "Licencia exclusiva para uso comercial",
       duration: "2 años",
       features: [
         {
@@ -337,10 +337,10 @@ const beats = [
   {
     id: 4,
     name: "Me dice",
-    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
     url: "btsfpOe9NZo",
     bpm: 90,
     key: "Bm",
+    mood: "Agresivo",
     genre: "Reggaeton",
     structure: [
       {
@@ -395,7 +395,7 @@ const beats = [
     license: {
       id: 1,
       name: "Licencia Exclusiva",
-      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      description: "Licencia exclusiva para uso comercial",
       duration: "2 años",
       features: [
         {
@@ -448,10 +448,10 @@ const beats = [
   {
     id: 5,
     name: "China",
-    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
     url: "b2VXgrXi0yk",
     bpm: 95,
     key: "C#m",
+    mood: "Agresivo",
     genre: "Dancehall",
     structure: [
       {
@@ -506,7 +506,7 @@ const beats = [
     license: {
       id: 1,
       name: "Licencia Exclusiva",
-      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      description: "Licencia exclusiva para uso comercial",
       duration: "2 años",
       features: [
         {
@@ -559,10 +559,10 @@ const beats = [
   {
     id: 7,
     name: "Cupido",
-    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
     url: "0onih8VuXpg",
     bpm: 90,
     key: "D",
+    mood: "Agresivo",
     genre: "Dancehall",
     structure: [
       {
@@ -617,7 +617,7 @@ const beats = [
     license: {
       id: 1,
       name: "Licencia Exclusiva",
-      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      description: "Licencia exclusiva para uso comercial",
       duration: "2 años",
       features: [
         {
@@ -670,10 +670,10 @@ const beats = [
   {
     id: 8,
     name: "Dale Fuego",
-    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
     url: "pjg_ZjH__fU",
     bpm: 95,
     key: "Am",
+    mood: "Agresivo",
     genre: "Hip Hop",
     structure: [
       {
@@ -728,7 +728,7 @@ const beats = [
     license: {
       id: 1,
       name: "Licencia Exclusiva",
-      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      description: "Licencia exclusiva para uso comercial",
       duration: "2 años",
       features: [
         {
@@ -781,10 +781,10 @@ const beats = [
   {
     id: 9,
     name: "Estoy Volando",
-    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
     url: "a_oVE3NOs-E",
     bpm: 85,
     key: "G",
+    mood: "Agresivo",
     genre: "Hip Hop",
     structure: [
       {
@@ -839,7 +839,7 @@ const beats = [
     license: {
       id: 1,
       name: "Licencia Exclusiva",
-      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      description: "Licencia exclusiva para uso comercial",
       duration: "2 años",
       features: [
         {
@@ -892,10 +892,10 @@ const beats = [
   {
     id: 10,
     name: "One Call",
-    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
     url: "Mo7ewSP_G5I",
     bpm: 105,
     key: "F",
+    mood: "Agresivo",
     genre: "Dancehall",
     structure: [
       {
@@ -950,7 +950,7 @@ const beats = [
     license: {
       id: 1,
       name: "Licencia Exclusiva",
-      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      description: "Licencia exclusiva para uso comercial",
       duration: "2 años",
       features: [
         {
@@ -1003,11 +1003,11 @@ const beats = [
   {
     id: 11,
     name: "Profano",
-    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
     url: "6CHXPeM4jM4",
     bpm: 110,
     key: "Dm",
     genre: "Trap",
+    mood: "Agresivo",
     structure: [
       {
         id: 1,
@@ -1061,7 +1061,7 @@ const beats = [
     license: {
       id: 1,
       name: "Licencia Exclusiva",
-      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      description: "Licencia exclusiva para uso comercial",
       duration: "2 años",
       features: [
         {
@@ -1114,10 +1114,10 @@ const beats = [
   {
     id: 12,
     name: "Nah Change",
-    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
     url: "7OyLRQdF1hc",
     bpm: 120,
     key: "E",
+    mood: "Agresivo",
     genre: "Dancehall",
     structure: [
       {
@@ -1172,7 +1172,7 @@ const beats = [
     license: {
       id: 1,
       name: "Licencia Exclusiva",
-      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      description: "Licencia exclusiva para uso comercial",
       duration: "2 años",
       features: [
         {
@@ -1225,10 +1225,10 @@ const beats = [
   {
     id: 13,
     name: "YOVNGCHIMI",
-    description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
     url: "jNl-g4RPayc",
     bpm: 130,
     key: "Bm",
+    mood: "Agresivo",
     genre: "Drill",
     structure: [
       {
@@ -1283,7 +1283,7 @@ const beats = [
     license: {
       id: 1,
       name: "Licencia Exclusiva",
-      description: "loren ipsum dolor sit amet loren ipsum dolor sit amet",
+      description: "Licencia exclusiva para uso comercial",
       duration: "2 años",
       features: [
         {
@@ -1337,10 +1337,10 @@ const beats = [
 interface Beat {
   id: number;
   name: string;
-  description: string;
   url: string;
   bpm: number;
   key: string;
+  mood: string;
   genre: string;
   featured: boolean;
   structure: {
