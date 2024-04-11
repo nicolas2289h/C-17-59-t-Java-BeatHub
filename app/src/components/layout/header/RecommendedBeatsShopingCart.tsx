@@ -52,11 +52,11 @@ export const RecommendedBeatsShopingCart = ({
                 onClick={() => {
                   $SelectedBeat.set(beat);
                   $PlayList.set({ name: mainPlayListName, beats });
-                  setLocalStorage(`localSelectedBeat`, beat);
+                  /* setLocalStorage(`localSelectedBeat`, beat);
                   setLocalStorage(`localPlayList`, {
                     name: mainPlayListName,
                     beats,
-                  });
+                  }); */
                 }}
                 className="relative"
               >
