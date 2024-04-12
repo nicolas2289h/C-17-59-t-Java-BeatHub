@@ -1,6 +1,7 @@
 package nocountry.beathub.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import nocountry.beathub.exception.LicenciaDuplicadaException;
 import nocountry.beathub.exception.LicenciaNoExisteException;
@@ -10,12 +11,15 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(path = "/api/beat")
+@Tag(name="Controlador de Beat", description = "Controlador para acceder a las operaciones del Beat")
 public class BeatController {
 
     private final IBeatService iBeatService;
@@ -30,10 +34,12 @@ public class BeatController {
             summary = "Guarda un beat en el sistema."
     )
     @PostMapping("/save-beat")
-    public ResponseEntity<Beat> saveBeat(@RequestBody Beat newBeat){
+    public ResponseEntity<Beat> saveBeat(@RequestBody Beat newBeat, UriComponentsBuilder uriComponentsBuilder){
+        
         try {
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(iBeatService.saveBeat(newBeat));
+            Beat savedBeat = iBeatService.saveBeat(newBeat);
+            URI url = uriComponentsBuilder.path("/api/beat/{id}").buildAndExpand(savedBeat.getIdBeat()).toUri();
+            return ResponseEntity.created(url).body(savedBeat);
         } catch (DataIntegrityViolationException e) {
             if (e.getMessage().contains("Duplicate entry")) {
                 throw new LicenciaDuplicadaException("No se puede duplicar la licencia.");
@@ -43,5 +49,13 @@ public class BeatController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
             }
         }
+    }
+
+    @Operation(
+        summary = "Obtiene un beat por su id"
+    )
+    @GetMapping("/{id}")
+    public ResponseEntity<Beat> getBeatById(@PathVariable Long id){
+        return ResponseEntity.of(iBeatService.getBeat(id));
     }
 }

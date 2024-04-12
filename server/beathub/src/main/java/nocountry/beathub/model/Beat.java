@@ -17,10 +17,14 @@ public class Beat {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long IdBeat;
     private String nombre;
+    private String url;
     @Column(name = "tiempo_bmp")
     private Integer tiempoBmp;
     private String tonalidad;
     private String genero;
+    private String mood;
+    private Boolean featured;
+    private Double precio;
 
 
     @OneToOne
