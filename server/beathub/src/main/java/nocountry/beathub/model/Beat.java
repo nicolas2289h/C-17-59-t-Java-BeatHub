@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -26,8 +28,12 @@ public class Beat {
     private Boolean featured;
     private Double precio;
 
-
     @OneToOne
     @JoinColumn (name = "lic_beat_id", referencedColumnName = "IdLic",nullable = true)
     private Licencia miLicencia;
+
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<EstructuraBeat> estructurasBeat;
+
 }
