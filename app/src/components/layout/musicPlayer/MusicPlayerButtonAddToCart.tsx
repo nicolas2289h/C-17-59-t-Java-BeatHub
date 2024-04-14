@@ -44,11 +44,11 @@ export const MusicPlayerButtonAddToCart = ({ beat }: { beat: PropsBeat }) => {
             ? true
             : false
         }
-        className="disabled:opacity-65 disabled:hover:opacity-65 disabled:scale-100 disabled:shadow-md disabled:active:scale-100 w-[7rem] h-[2.7rem] p-1 flex items-center justify-center gap-1 rounded-lg shadow-md ring-1 bg-red-500 text-terciario ring-secundario/5 active:scale-95 duration-100 ease-out hover:shadow-lg hover:scale-105 text-lg"
+        className="disabled:opacity-65 disabled:hover:opacity-65 disabled:scale-100 disabled:shadow-md disabled:active:scale-100 w-[7rem] h-[2.7rem] p-1 flex items-center justify-center gap-1 rounded-lg shadow-md ring-1 bg-slate-50 text-secundario ring-secundario/5 active:scale-95 duration-100 ease-out hover:shadow-lg hover:scale-105 text-lg"
         onClick={handleAddBeatToCart}
       >
         <IconShoppingCartPlus
-          className="w-1/4 flex justify-center items-center text-terciario"
+          className="w-1/4 flex justify-center items-center text-red-500"
           size={30}
         />
 

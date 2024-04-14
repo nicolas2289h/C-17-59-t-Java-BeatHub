@@ -49,11 +49,7 @@ export const PlaylistBeatsSection = ({
                 {beat.producer.name}
               </h4>
             </div>
-            <div
-              className={`${
-                selectedBeat?.id === beat.id ? "visible" : "invisible"
-              } w-1/2 flex items-center justify-end`}
-            >
+            <div className={`w-1/2 flex items-center justify-end`}>
               <MusicPlayerButtonAddToCart beat={beat} />
             </div>
           </div>
