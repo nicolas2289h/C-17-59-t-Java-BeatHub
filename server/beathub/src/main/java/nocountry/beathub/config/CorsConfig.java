@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("*") // Permitir solicitudes desde todos los dominios
+                        .allowedOrigins("http://localhost:3000","/**")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Permitir los métodos HTTP
                         .allowedHeaders("*"); // Permitir todos los encabezados
             }
