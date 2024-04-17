@@ -29,7 +29,6 @@ public class Beat {
     private Double precio;
 
     @OneToOne
-    @JoinColumn (name = "lic_beat_id", referencedColumnName = "IdLic",nullable = true)
     private Licencia miLicencia;
 
 

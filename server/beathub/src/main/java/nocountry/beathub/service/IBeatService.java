@@ -1,5 +1,7 @@
 package nocountry.beathub.service;
 
+import nocountry.beathub.exception.HibernateOperationException;
+import nocountry.beathub.exception.IdNotFoundException;
 import nocountry.beathub.model.Beat;
 
 import java.util.List;
@@ -9,6 +11,6 @@ public interface IBeatService {
     List<Beat> getAllBeats();
 
     Beat saveBeat(Beat newBeat);
-    
-    Optional<Beat> getBeat(Long id);
+
+    public Beat findBeatById(Long id) throws IdNotFoundException, HibernateOperationException;
 } 
