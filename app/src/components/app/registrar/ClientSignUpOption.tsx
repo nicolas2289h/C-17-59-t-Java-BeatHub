@@ -1,10 +1,12 @@
 "use client";
 
 import { fetchAPI } from "@/components/utils/fetchAPI";
+import { setLocalStorage } from "@/components/utils/handleLocalStorage";
 import { $IsProducer } from "@/stores/users";
 import { useStore } from "@nanostores/react";
 import { Button } from "@nextui-org/react";
 import { useMutation } from "@tanstack/react-query";
+import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -16,34 +18,34 @@ const ClientSignUp = () => {
   });
   const { status, error, data, mutate } = useMutation({
     mutationKey: ["register"],
-    mutationFn: async ({ data }: { data: Object }) =>
+    mutationFn: async (dataUser: object) =>
       await fetchAPI({
         url: isProducer ? `productor/register` : `artista/register`,
         method: "POST",
-        body: data,
+        body: dataUser,
       }),
   });
   useEffect(() => {
     if (status === "success") {
       toast.success("Usuario creado con éxito");
-      console.log(data);
+      setLocalStorage("isProducer", isProducer ? "true" : "false");
+      redirect("/login");
     }
     if (status === "error") {
       toast.error("Error al crear usuario");
     }
-  }, [status, data]);
+  }, [status, data, error, isProducer]);
 
   const handleSignUp = (e: any) => {
     e.preventDefault();
     const form = e.target;
     const data = new FormData(form);
     const name = data.get("name");
-    const lastName = data.get("lastName");
+    const lastname = data.get("lastname");
     const username = data.get("username");
     const email = data.get("email");
     const password = data.get("password");
     const passwordConfirm = data.get("passwordConfirm");
-    console.log(name, lastName, username, email, password, passwordConfirm);
     if (password !== passwordConfirm) {
       toast.error("Las contraseñas no coinciden");
       setCheckInput({ ...checkInput, passwordOk: false });
@@ -56,8 +58,16 @@ const ClientSignUp = () => {
       setCheckInput({ ...checkInput, emailOk: false });
       return;
     }
-    mutate({ data: { email, password, name, lastname: lastName, username } });
+    const dataUser = {
+      email,
+      password,
+      name,
+      lastname,
+      username,
+    };
+    mutate(dataUser);
   };
+
   return (
     <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
       <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -88,15 +98,15 @@ const ClientSignUp = () => {
           </div>
           <div>
             <label
-              htmlFor="lastName"
+              htmlFor="lastname"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Ingrese su apellido
             </label>
             <input
               type="text"
-              name="lastName"
-              id="lastName"
+              name="lastname"
+              id="lastname"
               className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Apellido"
             />

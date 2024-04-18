@@ -1,74 +1,155 @@
 "use client";
 
+import { fetchAPI } from "@/components/utils/fetchAPI";
+import {
+  getLocalStorage,
+  setLocalStorage,
+} from "@/components/utils/handleLocalStorage";
+import { Button } from "@nextui-org/react";
+import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export const ClientLogin = () => {
+  const [isProducer, setIsProducer] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
+  useEffect(() => {
+    setIsProducer(getLocalStorage("isProducer"));
+  }, []);
+  useEffect(() => {
+    setIsLogged(getLocalStorage("isLogged"));
+  }, []);
+
+  const { status, error, data, mutate } = useMutation({
+    mutationKey: ["login"],
+    mutationFn: async (dataUser: object) =>
+      await fetchAPI({
+        url: isProducer ? `productor/login` : `artista/login`,
+        method: "POST",
+        body: dataUser,
+      }),
+  });
+  useEffect(() => {
+    if (status === "success") {
+      toast.success("Sesión iniciada con éxito");
+      setLocalStorage("isLogged", true);
+      setIsLogged(true);
+    }
+    if (status === "error") {
+      toast.error("Error al iniciar sesión");
+    }
+  }, [status, data, error]);
+
+  const handleLogin = (e: any) => {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    const username = data.get("username");
+    const password = data.get("password");
+
+    const dataUser = {
+      username,
+      password,
+    };
+    mutate(dataUser);
+  };
   return (
     <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-      <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-        <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-          Iniciar sesión
-        </h1>
-        <form className="space-y-4 md:space-y-6" method="POST">
-          <div>
-            <label
-              htmlFor="name"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Ingrese su correo electrónico
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="name"
-              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Correo electrónico"
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="password"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Ingrese su contraseña
-            </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Introduce tu contraseña"
-              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required
-            />
-          </div>
-          <p className="inline text-sm font-light text-gray-500 dark:text-gray-400">
-            ¿Olvidaste tu contraseña?{" "}
-            <a
-              className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-              href="*"
-            >
-              Haz clic aquí
-            </a>{" "}
-          </p>
-          <Link href="/">
-            <button
+      {isLogged ? (
+        <div className="flex flex-col items-center justify-center p-4">
+          <h1 className="mb-10 text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            Ya has iniciado sesión
+          </h1>
+          <Button href="/" as={Link}>
+            Ir a la página principal
+          </Button>
+          <span>o</span>
+          <Button
+            color="danger"
+            onPress={() => {
+              setLocalStorage("isLogged", false);
+              setIsLogged(false);
+            }}
+          >
+            Cerrar sesión
+          </Button>
+        </div>
+      ) : (
+        <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+          <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            Iniciar sesión
+          </h1>
+          <form
+            className="space-y-4 md:space-y-6"
+            method="POST"
+            onSubmit={handleLogin}
+          >
+            <div>
+              <label
+                htmlFor="email"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Ingrese su correo electrónico
+              </label>
+              <input
+                type="username"
+                name="username"
+                id="username"
+                autoComplete="username"
+                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Nombre de Usuario"
+                required
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="password"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Ingrese su contraseña
+              </label>
+              <input
+                autoComplete="current-password"
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Introduce tu contraseña"
+                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+              />
+            </div>
+            <p className="inline text-sm font-light text-gray-500 dark:text-gray-400">
+              ¿Olvidaste tu contraseña?{" "}
+              <a
+                className="font-medium text-blue-600 hover:underline dark:text-blue-500"
+                href="*"
+              >
+                Haz clic aquí
+              </a>{" "}
+            </p>
+
+            <Button
               type="submit"
               className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Continuar
-            </button>
-          </Link>
-        </form>
-        <p className="inline text-sm font-light text-gray-500 dark:text-gray-400">
-          ¿Eres nuevo?{" "}
-        </p>
-        <Link href="/registrar-opc">
-          <button className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            </Button>
+          </form>
+          <p className="inline text-sm font-light text-gray-500 dark:text-gray-400">
+            ¿Eres nuevo?{" "}
+          </p>
+
+          <Button
+            href="/registrar-opc"
+            as={Link}
+            className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
             Regístrate
-          </button>
-        </Link>
-      </div>
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

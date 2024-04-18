@@ -23,7 +23,7 @@ export async function fetchAPI<T>({
 }) {
   const config: RequestInit = {
     method,
-    credentials: "include",
+    /* credentials: "include", */
     body:
       method === "GET" || method === "DELETE" || method === "PATCH"
         ? undefined
