@@ -29,20 +29,20 @@ public class ArtistaController {
             description = ""
     )
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody @Valid Artista artista) {
+    public ResponseEntity<Object> registerArtista(@RequestBody @Valid Artista artista) {
         try {
             boolean estadoRegistro = artistaService.registerArtista(artista);
             if (estadoRegistro) {
-                return new ResponseEntity<>("Usuario registrado exitosamente.", HttpStatus.CREATED);
+                return ResponseEntity.ok().body("{\"message\": \"Usuario registrado exitosamente.\"}");
             }
         } catch (ArtistaExistException e) {
-            return new ResponseEntity<>("El nombre de usuario ya fue registrado.", HttpStatus.BAD_REQUEST);
+            return ResponseEntity.badRequest().body("{\"error\": \"El nombre de usuario ya fue registrado.\"}");
         } catch (HibernateOperationException e) {
-            return new ResponseEntity<>("Error interno del servidor al intentar registrar el usuario.", HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"error\": \"Error interno del servidor al intentar registrar el usuario.\"}");
         }
 
         // Si el estado de registro es falso (algo inesperado ocurrió)
-        return new ResponseEntity<>("Error desconocido al intentar registrar el usuario.", HttpStatus.INTERNAL_SERVER_ERROR);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"error\": \"Error desconocido al intentar registrar el usuario.\"}");
     }
 
     @Operation(
@@ -50,23 +50,21 @@ public class ArtistaController {
             description = ""
     )
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody @Valid UsuarioLoginDTO usuarioLogin)  {
+    public ResponseEntity<Object> loginUser(@RequestBody @Valid UsuarioLoginDTO usuarioLogin) {
         try {
             boolean authenticated = artistaService.loginUser(usuarioLogin.getUsername(), usuarioLogin.getPassword());
             if (authenticated) {
-                return ResponseEntity.status(HttpStatus.OK).body("Usuario autenticado");
+                return ResponseEntity.ok().body("{\"message\": \"Usuario autenticado\"}");
             } else {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Nombre de usuario o contraseña incorrectos");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"error\": \"Nombre de usuario o contraseña incorrectos\"}");
             }
         } catch (UsernameNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nombre de usuario no encontrado");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\": \"Nombre de usuario no encontrado\"}");
         } catch (IncorrectPasswordException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Contraseña incorrecta");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"error\": \"Contraseña incorrecta\"}");
         } catch (HibernateOperationException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del servidor");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"error\": \"Error interno del servidor\"}");
         }
-
-
     }
 
     @Operation(
@@ -84,14 +82,16 @@ public class ArtistaController {
             description = "Obtiene un artista especifico almacenado la base de datos"
     )
     @GetMapping("/{id}")
-    public ResponseEntity<Artista> findArtistaById(@PathVariable Long id) {
+    public ResponseEntity<Object> findArtistaById(@PathVariable Long id) {
         try {
             Artista artista = artistaService.findArtistaById(id);
-            return new ResponseEntity<>(artista, HttpStatus.OK);
+            return ResponseEntity.ok().body(artista);
         } catch (UsernameNotFoundException e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+              return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\": \"Artista no encontrado\"}");
+
+
         } catch (HibernateOperationException e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"error\": \"Error interno del servidor\"}");
         }
     }
 

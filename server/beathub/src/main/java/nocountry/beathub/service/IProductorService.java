@@ -14,6 +14,9 @@ public interface IProductorService {
 
     public List<Productor> findAllProductores();
 
-    Productor findProductorById(Long id) throws UsernameNotFoundException, HibernateOperationException;
+    Productor findProductorById(Long id) throws IdNotFoundException, HibernateOperationException;
+
+    boolean agregarBeat(Productor productor)throws  HibernateOperationException;
+
 
 }

@@ -35,7 +35,7 @@ public class ProductorService implements IProductorService{
 
     @Override
     public boolean loginUser(String username, String password) throws UsernameNotFoundException, IncorrectPasswordException, HibernateOperationException {
-        Optional<Artista> userOptional;
+        Optional<Productor> userOptional;
         try {
             userOptional = productorRepository.findByUsername(username);
         } catch (Exception e) {
@@ -43,7 +43,7 @@ public class ProductorService implements IProductorService{
         }
 
         if (userOptional.isPresent()) {
-            Artista user = userOptional.get();
+            Productor user = userOptional.get();
             if (user.getPassword().equals(password)) {
                 return true;
             } else {
@@ -60,7 +60,7 @@ public class ProductorService implements IProductorService{
         return productores;
     }
 
-    public Productor findProductorById(Long id) throws UsernameNotFoundException, HibernateOperationException {
+    public Productor findProductorById(Long id) throws IdNotFoundException, HibernateOperationException {
         Optional<Productor> userOptional;
         try {
             userOptional = productorRepository.findById(id);
@@ -72,7 +72,22 @@ public class ProductorService implements IProductorService{
             Productor user = userOptional.get();
             return user;
         } else {
-            throw new UsernameNotFoundException("Usuario no encontrado: " + id);
+            throw new IdNotFoundException("Usuario no encontrado: " + id);
         }
+    }
+
+    @Override
+    public boolean agregarBeat(Productor productor) throws HibernateOperationException {
+
+
+        try {
+            productorRepository.save(productor);
+        } catch (Exception e) {
+            throw new HibernateOperationException("Error interno: " + e.getMessage());
+        }
+
+
+        return true;
+
     }
 }

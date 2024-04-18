@@ -3,9 +3,9 @@ package nocountry.beathub.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import nocountry.beathub.exception.LicenciaDuplicadaException;
-import nocountry.beathub.exception.LicenciaNoExisteException;
+import nocountry.beathub.exception.*;
 import nocountry.beathub.model.Beat;
+import nocountry.beathub.model.Productor;
 import nocountry.beathub.service.IBeatService;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -51,11 +51,22 @@ public class BeatController {
         }
     }
 
+
+
     @Operation(
-        summary = "Obtiene un beat por su id"
+            summary = "Obtiene un beat por su id",
+            description = "Obtiene un productor especifico almacenado la base de datos"
     )
     @GetMapping("/{id}")
-    public ResponseEntity<Beat> getBeatById(@PathVariable Long id){
-        return ResponseEntity.of(iBeatService.getBeat(id));
+    public ResponseEntity<Object> findBeatById(@PathVariable Long id) {
+        try {
+            Beat beat = iBeatService.findBeatById(id);
+            return ResponseEntity.ok().body(beat);
+        } catch (IdNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\": \"Beat no encontrado\"}");
+        } catch (HibernateOperationException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"error\": \"Error interno del servidor\"}");
+        }
     }
+
 }

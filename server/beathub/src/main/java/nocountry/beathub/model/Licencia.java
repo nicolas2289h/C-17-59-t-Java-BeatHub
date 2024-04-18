@@ -17,7 +17,7 @@ public class Licencia {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long IdLic;
-    private double precio;
+
 
     @ManyToOne
     @JoinColumn(name = "pago_lic_id", referencedColumnName = "IdPago")

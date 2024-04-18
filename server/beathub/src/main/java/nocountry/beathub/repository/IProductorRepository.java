@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface IProductorRepository extends JpaRepository<Productor,Long> {
 
-    Optional<Artista> findByUsername(String username);
+    Optional<Productor> findByUsername(String username);
     boolean existsByUsername(String username);
 }
