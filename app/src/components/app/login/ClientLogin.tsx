@@ -88,10 +88,10 @@ export const ClientLogin = () => {
           >
             <div>
               <label
-                htmlFor="email"
+                htmlFor="username"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Ingrese su correo electrónico
+                Ingrese su nombre de usuario
               </label>
               <input
                 type="username"
