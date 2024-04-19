@@ -26,19 +26,19 @@ export const RecommendedBeatsShopingCart = ({
     filtros,
   });
   //funcion para eliminar un beat del array beatsFiltrados si este esta en el array shoppingCart
-  const [beatsFiltradosTemp, setBeatsFiltradosTemp] = useState<PropsBeat[]>(
+  /*   const [beatsFiltradosTemp, setBeatsFiltradosTemp] = useState<PropsBeat[]>(
     shoppingCart || []
-  );
-  const beats = useStore($Beats);
+  ); */
+  /*   const beats = useStore($Beats);
   useEffect(() => {
     const dfdf = beatsFiltrados?.filter(
       (beat) => !shoppingCart?.find((beatCart) => beatCart.id === beat.id)
     );
     setBeatsFiltradosTemp(dfdf);
-  }, [shoppingCart, beatsFiltrados]);
+  }, [shoppingCart, beatsFiltrados]); */
   return (
     <div className="flex flex-wrap items-center justify-center gap-3 relative">
-      {beatsFiltradosTemp &&
+      {/* {beatsFiltradosTemp &&
         beatsFiltradosTemp.map((beat: PropsBeat) => (
           <div
             key={beat.id}
@@ -52,11 +52,11 @@ export const RecommendedBeatsShopingCart = ({
                 onClick={() => {
                   $SelectedBeat.set(beat);
                   $PlayList.set({ name: mainPlayListName, beats });
-                  /* setLocalStorage(`localSelectedBeat`, beat);
+                  setLocalStorage(`localSelectedBeat`, beat);
                   setLocalStorage(`localPlayList`, {
                     name: mainPlayListName,
                     beats,
-                  }); */
+                  });
                 }}
                 className="relative"
               >
@@ -87,7 +87,7 @@ export const RecommendedBeatsShopingCart = ({
               </Button>
             </div>
           </div>
-        ))}
+        ))} */}
     </div>
   );
 };
