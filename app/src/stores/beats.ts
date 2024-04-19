@@ -1353,16 +1353,12 @@ interface Beat {
     id: number;
     name: string;
   };
-  license: {
-    id: number;
-    name: string;
-    description: string;
-    duration: string;
-    features: {
-      id: number;
-      name: string;
-    }[];
-  };
+}
+interface ShoppingCartBeat {
+  id: number;
+  name: string;
+  price: number;
+  url: string;
 }
 interface PlayList {
   name: string;
@@ -1370,10 +1366,11 @@ interface PlayList {
 }
 export type PropsPlayList = PlayList;
 export type PropsBeat = Beat;
+export type PropsShoppingCartBeat = ShoppingCartBeat;
 export const $Beats = atom<PropsBeat[]>(beats);
 export const $SelectedBeat = atom<PropsBeat | null>(null);
 export const $PlayList = atom<PropsPlayList>({
   name: mainPlayListName,
   beats: beats,
 });
-export const $ShoppingCart = atom<PropsBeat[] | null>(null);
+export const $ShoppingCart = atom<PropsShoppingCartBeat[] | null>(null);

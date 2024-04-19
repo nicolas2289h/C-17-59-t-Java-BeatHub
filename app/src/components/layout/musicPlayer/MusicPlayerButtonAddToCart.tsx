@@ -14,10 +14,26 @@ export const MusicPlayerButtonAddToCart = ({ beat }: { beat: PropsBeat }) => {
   const shoppingCart = useStore($ShoppingCart);
   const handleAddBeatToCart = () => {
     if (shoppingCart && shoppingCart.find((b) => b.id === beat.id)) return;
+    if (shoppingCart && shoppingCart.length >= 5) {
+      return toast.error("Máximo 5 beats en el carrito", {
+        position: "top-center",
+        duration: 3000,
+      });
+    }
     if (!shoppingCart) {
-      $ShoppingCart.set([beat]);
+      $ShoppingCart.set([
+        {
+          id: beat.id,
+          name: beat.name,
+          price: beat.price,
+          url: beat.url,
+        },
+      ]);
     } else {
-      $ShoppingCart.set([...shoppingCart, beat]);
+      $ShoppingCart.set([
+        ...shoppingCart,
+        { id: beat.id, name: beat.name, price: beat.price, url: beat.url },
+      ]);
     }
     toast.success(`"${beat.name}" agregado al carrito`, {
       position: "top-center",

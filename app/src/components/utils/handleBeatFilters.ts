@@ -1,4 +1,4 @@
-import { PropsBeat } from "@/stores/beats";
+import { PropsBeat, PropsShoppingCartBeat } from "@/stores/beats";
 import {
   PropsBeatUseFilterBeats,
   PropsFiltroUseFilterBeats,
@@ -102,7 +102,7 @@ export const NegativeBeatFilter = ({
   return deleteDuplicatedBeats(beatsFiltradosTemp);
 };
 
-export const randomBeat = (beats: PropsBeat[]) => {
+export const randomBeat = (beats: any) => {
   return beats[Math.floor(Math.random() * beats.length)];
 };
 
