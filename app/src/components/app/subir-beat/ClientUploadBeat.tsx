@@ -1,6 +1,9 @@
 import styles from "./ClientUploadBeat.module.css";
+import Image from "next/image";
+
 
 const ClientUploadBeat = () => {
+
   return (
     <>
       <section className={styles.hero}>
@@ -12,7 +15,14 @@ const ClientUploadBeat = () => {
       <section className={styles.generalContainer}>
         <div>
           <div className={styles.gridBeatEdit}>
-            <figure className={styles.icon}></figure>
+            <figure className={styles.icon}>
+              <Image
+                src="/assets/icons/icons-editar.png"
+                alt="i-edit"
+                width={50}
+                height={50}
+              />
+            </figure>
             <div className={styles.mainSectionContainer}>
               <h3 className={styles.subtitle}>Editor del beat</h3>
               <p className={styles.paragraph}>
@@ -45,7 +55,7 @@ const ClientUploadBeat = () => {
               <div className={styles.beatInputsContainer}>
                 <div className={styles.container}>
                   <h4 className={styles.h4}>Género</h4>
-                  <select name="Generos" id="">
+                  <select name="Generos" id="" className={styles.selectButton}>
                     <option value="acustico">Acústico</option>
                     <option value="afro">Afro</option>
                     <option value="afrobeat">Afrobeat</option>
@@ -105,7 +115,7 @@ const ClientUploadBeat = () => {
                 </div>
                 <div className={styles.container}>
                   <h4 className={styles.h4}>Estado de Humor</h4>
-                  <select name="humor" id="">
+                  <select name="humor" id="" className={styles.selectButton}>
                     <option value="activar">Activar</option>
                     <option value="agresivo">Agresivo</option>
                     <option value="concentracion">Concentración</option>
@@ -127,7 +137,7 @@ const ClientUploadBeat = () => {
                 </div>
                 <div className={styles.container}>
                   <h4 className={styles.h4}>Tonalidad</h4>
-                  <select name="tonalidad" id="">
+                  <select name="tonalidad" id="" className={styles.selectButton}>
                     <option value="a">A</option>
                     <option value="am">Am</option>
                     <option value="a#">A#</option>
@@ -154,11 +164,23 @@ const ClientUploadBeat = () => {
                     <option value="g#m">G#m</option>
                   </select>
                 </div>
+                <div>
+                  <h4 className={styles.h4}>BPM</h4>
+                  <div className={styles.BPMContainer}>
+                    <input type="number" name="" id="" placeholder="N°" className={styles.BPMSelect}/>
+                    <span className={styles.BPMSpan}>Bpm</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div className={styles.gridBeatEdit}>
               <figure>
-                <img src="./../../../assets/assets/icons/icons-precio.png" alt="i-price" className={styles.icon}/>
+                <Image 
+                  src="/assets/icons/icons-precio.png" 
+                  alt="i-price" 
+                  width={62} 
+                  height={67}
+                />
               </figure>
               <div className={styles.mainSectionContainer}>
                 <h3 className={styles.subtitle}>Seleccionar precio</h3>
@@ -168,8 +190,94 @@ const ClientUploadBeat = () => {
               </div>
             </div>
             <hr className={styles.hr} />
-            
+            <div className={styles.mainSectionContainer}>
+              <h3 className={styles.subtitle}>
+                  Precio.{" "}
+                  <span className={`${styles.span} ${styles.beatPriceSpan}`}>
+                    Especifica el precio de tu beat
+                  </span>
+                </h3>
+                <div>
+                  <h4 className={styles.h4}>Precio</h4>
+                  <div className={styles.BPMContainer}>
+                  <span className={styles.BPMSpan}>$</span>
+                    <input type="number" name="" id="" placeholder="0.00" className={styles.priceSelect}/>
+                    <span className={styles.BPMSpan}>$US</span>
+                  </div>
+                </div>
+                <div className={styles.gridBeatEdit}>
+                  <figure>
+                    <Image 
+                      src="/assets/icons/icons-upload1.png" 
+                      alt="i-upload1" 
+                      width={62} 
+                      height={68}
+                    />
+                  </figure>
+                  <div className={styles.mainSectionContainer}>
+                    <h3 className={styles.subtitle}>Subir tu beat</h3>
+                    <p className={styles.paragraph}>
+                      Aquí puedes subir tu archivo y link del beat.
+                    </p>
+                  </div>
+                </div>
+            </div>
+            <hr className={styles.hr} />
+            <div className={styles.mainSectionContainer}>
+              <h3 className={styles.subtitle}>
+                Url beat.{" "}
+                <span className={styles.span}>
+                  (Url que vincula el beat a la página)
+                </span>
+              </h3>
+              <input
+                type="url"
+                name=""
+                id=""
+                className={styles.input}
+                placeholder="www.youtube.com"
+                required
+              />
+            </div>
+            <div className={styles.mainSectionContainer}>
+              <h3 className={styles.subtitle}>
+                Subir beat.{" "}
+                <span className={styles.span}>
+                  (Archivo .wap del beat)
+                </span>
+              </h3>
+              <input
+                type="file"
+                name="beat-file"
+                id=""
+                className={styles.inputFile}
+                title="Subir archivo"
+                required
+              />
+            </div>
+            <hr className={styles.hr} />
+            <input type="reset" className={styles.reset} value="Cancelar"/>
+            <input type="submit" value="Publicar" className={styles.submit} />
           </form>
+        </div>
+        <div className={styles.previsualContainer}>
+          <div className={styles.previsualPortada}>
+
+          </div>
+          <h3>Previsualización portada</h3>
+          <Image 
+            src="/assets/icons/icons-ayuda.png"
+            alt="ayuda-img"
+            width={24}
+            height={24}
+            className={styles.helpImage}
+          />
+          <div className={styles.helpTextContainer}>
+            <p className={styles.helpText}>Para cambiar la imagen de previsualización
+              del beat deberás cambiarla desde el sitio 
+              donde este cargado.
+            </p>
+          </div>
         </div>
       </section>
     </>
