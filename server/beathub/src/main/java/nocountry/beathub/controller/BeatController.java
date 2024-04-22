@@ -40,7 +40,7 @@ public class BeatController {
     @Operation(
             summary = "Obtiene todos los beats registrados en el sistema."
     )
-    @GetMapping("/beats/{}")
+    @GetMapping("/beats/{id}")
     public ResponseEntity<List<Beat>> getAllBeatsByIdProductor(@PathVariable Long id) {
         return ResponseEntity.ok(iBeatService.getAllBeatsByIdProductor(id));
     }
