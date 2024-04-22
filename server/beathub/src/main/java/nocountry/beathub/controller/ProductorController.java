@@ -3,12 +3,11 @@ package nocountry.beathub.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import nocountry.beathub.dto.request.AddBeatRequestDTO;
 import nocountry.beathub.dto.request.UsuarioLoginDTO;
 import nocountry.beathub.exception.*;
-import nocountry.beathub.model.Artista;
 import nocountry.beathub.model.Beat;
 import nocountry.beathub.model.Productor;
-import nocountry.beathub.service.IArtistaService;
 import nocountry.beathub.service.IBeatService;
 import nocountry.beathub.service.IProductorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +28,10 @@ public class ProductorController {
     private IBeatService iBeatService;
     @Operation(
             summary = "Registra un productor",
-            description = ""
+            description = "Permite registrar un nuevo productor"
     )
     @PostMapping("/register")
-    public ResponseEntity<Object> registerUser(@RequestBody @Valid Productor productor) {
+    public ResponseEntity<Object> registerUser(@RequestBody  Productor productor) {
         try {
             boolean estadoRegistro = productorService.registerProductor(productor);
             if (estadoRegistro) {
@@ -41,7 +40,9 @@ public class ProductorController {
         } catch (ProductorExistException e) {
             return ResponseEntity.badRequest().body("{\"error\": \"El nombre de usuario ya fue registrado.\"}");
         } catch (HibernateOperationException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"error\": \"Error interno del servidor al intentar registrar el usuario.\"}");
+            String errorMessage = "Error interno del servidor: " + e.getMessage();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"error\": \"" + errorMessage + "\"}");
+
         }
 
         // Si el estado de registro es falso (algo inesperado ocurrió)
@@ -96,35 +97,13 @@ public class ProductorController {
     }
 
 
+    @GetMapping("/beats/{id}")
+    public ResponseEntity<List<Beat>> getAllBeats(@PathVariable Long id)
+    {
 
-    @PostMapping("/productor/{id}/add-beat")
-    public ResponseEntity<Object> addBeatToProductor(@PathVariable Long id, @RequestParam Long idBeat){
+        return ResponseEntity.ok(iBeatService.getAllBeatsByIdProductor(id));
+    }
 
-
-            try {
-                Productor productor = productorService.findProductorById(id);
-
-                // Obtener el beat por su ID
-                Beat beat = iBeatService.findBeatById(idBeat);
-
-                // Agregar el beat a la lista de beats del productor
-                productor.getMisBeats().add(beat);
-
-                // Guardar el productor actualizado en la base de datos
-                productorService.agregarBeat(productor);
-
-                return ResponseEntity.ok().body("{\"message\": \"Se agrego el beat exitosamente\"}");
-
-            } catch (IdNotFoundException e) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\": \"Registro no encontrado\"}");
-
-            } catch (HibernateOperationException e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"error\": \"Error interno del servidor\"}");
-            }
-            // Obtener el beat por su ID
-
-
-        }
 
 
 

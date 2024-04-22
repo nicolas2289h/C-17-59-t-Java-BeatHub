@@ -17,7 +17,7 @@ import java.util.List;
 public class Beat {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long IdBeat;
+    private Long idBeat;
     private String nombre;
     private String url;
     @Column(name = "tiempo_bmp")
@@ -31,8 +31,12 @@ public class Beat {
     @OneToOne
     private Licencia miLicencia;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="idproductor")
+    private Productor productor;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EstructuraBeat> estructurasBeat;
+
 
 }

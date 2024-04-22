@@ -15,7 +15,7 @@ import lombok.Setter;
 public abstract class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long Id;
+    private Long id;
     private String name;
     private String lastname;
     private String username;

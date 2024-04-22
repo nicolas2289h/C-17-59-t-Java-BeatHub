@@ -2,6 +2,7 @@ package nocountry.beathub.service;
 
 import nocountry.beathub.exception.*;
 import nocountry.beathub.model.Artista;
+import nocountry.beathub.model.Beat;
 import nocountry.beathub.model.Productor;
 import nocountry.beathub.repository.IProductorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,17 @@ public class ProductorService implements IProductorService{
 
     @Override
     public boolean registerProductor(Productor productor) throws ProductorExistException, HibernateOperationException {
+        Beat beat=null;
         if (productorRepository.existsByUsername(productor.getName())) {
             throw new ProductorExistException("Ya se encuentra el cliente : " + productor.getName());
         }
 
         try {
+
+
             productorRepository.save(productor);
         } catch (Exception e) {
-            throw new HibernateOperationException("Error interto: " + e.getMessage());
+            throw new HibernateOperationException("Error interto: " + e.getMessage() );
         }
 
 
@@ -83,7 +87,7 @@ public class ProductorService implements IProductorService{
         try {
             productorRepository.save(productor);
         } catch (Exception e) {
-            throw new HibernateOperationException("Error interno: " + e.getMessage());
+            throw new HibernateOperationException("Error interno: " + e.getMessage() );
         }
 
 

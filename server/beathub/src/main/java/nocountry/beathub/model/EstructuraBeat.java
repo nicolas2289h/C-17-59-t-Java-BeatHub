@@ -15,9 +15,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 public class EstructuraBeat {
-    @jakarta.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long Id;
+    private Long id;
     private String name;
     private double start;
 

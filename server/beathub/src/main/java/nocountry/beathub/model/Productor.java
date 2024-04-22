@@ -18,8 +18,7 @@ import java.util.List;
 @Entity
 public class Productor extends Usuario{
 
-    @OneToMany
-    private List<Beat> misBeats;
+
     private String descripcion;
 
 }

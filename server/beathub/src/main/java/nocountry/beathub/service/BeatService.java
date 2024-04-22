@@ -44,5 +44,14 @@ public class BeatService implements IBeatService{
             throw new IdNotFoundException("Beat no encontrado: " + id);
         }
     }
-    
+
+    @Override
+    public List<Beat> getAllBeatsByIdProductor(Long id) {
+
+        return iBeatRepository.findByProductorId(id);
+
+    }
+
+
+
 }

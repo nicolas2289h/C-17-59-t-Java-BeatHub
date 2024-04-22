@@ -7,6 +7,8 @@ import nocountry.beathub.exception.*;
 import nocountry.beathub.model.Beat;
 import nocountry.beathub.model.Productor;
 import nocountry.beathub.service.IBeatService;
+import nocountry.beathub.service.IProductorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,9 @@ import java.util.List;
 public class BeatController {
 
     private final IBeatService iBeatService;
+
+    @Autowired
+    private IProductorService productorService;
     @Operation(
         summary = "Obtiene todos los beats registrados en el sistema."
     )
@@ -30,6 +35,18 @@ public class BeatController {
     public ResponseEntity<List<Beat>> getAllBeats() {
         return ResponseEntity.ok(iBeatService.getAllBeats());
     }
+
+
+    @Operation(
+            summary = "Obtiene todos los beats registrados en el sistema."
+    )
+    @GetMapping("/beats/{}")
+    public ResponseEntity<List<Beat>> getAllBeatsByIdProductor(@PathVariable Long id) {
+        return ResponseEntity.ok(iBeatService.getAllBeatsByIdProductor(id));
+    }
+
+
+
     @Operation(
             summary = "Guarda un beat en el sistema."
     )
@@ -38,6 +55,14 @@ public class BeatController {
         
         try {
             Beat savedBeat = iBeatService.saveBeat(newBeat);
+
+            Productor prod = productorService.findProductorById(savedBeat.getProductor().getId());
+
+            savedBeat.getProductor().setName(prod.getName());
+
+            savedBeat.getProductor().setLastname(prod.getLastname());
+
+
             URI url = uriComponentsBuilder.path("/api/beat/{id}").buildAndExpand(savedBeat.getIdBeat()).toUri();
             return ResponseEntity.created(url).body(savedBeat);
         } catch (DataIntegrityViolationException e) {
@@ -48,6 +73,10 @@ public class BeatController {
             }else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
             }
+        } catch (HibernateOperationException e) {
+            throw new RuntimeException(e);
+        } catch (IdNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
