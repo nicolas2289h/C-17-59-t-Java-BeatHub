@@ -2,7 +2,7 @@ import ClientBuy from "@/components/app/pago/ClientBuy";
 
 const Buy = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen items-center px-24">
       <ClientBuy />
     </main>
   );
