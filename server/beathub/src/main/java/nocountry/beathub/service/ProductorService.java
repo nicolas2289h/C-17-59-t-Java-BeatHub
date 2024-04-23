@@ -1,7 +1,7 @@
 package nocountry.beathub.service;
 
+import nocountry.beathub.dto.response.ProductorDTORes;
 import nocountry.beathub.exception.*;
-import nocountry.beathub.model.Artista;
 import nocountry.beathub.model.Beat;
 import nocountry.beathub.model.Productor;
 import nocountry.beathub.repository.IProductorRepository;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductorService implements IProductorService{
+public class ProductorService implements IProductorService {
 
     @Autowired
     private IProductorRepository productorRepository;
@@ -20,7 +20,7 @@ public class ProductorService implements IProductorService{
 
     @Override
     public boolean registerProductor(Productor productor) throws ProductorExistException, HibernateOperationException {
-        Beat beat=null;
+        Beat beat = null;
         if (productorRepository.existsByUsername(productor.getName())) {
             throw new ProductorExistException("Ya se encuentra el cliente : " + productor.getName());
         }
@@ -30,7 +30,7 @@ public class ProductorService implements IProductorService{
 
             productorRepository.save(productor);
         } catch (Exception e) {
-            throw new HibernateOperationException("Error interto: " + e.getMessage() );
+            throw new HibernateOperationException("Error interto: " + e.getMessage());
         }
 
 
@@ -38,7 +38,7 @@ public class ProductorService implements IProductorService{
     }
 
     @Override
-    public boolean loginUser(String username, String password) throws UsernameNotFoundException, IncorrectPasswordException, HibernateOperationException {
+    public ProductorDTORes loginUser(String username, String password) throws UsernameNotFoundException, IncorrectPasswordException, HibernateOperationException {
         Optional<Productor> userOptional;
         try {
             userOptional = productorRepository.findByUsername(username);
@@ -49,7 +49,14 @@ public class ProductorService implements IProductorService{
         if (userOptional.isPresent()) {
             Productor user = userOptional.get();
             if (user.getPassword().equals(password)) {
-                return true;
+                return new ProductorDTORes(
+                        user.getId(),
+                        user.getName(),
+                        user.getLastname(),
+                        user.getUsername(),
+                        user.getEmail(),
+                        user.getDescripcion()
+                );
             } else {
                 throw new IncorrectPasswordException("Contraseña incorrecta para el usuario: " + username);
             }
@@ -87,7 +94,7 @@ public class ProductorService implements IProductorService{
         try {
             productorRepository.save(productor);
         } catch (Exception e) {
-            throw new HibernateOperationException("Error interno: " + e.getMessage() );
+            throw new HibernateOperationException("Error interno: " + e.getMessage());
         }
 
 

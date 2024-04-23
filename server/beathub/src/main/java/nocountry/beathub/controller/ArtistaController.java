@@ -3,6 +3,7 @@ package nocountry.beathub.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import nocountry.beathub.dto.request.UsuarioLoginDTO;
+import nocountry.beathub.dto.response.ArtistaDTORes;
 import nocountry.beathub.exception.ArtistaExistException;
 import nocountry.beathub.exception.HibernateOperationException;
 import nocountry.beathub.exception.IncorrectPasswordException;
@@ -52,9 +53,9 @@ public class ArtistaController {
     @PostMapping("/login")
     public ResponseEntity<Object> loginUser(@RequestBody @Valid UsuarioLoginDTO usuarioLogin) {
         try {
-            boolean authenticated = artistaService.loginUser(usuarioLogin.getUsername(), usuarioLogin.getPassword());
-            if (authenticated) {
-                return ResponseEntity.ok().body("{\"message\": \"Usuario autenticado\"}");
+            ArtistaDTORes authenticated = artistaService.loginUser(usuarioLogin.getUsername(), usuarioLogin.getPassword());
+            if (authenticated != null) {
+                return ResponseEntity.ok().body(authenticated);
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"error\": \"Nombre de usuario o contraseña incorrectos\"}");
             }

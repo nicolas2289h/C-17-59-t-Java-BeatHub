@@ -1,5 +1,6 @@
 package nocountry.beathub.service;
 
+import nocountry.beathub.dto.response.ArtistaDTORes;
 import nocountry.beathub.exception.ArtistaExistException;
 import nocountry.beathub.exception.HibernateOperationException;
 import nocountry.beathub.exception.IncorrectPasswordException;
@@ -34,7 +35,7 @@ public class ArtistaService implements IArtistaService {
         return true;
     }
 
-    public boolean loginUser(String username, String password) throws UsernameNotFoundException, IncorrectPasswordException ,HibernateOperationException{
+    public ArtistaDTORes loginUser(String username, String password) throws UsernameNotFoundException, IncorrectPasswordException ,HibernateOperationException{
         Optional<Artista> userOptional;
         try {
            userOptional = artistaRepository.findByUsername(username);
@@ -45,7 +46,16 @@ public class ArtistaService implements IArtistaService {
         if (userOptional.isPresent()) {
             Artista user = userOptional.get();
             if (user.getPassword().equals(password)) {
-                return true;
+                return new ArtistaDTORes(
+                        user.getId(),
+                        user.getName(),
+                        user.getLastname(),
+                        user.getUsername(),
+                        user.getEmail(),
+                        user.getGeneroMusical(),
+                        user.getExperiencia(),
+                        user.getMisLicencias()
+                );
             } else {
                 throw new IncorrectPasswordException("Contraseña incorrecta para el usuario: " + username);
             }
