@@ -2,7 +2,7 @@ import ClientSignUpOption from "@/components/app/registrar-opc/ClientSignUpOptio
 
 const SignUpOpc = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="min-h-screen p-6">
       <ClientSignUpOption />
     </main>
   );
