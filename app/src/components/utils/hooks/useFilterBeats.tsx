@@ -50,10 +50,10 @@ export const useFilterBeats = ({
     if (cantidad && cantidad < beatsFiltradosTemp.length) {
       const beatsFiltradosTempTemp: PropsBeat[] = [];
       while (beatsFiltradosTempTemp.length < cantidad) {
-        const cancionAleatoria = randomBeat(beatsFiltradosTemp);
+        const cancionAleatoria: PropsBeat = randomBeat(beatsFiltradosTemp);
         if (
           !beatsFiltradosTempTemp.find(
-            (beat) => beat.name === cancionAleatoria.name
+            (beat) => beat.nombre === cancionAleatoria.nombre
           )
         ) {
           beatsFiltradosTempTemp.push(cancionAleatoria);
@@ -66,10 +66,12 @@ export const useFilterBeats = ({
       let relleno: PropsBeat[] = [];
       while (relleno.length < cantidad - beatsFiltradosTemp.length) {
         const BeatsToFill = beats.length < cantidad! ? beatsRaw : beats;
-        const cancionAleatoria = randomBeat(BeatsToFill);
+        const cancionAleatoria: PropsBeat = randomBeat(BeatsToFill);
         if (
-          !beatsFiltradosTemp.find((beat) => beat.id === cancionAleatoria.id) &&
-          !relleno.find((beat) => beat.id === cancionAleatoria.id)
+          !beatsFiltradosTemp.find(
+            (beat) => beat.idBeat === cancionAleatoria.idBeat
+          ) &&
+          !relleno.find((beat) => beat.idBeat === cancionAleatoria.idBeat)
         ) {
           relleno.push(cancionAleatoria);
         }

@@ -28,25 +28,25 @@ export const PlaylistBeatsSection = ({
       {beats.map((beat, index) => (
         <div
           onClick={() => handleSelectedSong(index)}
-          key={beat.id}
+          key={beat.idBeat}
           className={`shadow-md hover:shadow-lg ${
-            selectedBeat?.id === beat.id &&
+            selectedBeat?.idBeat === beat.idBeat &&
             playList.name === PlayListName &&
             "shadow-xl ring-1 ring-secundario/10 scale-105"
           } bg-blanco w-[20rem] relative cursor-pointer flex flex-col gap-1 p-4 rounded-xl transition-all duration-300 ease-in-out overflow-hidden`}
         >
           <img
             src={`https://img.youtube.com/vi/${beat.url}/mqdefault.jpg`}
-            alt={`imagen de ${beat.name}`}
+            alt={`imagen de ${beat.nombre}`}
             className="rounded-xl w-full h-[10rem] object-cover"
           />
           <div className="flex items-center justify-center">
             <div className="w-1/2">
               <h3 className="text-secundario/80 font-semibold text-lg">
-                {beat.name}
+                {beat.nombre}
               </h3>
               <h4 className="text-sm text-secundario/50">
-                {beat.producer.name}
+                {beat.productor.username}
               </h4>
             </div>
             <div className={`w-1/2 flex items-center justify-end`}>
@@ -54,11 +54,11 @@ export const PlaylistBeatsSection = ({
             </div>
           </div>
           <div className="flex absolute bg-secundario/10 text-slate-200 gap-2 justify-center p-1 rounded-xl right-4">
-            <small>{beat.bpm}bpm,</small>
-            <small>{beat.key}</small>
+            <small>{beat.tiempoBpm}bpm,</small>
+            <small>{beat.tonalidad}</small>
           </div>
           <small className="flex absolute bg-secundario/10 text-slate-200 gap-2 justify-center p-1 rounded-xl left-4">
-            {beat.genre}
+            {beat.genero}
           </small>
         </div>
       ))}

@@ -35,8 +35,12 @@ export const PositiveBeatFilter = ({
   if (cantidad && beatsFiltradosTemp.length > cantidad) {
     const ArrayBusquedaTemp: PropsBeat[] = [];
     while (ArrayBusquedaTemp.length < cantidad) {
-      const cancionAleatoria = randomBeat(beatsFiltradosTemp);
-      if (!ArrayBusquedaTemp.find((beat) => beat.id === cancionAleatoria.id)) {
+      const cancionAleatoria: PropsBeat = randomBeat(beatsFiltradosTemp);
+      if (
+        !ArrayBusquedaTemp.find(
+          (beat) => beat.idBeat === cancionAleatoria.idBeat
+        )
+      ) {
         ArrayBusquedaTemp.push(cancionAleatoria);
       }
     }
@@ -93,7 +97,11 @@ export const NegativeBeatFilter = ({
     const ArrayBusquedaTemp: PropsBeat[] = [];
     while (ArrayBusquedaTemp.length < cantidad) {
       const cancionAleatoria = randomBeat(beatsFiltradosTemp);
-      if (!ArrayBusquedaTemp.find((beat) => beat.id === cancionAleatoria.id)) {
+      if (
+        !ArrayBusquedaTemp.find(
+          (beat) => beat.idBeat === cancionAleatoria.idBeat
+        )
+      ) {
         ArrayBusquedaTemp.push(cancionAleatoria);
       }
     }

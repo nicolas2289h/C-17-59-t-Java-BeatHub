@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 export const MusicPlayerButtonAddToCart = ({ beat }: { beat: PropsBeat }) => {
   const shoppingCart = useStore($ShoppingCart);
   const handleAddBeatToCart = () => {
-    if (shoppingCart && shoppingCart.find((b) => b.id === beat.id)) return;
+    if (shoppingCart && shoppingCart.find((b) => b.id === beat.idBeat)) return;
     if (shoppingCart && shoppingCart.length >= 5) {
       return toast.error("Máximo 5 beats en el carrito", {
         position: "top-center",
@@ -23,19 +23,24 @@ export const MusicPlayerButtonAddToCart = ({ beat }: { beat: PropsBeat }) => {
     if (!shoppingCart) {
       $ShoppingCart.set([
         {
-          id: beat.id,
-          name: beat.name,
-          price: beat.price,
+          id: beat.idBeat,
+          name: beat.nombre,
+          price: beat.precio,
           url: beat.url,
         },
       ]);
     } else {
       $ShoppingCart.set([
         ...shoppingCart,
-        { id: beat.id, name: beat.name, price: beat.price, url: beat.url },
+        {
+          id: beat.idBeat,
+          name: beat.nombre,
+          price: beat.precio,
+          url: beat.url,
+        },
       ]);
     }
-    toast.success(`"${beat.name}" agregado al carrito`, {
+    toast.success(`"${beat.nombre}" agregado al carrito`, {
       position: "top-center",
       duration: 3000,
     });
@@ -56,7 +61,7 @@ export const MusicPlayerButtonAddToCart = ({ beat }: { beat: PropsBeat }) => {
         disabled={
           shoppingCart === null
             ? false
-            : shoppingCart.find((b) => b.id === beat.id)
+            : shoppingCart.find((b) => b.id === beat.idBeat)
             ? true
             : false
         }
@@ -71,7 +76,7 @@ export const MusicPlayerButtonAddToCart = ({ beat }: { beat: PropsBeat }) => {
         <div className="flex flex-col items-center justify-center gap-1 w-3/4 rounded-r-lg">
           <span className="text-sm">Comprar</span>
           <small className="text-sm p-0 m-0 font-bold">
-            $ {formatNumber(beat.price)}
+            $ {formatNumber(beat.precio)}
           </small>
         </div>
       </Button>

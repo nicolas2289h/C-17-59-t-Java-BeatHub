@@ -2,14 +2,16 @@ import { mainPlayListName } from "@/constants";
 import { atom } from "nanostores";
 const beats = [
   {
-    id: 1,
-    name: "Crazy Duck",
+    idBeat: 1,
+    nombre: "Crazy Duck",
     url: "viDyXXRwwL8",
-    bpm: 120,
-    key: "C",
-    genre: "Trap",
+    tiempoBpm: 120,
+    tonalidad: "C",
     mood: "Agresivo",
-    structure: [
+    genero: "Trap",
+    featured: false,
+    precio: 200,
+    estructurasBeat: [
       {
         id: 1,
         name: "intro",
@@ -53,74 +55,33 @@ const beats = [
         end: 1,
       },
     ],
-    featured: false,
-    price: 200,
-    producer: {
+    productor: {
       id: 4,
       name: "Trafalgar Beats",
+      lastname: "Smith", // Apellido ficticio
+      username: "Trafalgar Beats", // Nombre de usuario ficticio
+      email: "trafalgarbeats@example.com", // Correo electrónico ficticio
+      description: "Productor experto en Trap", // Descripción ficticia
     },
-    license: {
-      id: 1,
-      name: "Licencia Exclusiva",
-      description: "Licencia exclusiva para uso comercial",
-      duration: "2 años",
-      features: [
-        {
-          id: 1,
-          name: "Uso Comercial",
-        },
-        {
-          id: 2,
-          name: "Streaming Ilimitado",
-        },
-        {
-          id: 3,
-          name: "Distribución Ilimitada",
-        },
-        {
-          id: 4,
-          name: "Venta Ilimitada",
-        },
-        {
-          id: 5,
-          name: "Monetización Ilimitada",
-        },
-        {
-          id: 6,
-          name: "Sin Regalías",
-        },
-        {
-          id: 7,
-          name: "Sin Créditos",
-        },
-        {
-          id: 8,
-          name: "Sin Limitaciones de Audiencia",
-        },
-        {
-          id: 9,
-          name: "Sin Limitaciones Geográficas",
-        },
-        {
-          id: 10,
-          name: "Sin Limitaciones de Plataforma",
-        },
-        {
-          id: 11,
-          name: "Sin Limitaciones de Copias",
-        },
-      ],
+    miLicencia: {
+      idLic: 1,
+      miPago: {
+        nombre: "Licencia Exclusiva",
+        idPago: 1,
+      },
     },
   },
   {
-    id: 2,
-    name: "Gansta Paradise",
+    idBeat: 2,
+    nombre: "Gansta Paradise",
     url: "ewvYDxeOhN4",
-    bpm: 140,
-    key: "Dm",
+    tiempoBpm: 140,
+    tonalidad: "Dm",
     mood: "Agresivo",
-    genre: "Trap",
-    structure: [
+    genero: "Trap",
+    featured: true,
+    precio: 100,
+    estructurasBeat: [
       {
         id: 1,
         name: "intro",
@@ -164,74 +125,33 @@ const beats = [
         end: 1,
       },
     ],
-    featured: true,
-    producer: {
+    productor: {
       id: 3,
       name: "Trafalgar Beats",
+      lastname: "Johnson", // Apellido ficticio
+      username: "Trafalgar Beats", // Nombre de usuario ficticio
+      email: "trafalgarbeats@example.com", // Correo electrónico ficticio
+      description: "Productor experto en Trap", // Descripción ficticia
     },
-    price: 100,
-    license: {
-      id: 1,
-      name: "Licencia Exclusiva",
-      description: "Licencia exclusiva para uso comercial",
-      duration: "2 años",
-      features: [
-        {
-          id: 1,
-          name: "Uso Comercial",
-        },
-        {
-          id: 2,
-          name: "Streaming Ilimitado",
-        },
-        {
-          id: 3,
-          name: "Distribución Ilimitada",
-        },
-        {
-          id: 4,
-          name: "Venta Ilimitada",
-        },
-        {
-          id: 5,
-          name: "Monetización Ilimitada",
-        },
-        {
-          id: 6,
-          name: "Sin Regalías",
-        },
-        {
-          id: 7,
-          name: "Sin Créditos",
-        },
-        {
-          id: 8,
-          name: "Sin Limitaciones de Audiencia",
-        },
-        {
-          id: 9,
-          name: "Sin Limitaciones Geográficas",
-        },
-        {
-          id: 10,
-          name: "Sin Limitaciones de Plataforma",
-        },
-        {
-          id: 11,
-          name: "Sin Limitaciones de Copias",
-        },
-      ],
+    miLicencia: {
+      idLic: 1,
+      miPago: {
+        nombre: "Licencia Exclusiva",
+        idPago: 1,
+      },
     },
   },
   {
-    id: 3,
-    name: "Laugh",
+    idBeat: 3,
+    nombre: "Laugh",
     url: "yJ4qaV-B22I",
-    bpm: 145,
-    key: "Em",
+    tiempoBpm: 145,
+    tonalidad: "Em",
     mood: "Agresivo",
-    genre: "Drill",
-    structure: [
+    genero: "Drill",
+    featured: true,
+    precio: 400,
+    estructurasBeat: [
       {
         id: 1,
         name: "intro",
@@ -275,74 +195,33 @@ const beats = [
         end: 1,
       },
     ],
-    featured: true,
-    price: 400,
-    producer: {
+    productor: {
       id: 1,
       name: "Jhon Doe",
+      lastname: "Smith", // Apellido ficticio
+      username: "Jhon Doe", // Nombre de usuario ficticio
+      email: "jhondoe@example.com", // Correo electrónico ficticio
+      description: "Productor experto en Drill", // Descripción ficticia
     },
-    license: {
-      id: 1,
-      name: "Licencia Exclusiva",
-      description: "Licencia exclusiva para uso comercial",
-      duration: "2 años",
-      features: [
-        {
-          id: 1,
-          name: "Uso Comercial",
-        },
-        {
-          id: 2,
-          name: "Streaming Ilimitado",
-        },
-        {
-          id: 3,
-          name: "Distribución Ilimitada",
-        },
-        {
-          id: 4,
-          name: "Venta Ilimitada",
-        },
-        {
-          id: 5,
-          name: "Monetización Ilimitada",
-        },
-        {
-          id: 6,
-          name: "Sin Regalías",
-        },
-        {
-          id: 7,
-          name: "Sin Créditos",
-        },
-        {
-          id: 8,
-          name: "Sin Limitaciones de Audiencia",
-        },
-        {
-          id: 9,
-          name: "Sin Limitaciones Geográficas",
-        },
-        {
-          id: 10,
-          name: "Sin Limitaciones de Plataforma",
-        },
-        {
-          id: 11,
-          name: "Sin Limitaciones de Copias",
-        },
-      ],
+    miLicencia: {
+      idLic: 1,
+      miPago: {
+        nombre: "Licencia Exclusiva",
+        idPago: 1,
+      },
     },
   },
   {
-    id: 4,
-    name: "Me dice",
+    idBeat: 4,
+    nombre: "Me dice",
     url: "btsfpOe9NZo",
-    bpm: 90,
-    key: "Bm",
+    tiempoBpm: 90,
+    tonalidad: "Bm",
     mood: "Agresivo",
-    genre: "Reggaeton",
-    structure: [
+    genero: "Reggaeton",
+    featured: false,
+    precio: 200,
+    estructurasBeat: [
       {
         id: 1,
         name: "intro",
@@ -386,74 +265,33 @@ const beats = [
         end: 1,
       },
     ],
-    featured: false,
-    price: 200,
-    producer: {
+    productor: {
       id: 1,
       name: "Jhon Doe",
+      lastname: "Smith", // Apellido ficticio
+      username: "Jhon Doe", // Nombre de usuario ficticio
+      email: "jhondoe@example.com", // Correo electrónico ficticio
+      description: "Productor especializado en Reggaeton", // Descripción ficticia
     },
-    license: {
-      id: 1,
-      name: "Licencia Exclusiva",
-      description: "Licencia exclusiva para uso comercial",
-      duration: "2 años",
-      features: [
-        {
-          id: 1,
-          name: "Uso Comercial",
-        },
-        {
-          id: 2,
-          name: "Streaming Ilimitado",
-        },
-        {
-          id: 3,
-          name: "Distribución Ilimitada",
-        },
-        {
-          id: 4,
-          name: "Venta Ilimitada",
-        },
-        {
-          id: 5,
-          name: "Monetización Ilimitada",
-        },
-        {
-          id: 6,
-          name: "Sin Regalías",
-        },
-        {
-          id: 7,
-          name: "Sin Créditos",
-        },
-        {
-          id: 8,
-          name: "Sin Limitaciones de Audiencia",
-        },
-        {
-          id: 9,
-          name: "Sin Limitaciones Geográficas",
-        },
-        {
-          id: 10,
-          name: "Sin Limitaciones de Plataforma",
-        },
-        {
-          id: 11,
-          name: "Sin Limitaciones de Copias",
-        },
-      ],
+    miLicencia: {
+      idLic: 1,
+      miPago: {
+        nombre: "Licencia Exclusiva",
+        idPago: 1,
+      },
     },
   },
   {
-    id: 5,
-    name: "China",
+    idBeat: 5,
+    nombre: "China",
     url: "b2VXgrXi0yk",
-    bpm: 95,
-    key: "C#m",
+    tiempoBpm: 95,
+    tonalidad: "C#m",
     mood: "Agresivo",
-    genre: "Dancehall",
-    structure: [
+    genero: "Dancehall",
+    featured: true,
+    precio: 50,
+    estructurasBeat: [
       {
         id: 1,
         name: "intro",
@@ -497,74 +335,33 @@ const beats = [
         end: 1,
       },
     ],
-    featured: true,
-    producer: {
+    productor: {
       id: 2,
       name: "Dj Pablito",
+      lastname: "González", // Apellido ficticio
+      username: "Dj Pablito", // Nombre de usuario ficticio
+      email: "djpablito@example.com", // Correo electrónico ficticio
+      description: "Productor experto en Dancehall", // Descripción ficticia
     },
-    price: 50,
-    license: {
-      id: 1,
-      name: "Licencia Exclusiva",
-      description: "Licencia exclusiva para uso comercial",
-      duration: "2 años",
-      features: [
-        {
-          id: 1,
-          name: "Uso Comercial",
-        },
-        {
-          id: 2,
-          name: "Streaming Ilimitado",
-        },
-        {
-          id: 3,
-          name: "Distribución Ilimitada",
-        },
-        {
-          id: 4,
-          name: "Venta Ilimitada",
-        },
-        {
-          id: 5,
-          name: "Monetización Ilimitada",
-        },
-        {
-          id: 6,
-          name: "Sin Regalías",
-        },
-        {
-          id: 7,
-          name: "Sin Créditos",
-        },
-        {
-          id: 8,
-          name: "Sin Limitaciones de Audiencia",
-        },
-        {
-          id: 9,
-          name: "Sin Limitaciones Geográficas",
-        },
-        {
-          id: 10,
-          name: "Sin Limitaciones de Plataforma",
-        },
-        {
-          id: 11,
-          name: "Sin Limitaciones de Copias",
-        },
-      ],
+    miLicencia: {
+      idLic: 1,
+      miPago: {
+        nombre: "Licencia Exclusiva",
+        idPago: 1,
+      },
     },
   },
   {
-    id: 7,
-    name: "Cupido",
+    idBeat: 7,
+    nombre: "Cupido",
     url: "0onih8VuXpg",
-    bpm: 90,
-    key: "D",
+    tiempoBpm: 90,
+    tonalidad: "D",
     mood: "Agresivo",
-    genre: "Dancehall",
-    structure: [
+    genero: "Dancehall",
+    featured: false,
+    precio: 200,
+    estructurasBeat: [
       {
         id: 1,
         name: "intro",
@@ -608,74 +405,33 @@ const beats = [
         end: 1,
       },
     ],
-    featured: false,
-    price: 200,
-    producer: {
+    productor: {
       id: 11,
       name: "Ocean Rhythms",
+      lastname: "Martínez", // Apellido ficticio
+      username: "Ocean Rhythms", // Nombre de usuario ficticio
+      email: "oceanrhythms@example.com", // Correo electrónico ficticio
+      description: "Productor especializado en Dancehall", // Descripción ficticia
     },
-    license: {
-      id: 1,
-      name: "Licencia Exclusiva",
-      description: "Licencia exclusiva para uso comercial",
-      duration: "2 años",
-      features: [
-        {
-          id: 1,
-          name: "Uso Comercial",
-        },
-        {
-          id: 2,
-          name: "Streaming Ilimitado",
-        },
-        {
-          id: 3,
-          name: "Distribución Ilimitada",
-        },
-        {
-          id: 4,
-          name: "Venta Ilimitada",
-        },
-        {
-          id: 5,
-          name: "Monetización Ilimitada",
-        },
-        {
-          id: 6,
-          name: "Sin Regalías",
-        },
-        {
-          id: 7,
-          name: "Sin Créditos",
-        },
-        {
-          id: 8,
-          name: "Sin Limitaciones de Audiencia",
-        },
-        {
-          id: 9,
-          name: "Sin Limitaciones Geográficas",
-        },
-        {
-          id: 10,
-          name: "Sin Limitaciones de Plataforma",
-        },
-        {
-          id: 11,
-          name: "Sin Limitaciones de Copias",
-        },
-      ],
+    miLicencia: {
+      idLic: 1,
+      miPago: {
+        nombre: "Licencia Exclusiva",
+        idPago: 1,
+      },
     },
   },
   {
-    id: 8,
-    name: "Dale Fuego",
+    idBeat: 8,
+    nombre: "Dale Fuego",
     url: "pjg_ZjH__fU",
-    bpm: 95,
-    key: "Am",
+    tiempoBpm: 95,
+    tonalidad: "Am",
     mood: "Agresivo",
-    genre: "Hip Hop",
-    structure: [
+    genero: "Hip Hop",
+    featured: false,
+    precio: 1000,
+    estructurasBeat: [
       {
         id: 1,
         name: "intro",
@@ -719,74 +475,33 @@ const beats = [
         end: 1,
       },
     ],
-    featured: false,
-    producer: {
+    productor: {
       id: 12,
       name: "Harmony Productions",
+      lastname: "López", // Apellido ficticio
+      username: "Harmony Productions", // Nombre de usuario ficticio
+      email: "harmony@example.com", // Correo electrónico ficticio
+      description: "Productor especializado en Hip Hop", // Descripción ficticia
     },
-    price: 1000,
-    license: {
-      id: 1,
-      name: "Licencia Exclusiva",
-      description: "Licencia exclusiva para uso comercial",
-      duration: "2 años",
-      features: [
-        {
-          id: 1,
-          name: "Uso Comercial",
-        },
-        {
-          id: 2,
-          name: "Streaming Ilimitado",
-        },
-        {
-          id: 3,
-          name: "Distribución Ilimitada",
-        },
-        {
-          id: 4,
-          name: "Venta Ilimitada",
-        },
-        {
-          id: 5,
-          name: "Monetización Ilimitada",
-        },
-        {
-          id: 6,
-          name: "Sin Regalías",
-        },
-        {
-          id: 7,
-          name: "Sin Créditos",
-        },
-        {
-          id: 8,
-          name: "Sin Limitaciones de Audiencia",
-        },
-        {
-          id: 9,
-          name: "Sin Limitaciones Geográficas",
-        },
-        {
-          id: 10,
-          name: "Sin Limitaciones de Plataforma",
-        },
-        {
-          id: 11,
-          name: "Sin Limitaciones de Copias",
-        },
-      ],
+    miLicencia: {
+      idLic: 1,
+      miPago: {
+        nombre: "Licencia Exclusiva",
+        idPago: 1,
+      },
     },
   },
   {
-    id: 9,
-    name: "Estoy Volando",
+    idBeat: 9,
+    nombre: "Estoy Volando",
     url: "a_oVE3NOs-E",
-    bpm: 85,
-    key: "G",
+    tiempoBpm: 85,
+    tonalidad: "G",
     mood: "Agresivo",
-    genre: "Hip Hop",
-    structure: [
+    genero: "Hip Hop",
+    featured: true,
+    precio: 75,
+    estructurasBeat: [
       {
         id: 1,
         name: "intro",
@@ -830,74 +545,33 @@ const beats = [
         end: 1,
       },
     ],
-    featured: true,
-    price: 75,
-    producer: {
+    productor: {
       id: 13,
       name: "Melody Forge",
+      lastname: "Rodriguez", // Apellido ficticio
+      username: "Melody Forge", // Nombre de usuario ficticio
+      email: "melodyforge@example.com", // Correo electrónico ficticio
+      description: "Productor especializado en Hip Hop", // Descripción ficticia
     },
-    license: {
-      id: 1,
-      name: "Licencia Exclusiva",
-      description: "Licencia exclusiva para uso comercial",
-      duration: "2 años",
-      features: [
-        {
-          id: 1,
-          name: "Uso Comercial",
-        },
-        {
-          id: 2,
-          name: "Streaming Ilimitado",
-        },
-        {
-          id: 3,
-          name: "Distribución Ilimitada",
-        },
-        {
-          id: 4,
-          name: "Venta Ilimitada",
-        },
-        {
-          id: 5,
-          name: "Monetización Ilimitada",
-        },
-        {
-          id: 6,
-          name: "Sin Regalías",
-        },
-        {
-          id: 7,
-          name: "Sin Créditos",
-        },
-        {
-          id: 8,
-          name: "Sin Limitaciones de Audiencia",
-        },
-        {
-          id: 9,
-          name: "Sin Limitaciones Geográficas",
-        },
-        {
-          id: 10,
-          name: "Sin Limitaciones de Plataforma",
-        },
-        {
-          id: 11,
-          name: "Sin Limitaciones de Copias",
-        },
-      ],
+    miLicencia: {
+      idLic: 1,
+      miPago: {
+        nombre: "Licencia Exclusiva",
+        idPago: 1,
+      },
     },
   },
   {
-    id: 10,
-    name: "One Call",
+    idBeat: 10,
+    nombre: "One Call",
     url: "Mo7ewSP_G5I",
-    bpm: 105,
-    key: "F",
+    tiempoBpm: 105,
+    tonalidad: "F",
     mood: "Agresivo",
-    genre: "Dancehall",
-    structure: [
+    genero: "Dancehall",
+    featured: false,
+    precio: 200,
+    estructurasBeat: [
       {
         id: 1,
         name: "intro",
@@ -941,74 +615,33 @@ const beats = [
         end: 1,
       },
     ],
-    price: 200,
-    featured: false,
-    producer: {
+    productor: {
       id: 14,
       name: "Rhythm Foundry",
+      lastname: "Garcia", // Apellido ficticio
+      username: "Rhythm Foundry", // Nombre de usuario ficticio
+      email: "rhythm@example.com", // Correo electrónico ficticio
+      description: "Productor especializado en Dancehall", // Descripción ficticia
     },
-    license: {
-      id: 1,
-      name: "Licencia Exclusiva",
-      description: "Licencia exclusiva para uso comercial",
-      duration: "2 años",
-      features: [
-        {
-          id: 1,
-          name: "Uso Comercial",
-        },
-        {
-          id: 2,
-          name: "Streaming Ilimitado",
-        },
-        {
-          id: 3,
-          name: "Distribución Ilimitada",
-        },
-        {
-          id: 4,
-          name: "Venta Ilimitada",
-        },
-        {
-          id: 5,
-          name: "Monetización Ilimitada",
-        },
-        {
-          id: 6,
-          name: "Sin Regalías",
-        },
-        {
-          id: 7,
-          name: "Sin Créditos",
-        },
-        {
-          id: 8,
-          name: "Sin Limitaciones de Audiencia",
-        },
-        {
-          id: 9,
-          name: "Sin Limitaciones Geográficas",
-        },
-        {
-          id: 10,
-          name: "Sin Limitaciones de Plataforma",
-        },
-        {
-          id: 11,
-          name: "Sin Limitaciones de Copias",
-        },
-      ],
+    miLicencia: {
+      idLic: 1,
+      miPago: {
+        nombre: "Licencia Exclusiva",
+        idPago: 1,
+      },
     },
   },
   {
-    id: 11,
-    name: "Profano",
+    idBeat: 11,
+    nombre: "Profano",
     url: "6CHXPeM4jM4",
-    bpm: 110,
-    key: "Dm",
-    genre: "Trap",
+    tiempoBpm: 110,
+    tonalidad: "Dm",
     mood: "Agresivo",
-    structure: [
+    genero: "Trap",
+    featured: false,
+    precio: 150,
+    estructurasBeat: [
       {
         id: 1,
         name: "intro",
@@ -1052,74 +685,34 @@ const beats = [
         end: 1,
       },
     ],
-    price: 150,
-    featured: false,
-    producer: {
+    productor: {
       id: 15,
       name: "Beat Crafters",
+      lastname: "Doe", // Apellido ficticio
+      username: "Beat Crafters", // Nombre de usuario ficticio
+      email: "beatcrafters@example.com", // Correo electrónico ficticio
+      description: "Productor experto en el género Trap", // Descripción ficticia
     },
-    license: {
-      id: 1,
-      name: "Licencia Exclusiva",
-      description: "Licencia exclusiva para uso comercial",
-      duration: "2 años",
-      features: [
-        {
-          id: 1,
-          name: "Uso Comercial",
-        },
-        {
-          id: 2,
-          name: "Streaming Ilimitado",
-        },
-        {
-          id: 3,
-          name: "Distribución Ilimitada",
-        },
-        {
-          id: 4,
-          name: "Venta Ilimitada",
-        },
-        {
-          id: 5,
-          name: "Monetización Ilimitada",
-        },
-        {
-          id: 6,
-          name: "Sin Regalías",
-        },
-        {
-          id: 7,
-          name: "Sin Créditos",
-        },
-        {
-          id: 8,
-          name: "Sin Limitaciones de Audiencia",
-        },
-        {
-          id: 9,
-          name: "Sin Limitaciones Geográficas",
-        },
-        {
-          id: 10,
-          name: "Sin Limitaciones de Plataforma",
-        },
-        {
-          id: 11,
-          name: "Sin Limitaciones de Copias",
-        },
-      ],
+    miLicencia: {
+      idLic: 1,
+      miPago: {
+        nombre: "Licencia Exclusiva",
+        idPago: 1,
+      },
     },
   },
+
   {
-    id: 12,
-    name: "Nah Change",
+    idBeat: 12,
+    nombre: "Nah Change",
     url: "7OyLRQdF1hc",
-    bpm: 120,
-    key: "E",
+    tiempoBpm: 120,
+    tonalidad: "E",
     mood: "Agresivo",
-    genre: "Dancehall",
-    structure: [
+    genero: "Dancehall",
+    featured: true,
+    precio: 200,
+    estructurasBeat: [
       {
         id: 1,
         name: "intro",
@@ -1163,74 +756,31 @@ const beats = [
         end: 1,
       },
     ],
-    price: 200,
-    featured: true,
-    producer: {
+    productor: {
       id: 16,
       name: "Cadence Creators",
+      lastname: "Smith",
+      username: "Cadence Creators",
+      email: "cadence@example.com",
+      description: "Productor experimentado en Dancehall",
     },
-    license: {
-      id: 1,
-      name: "Licencia Exclusiva",
-      description: "Licencia exclusiva para uso comercial",
-      duration: "2 años",
-      features: [
-        {
-          id: 1,
-          name: "Uso Comercial",
-        },
-        {
-          id: 2,
-          name: "Streaming Ilimitado",
-        },
-        {
-          id: 3,
-          name: "Distribución Ilimitada",
-        },
-        {
-          id: 4,
-          name: "Venta Ilimitada",
-        },
-        {
-          id: 5,
-          name: "Monetización Ilimitada",
-        },
-        {
-          id: 6,
-          name: "Sin Regalías",
-        },
-        {
-          id: 7,
-          name: "Sin Créditos",
-        },
-        {
-          id: 8,
-          name: "Sin Limitaciones de Audiencia",
-        },
-        {
-          id: 9,
-          name: "Sin Limitaciones Geográficas",
-        },
-        {
-          id: 10,
-          name: "Sin Limitaciones de Plataforma",
-        },
-        {
-          id: 11,
-          name: "Sin Limitaciones de Copias",
-        },
-      ],
+    miLicencia: {
+      idLic: 1,
+      miPago: {
+        nombre: "Licencia Exclusiva",
+        idPago: 1,
+      },
     },
   },
   {
-    id: 13,
-    name: "YOVNGCHIMI",
+    idBeat: 13,
+    nombre: "YOVNGCHIMI",
     url: "jNl-g4RPayc",
-    bpm: 130,
-    key: "Bm",
+    tiempoBpm: 130,
+    tonalidad: "Bm",
     mood: "Agresivo",
-    genre: "Drill",
-    structure: [
+    genero: "Drill",
+    estructurasBeat: [
       {
         id: 1,
         name: "intro",
@@ -1275,83 +825,54 @@ const beats = [
       },
     ],
     featured: false,
-    price: 100,
-    producer: {
+    precio: 100,
+    productor: {
       id: 17,
-      name: "Beat Architects",
+      name: "Jose",
+      lastname: "Mendoza",
+      username: "Beat Architects",
+      email: "beatsarchitects@prueba.com",
+      description: "Productor de beats",
     },
-    license: {
-      id: 1,
-      name: "Licencia Exclusiva",
-      description: "Licencia exclusiva para uso comercial",
-      duration: "2 años",
-      features: [
-        {
-          id: 1,
-          name: "Uso Comercial",
-        },
-        {
-          id: 2,
-          name: "Streaming Ilimitado",
-        },
-        {
-          id: 3,
-          name: "Distribución Ilimitada",
-        },
-        {
-          id: 4,
-          name: "Venta Ilimitada",
-        },
-        {
-          id: 5,
-          name: "Monetización Ilimitada",
-        },
-        {
-          id: 6,
-          name: "Sin Regalías",
-        },
-        {
-          id: 7,
-          name: "Sin Créditos",
-        },
-        {
-          id: 8,
-          name: "Sin Limitaciones de Audiencia",
-        },
-        {
-          id: 9,
-          name: "Sin Limitaciones Geográficas",
-        },
-        {
-          id: 10,
-          name: "Sin Limitaciones de Plataforma",
-        },
-        {
-          id: 11,
-          name: "Sin Limitaciones de Copias",
-        },
-      ],
+    miLicencia: {
+      idLic: 1,
+      miPago: {
+        nombre: "Licencia Exclusiva",
+        idPago: 1,
+      },
     },
   },
 ];
 interface Beat {
-  id: number;
-  name: string;
+  idBeat: number;
+  nombre: string;
   url: string;
-  bpm: number;
-  key: string;
+  tiempoBpm: number;
+  tonalidad: string;
   mood: string;
-  genre: string;
+  genero: string;
   featured: boolean;
-  structure: {
+  precio: number;
+  estructurasBeat: {
+    id: number;
     name: string;
     start: number;
     end: number;
   }[];
-  price: number;
-  producer: {
+  productor: {
     id: number;
     name: string;
+    lastname: string;
+    username: string;
+    email: string;
+    description: string;
+  };
+  miLicencia: {
+    idLic: number;
+    miPago: {
+      nombre: string;
+      idPago: number;
+    };
   };
 }
 interface ShoppingCartBeat {
@@ -1364,6 +885,7 @@ interface PlayList {
   name: string;
   beats: Beat[];
 }
+
 export type PropsPlayList = PlayList;
 export type PropsBeat = Beat;
 export type PropsShoppingCartBeat = ShoppingCartBeat;
