@@ -17,9 +17,21 @@
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: "Roboto";
+  src: url(/fonts/Roboto/Roboto-Medium.ttf)
+
+}
+
 .font-milker {
   font-family: "Milker", sans-serif;
 }
+
+.font-roboto {
+  font-family: "Roboto", sans-serif;
+}
+
 .animate-enter {
   animation: fadeIn 0.5s ease forwards;
 }

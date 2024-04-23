@@ -9,7 +9,7 @@ export const ClientHome = () => {
   const beats = useStore($Beats);
   const beatsDestacados = beats.filter((beat) => beat.featured);
   return (
-    <section className="flex flex-col gap-16">
+    <section className="flex flex-col gap-16 font-roboto">
       <div className="mb-[10rem]">
         <h2 className="font-milker text-3xl mb-4">Destacados</h2>
         <PlaylistBeatsSection

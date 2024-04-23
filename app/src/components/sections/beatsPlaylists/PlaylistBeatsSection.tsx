@@ -32,7 +32,7 @@ export const PlaylistBeatsSection = ({
           className={`shadow-md hover:shadow-lg ${
             selectedBeat?.idBeat === beat.idBeat &&
             playList.name === PlayListName &&
-            "shadow-xl ring-1 ring-secundario/10 scale-105"
+            "shadow ring-1 ring-secundario/10 scale-105"
           } bg-blanco w-[20rem] relative cursor-pointer flex flex-col gap-1 p-4 rounded-xl transition-all duration-300 ease-in-out overflow-hidden`}
         >
           <div className="flex items-center justify-center">
@@ -60,9 +60,9 @@ export const PlaylistBeatsSection = ({
             <small>{beat.tiempoBpm}bpm,</small>
             <small>{beat.tonalidad}</small>
           </div>
-          <small className="flex absolute bg-secundario/10 text-slate-200 gap-2 justify-center p-1 rounded-xl left-4">
+          {/* <small className="flex absolute bg-secundario/10 text-slate-200 gap-2 justify-center p-1 rounded-xl left-4">
             {beat.genero}
-          </small>
+          </small> */}
         </div>
       ))}
     </div>
