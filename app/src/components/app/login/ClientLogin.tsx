@@ -5,22 +5,25 @@ import {
   getLocalStorage,
   setLocalStorage,
 } from "@/components/utils/handleLocalStorage";
+import { $IsLogged, $IsProducer } from "@/stores/users";
+import { useStore } from "@nanostores/react";
 import { Button } from "@nextui-org/react";
 import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
 
 export const ClientLogin = () => {
-  const [isProducer, setIsProducer] = useState(false);
-  const [isLogged, setIsLogged] = useState(false);
+  const isProducer = useStore($IsProducer);
+  const isLogged = useStore($IsLogged);
   useEffect(() => {
-    setIsProducer(getLocalStorage("isProducer"));
+    if (getLocalStorage("isProducer"))
+      $IsProducer.set(getLocalStorage("isProducer"));
   }, []);
   useEffect(() => {
-    setIsLogged(getLocalStorage("isLogged"));
+    if (getLocalStorage("isLogged")) $IsLogged.set(getLocalStorage("isLogged"));
   }, []);
 
   const { status, error, data, mutate } = useMutation({
@@ -36,7 +39,9 @@ export const ClientLogin = () => {
     if (status === "success") {
       toast.success("Sesión iniciada con éxito");
       setLocalStorage("isLogged", true);
-      setIsLogged(true);
+      $IsLogged.set(true);
+      console.log(data);
+      redirect("/");
     }
     if (status === "error") {
       toast.error("Error al iniciar sesión");
@@ -60,7 +65,7 @@ export const ClientLogin = () => {
     <div className="w-full bg-secundario rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
       {isLogged ? (
         <div className="flex flex-col items-center justify-center p-4">
-          <h1 className="mb-10 text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+          <h1 className="mb-10 text-xl text-center font-bold leading-tight tracking-tight text-gray-100 md:text-2xl dark:text-white">
             Ya has iniciado sesión
           </h1>
           <Button href="/" as={Link}>
@@ -71,7 +76,7 @@ export const ClientLogin = () => {
             color="danger"
             onPress={() => {
               setLocalStorage("isLogged", false);
-              setIsLogged(false);
+              $IsLogged.set(false);
             }}
           >
             Cerrar sesión
@@ -80,7 +85,8 @@ export const ClientLogin = () => {
       ) : (
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <figure className="w-full text-center">
-            <Image src="/assets/imgs/imgBeathub2B.png"
+            <Image
+              src="/assets/imgs/imgBeathub2B.png"
               alt="beathub-image-2b"
               width={330}
               height={76}
@@ -89,6 +95,7 @@ export const ClientLogin = () => {
           <h1 className="text-2x1 text-center leading-tight tracking-tight text-blanco md:text-2xl dark:text-white">
             Iniciar sesión
           </h1>
+          <option value=""></option>
           <form
             className="space-y-4 md:space-y-6"
             method="POST"

@@ -1,49 +1,61 @@
-import styles from "./ClientBuy.module.css";
-import Image from "next/image";
+"use client";
+import { formatNumber } from "@/components/utils/dataFormat";
+import { $ShoppingCart, PropsShoppingCartBeat } from "@/stores/beats";
+import { $IsLogged } from "@/stores/users";
+import { useStore } from "@nanostores/react";
 import Link from "next/link";
+import { useState } from "react";
+import { SelectDelivery } from "./SelectDelivery";
+import { SelectPaymentMethod } from "./SelectPaymentMethod";
 const ClientBuy = () => {
+  const shoppingCart = useStore($ShoppingCart);
+  const total = shoppingCart?.reduce((acc, item) => acc + item.price, 0);
+  const isLogged = useStore($IsLogged);
+  const [step, setStep] = useState(1);
+  if (!isLogged) {
     return (
-        <div className={styles.responseContainer}>
-            <section>
-                <h2 className={styles.buyTitle}>Elegí una forma de entrega</h2>
-                <div className={styles.payOptionContainer}>
-                    <div className={styles.optionContainer}>
-                        <Image 
-                            src="/" 
-                            alt="imagen"
-                            width={40}
-                            height={40}
-                        />
-                        <h3 className={styles.buySubtitle}>e-mail vinculado</h3>
-                        <p className={`${styles.paragraphGrey} ${styles.paddingLeft}`}>amoelbeat@gmail.com</p>
-                    </div>
-                    <hr className={styles.hr} />
-                    <div className={styles.optionContainer}>
-                        <a href="#" className={styles.paddingLeft}>Editar o elegir otro e-mail</a>
-                    </div>
-                </div>
-                <p className={`${styles.paragraphGrey} ${styles.marginButtom}`}>Se te entregará vía e-mail un archivo .rar con el/los contenidos comprados.</p>
-                <div className={styles.buttonContainer}>
-                    <Link href="*" className={styles.linkPosition}><button className={styles.button}>Continuar</button></Link>
-
-                </div>
-            </section>
-            <section className={styles.priceSection}>
-                <h2 className={styles.buyTitle}>Resumen de compra</h2>
-                <hr className={styles.hrRight} />
-                <div className={styles.priceContainer}>
-                    <p className={styles.paragraphGrey}>Producto</p>
-                    <span className={styles.paragraphGrey}>$45,99</span>
-                </div>
-                <hr className={styles.hrRight} />
-                <div className={styles.priceContainer}>
-                    <p className={styles.paragraphGrey}>Pagás</p>
-                    <span className={styles.spanPrice}>$45,99</span>
-                </div>
-
-            </section>
+      <div className="">
+        <h2 className="">Iniciá sesión</h2>
+        <p className="">
+          Para poder pagar, tenés que iniciar sesión con tu cuenta de usuario,
+          ademas tener al menos un beat en el carrito.
+        </p>
+        <Link href="/login" className="">
+          <button className="">Iniciar sesión</button>
+        </Link>
+      </div>
+    );
+  }
+  return (
+    <div className="flex justify-center items-start gap-4 w-full">
+      {step === 1 && <SelectDelivery setStep={setStep} />}
+      {step === 2 && <SelectPaymentMethod setStep={setStep} />}
+      <section className="w-2/5 bg-blanco rounded-md h-full flex flex-col items-center justify-center">
+        <div className=" h-full p-4 w-[20rem]">
+          <h2 className="text-xl mb-4">Resumen de compra</h2>
+          <hr />
+          <div className="my-8">
+            {shoppingCart?.map((item: PropsShoppingCartBeat) => (
+              <div
+                key={item.id}
+                className="flex gap-2 justify-between text-secundario/75"
+              >
+                <p className="">{item.name}</p>
+                <span className="">$ {formatNumber(item.price)}</span>
+              </div>
+            ))}
+          </div>
+          <hr />
+          <div className="flex gap-2 justify-between mt-4">
+            <p className="text-secundario/75">Pagás</p>
+            <span className="text-xl font-semibold">
+              $ {total && formatNumber(total)}
+            </span>
+          </div>
         </div>
-    )
-}
+      </section>
+    </div>
+  );
+};
 
 export default ClientBuy;

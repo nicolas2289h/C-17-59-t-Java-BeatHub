@@ -2,6 +2,7 @@ package nocountry.beathub.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import nocountry.beathub.exception.*;
 import nocountry.beathub.model.Beat;
@@ -51,7 +52,7 @@ public class BeatController {
             summary = "Guarda un beat en el sistema."
     )
     @PostMapping("/save-beat")
-    public ResponseEntity<Beat> saveBeat(@RequestBody Beat newBeat, UriComponentsBuilder uriComponentsBuilder){
+    public ResponseEntity<Object> saveBeat(@RequestBody @Valid Beat newBeat, UriComponentsBuilder uriComponentsBuilder){
         
         try {
             Beat savedBeat = iBeatService.saveBeat(newBeat);
@@ -65,11 +66,14 @@ public class BeatController {
 
             URI url = uriComponentsBuilder.path("/api/beat/{id}").buildAndExpand(savedBeat.getIdBeat()).toUri();
             return ResponseEntity.created(url).body(savedBeat);
+        }catch (org.springframework.orm.jpa.JpaObjectRetrievalFailureException e) {
+            String messageError = "{\"message\": \"Id del productor o licencia incorrecta\"}";
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(messageError);
         } catch (DataIntegrityViolationException e) {
             if (e.getMessage().contains("Duplicate entry")) {
-                throw new LicenciaDuplicadaException("No se puede duplicar la licencia.");
+                throw new LicenciaDuplicadaException("{\"message\": \"No se puede duplicar la licencia.\"}");
             } else if(e.getMessage().contains("foreign key constraint fails")){
-                throw new LicenciaNoExisteException("Licencia no existe");
+                throw new LicenciaNoExisteException("{\"message\": \"No se pudo encontrar el id del productor.\"}");
             }else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
             }

@@ -27,7 +27,7 @@ const ClientSignUp = () => {
   useEffect(() => {
     if (status === "success") {
       toast.success("Usuario creado con éxito");
-      setLocalStorage("isProducer", isProducer ? "true" : "false");
+      setLocalStorage("isProducer", isProducer ? true : false);
       redirect("/login");
     }
     if (status === "error") {
