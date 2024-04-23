@@ -65,7 +65,7 @@ export const ClientLogin = () => {
     <div className="w-full bg-secundario rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
       {isLogged ? (
         <div className="flex flex-col items-center justify-center p-4">
-          <h1 className="mb-10 text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+          <h1 className="mb-10 text-xl text-center font-bold leading-tight tracking-tight text-gray-100 md:text-2xl dark:text-white">
             Ya has iniciado sesión
           </h1>
           <Button href="/" as={Link}>
@@ -85,7 +85,8 @@ export const ClientLogin = () => {
       ) : (
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <figure className="w-full text-center">
-            <Image src="/assets/imgs/imgBeathub2B.png"
+            <Image
+              src="/assets/imgs/imgBeathub2B.png"
               alt="beathub-image-2b"
               width={330}
               height={76}

@@ -55,10 +55,12 @@ export const Header = () => {
           <div className="flex gap-1 justify-center items-center">
             {isLogged && (
               <small className="bg-terciario h-6 w-6 rounded-full text-secundario/50 font-milker flex justify-center items-center overflow-hidden text-3xl">
-                {user.name.slice(0, 1)}
+                {user.username.slice(0, 1)}
               </small>
             )}
-            <small>{isLogged ? "Cerrar sesión" : "Iniciar sesión"}</small>
+            <small className="text-base">
+              {isLogged ? "Cerrar sesión" : "Iniciar sesión"}
+            </small>
           </div>
         </Link>
         <Link
