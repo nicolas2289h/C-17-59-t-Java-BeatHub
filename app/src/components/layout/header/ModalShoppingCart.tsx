@@ -14,13 +14,17 @@ import { setLocalStorage } from "@/components/utils/handleLocalStorage";
 import toast from "react-hot-toast";
 import { $ShoppingCart } from "@/stores/beats";
 import { useStore } from "@nanostores/react";
-import { randomBeat } from "@/components/utils/handleBeatFilters";
+import { redirect } from "next/navigation";
+import { $IsLogged } from "@/stores/users";
+import Link from "next/link";
+import { use, useEffect, useState } from "react";
 
 export const ModalShoppingCart = () => {
   const shoppingCart = useStore($ShoppingCart);
-
+  const isLogged = useStore($IsLogged);
   const total = shoppingCart?.reduce((acc, beat) => acc + beat.price, 0) || 0;
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [clickPagar, setClickPagar] = useState(false);
 
   const handleDeleteBeat = (beatId: number) => {
     const newShoppingCart = shoppingCart?.filter((beat) => beat.id !== beatId);
@@ -35,6 +39,26 @@ export const ModalShoppingCart = () => {
     } else {
       toast.error("No hay beats en el carrito");
     }
+  };
+  useEffect(() => {
+    if (clickPagar) {
+      onOpenChange();
+      setTimeout(() => {
+        setClickPagar(false);
+      }, 1000);
+    }
+  }, [clickPagar, onOpenChange]);
+  useEffect(() => {
+    if (clickPagar && isLogged && total > 0) {
+      redirect("/pago");
+    } else if (clickPagar && !isLogged) {
+      redirect("/login");
+    }
+  }, [clickPagar, isLogged, total]);
+
+  const handlePagar = (e: any) => {
+    e.preventDefault();
+    setClickPagar(true);
   };
   return (
     <>
@@ -80,10 +104,12 @@ export const ModalShoppingCart = () => {
                 <Button color="danger" variant="light" onPress={onClose}>
                   Cerrar
                 </Button>
+
                 <Button
+                  type="button"
                   disabled={total ? false : true}
                   color="primary"
-                  onPress={() => console.log("pagar")}
+                  onClick={(e) => handlePagar(e)}
                 >
                   Pagar $ {total && formatNumber(total)}
                 </Button>

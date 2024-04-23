@@ -1,5 +1,4 @@
 "use client";
-
 import { fetchAPI } from "@/components/utils/fetchAPI";
 import { setLocalStorage } from "@/components/utils/handleLocalStorage";
 import { $IsProducer } from "@/stores/users";
@@ -28,7 +27,7 @@ const ClientSignUp = () => {
   useEffect(() => {
     if (status === "success") {
       toast.success("Usuario creado con éxito");
-      setLocalStorage("isProducer", isProducer ? "true" : "false");
+      setLocalStorage("isProducer", isProducer ? true : false);
       redirect("/login");
     }
     if (status === "error") {
@@ -69,12 +68,14 @@ const ClientSignUp = () => {
   };
 
   return (
-    <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-      <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+    <div className=" bg-blanco md:mt-0 sm:max-w-xl xl:p-0 w-full">
+      <div className="space-y-2 md:space-y-3 sm:p-2">
         <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
           BeatHub
         </h1>
-        <div className="w-[150px] h-[75px] mx-auto bg-black"></div>
+        <div className="w-[300px] h-[150px] mx-auto">
+          <img src="/assets/imgs/imgBeathub2N.png" alt="" />
+        </div>
         <h2 className="text-center">Continuar con</h2>
         <form
           className="space-y-4 md:space-y-6"
@@ -204,7 +205,7 @@ const ClientSignUp = () => {
           <Button
             type="submit"
             isLoading={status === "pending"}
-            className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="block w-1/3 mx-auto text-white bg-secundario hover:bg-negro focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
           >
             Continuar
           </Button>

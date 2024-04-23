@@ -1,10 +1,18 @@
+import { getLocalStorage } from "@/components/utils/handleLocalStorage";
 import { $ShoppingCart } from "@/stores/beats";
 import { useStore } from "@nanostores/react";
+import { useEffect } from "react";
 
 export const BeatsCountShoppingCart = () => {
   const shoppingCart = useStore($ShoppingCart);
   const total = shoppingCart?.reduce((acc, beat) => acc + beat.price, 0) || 0;
   const cuentaBeats = shoppingCart?.length;
+
+  useEffect(() => {
+    if (getLocalStorage("localShoppingCart")) {
+      $ShoppingCart.set(getLocalStorage("localShoppingCart"));
+    }
+  }, []);
 
   return (
     <>
