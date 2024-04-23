@@ -102,7 +102,7 @@ export const MusicPlayer = () => {
       setEnded(false);
     } else {
       const currentIndex = playlistBeats.findIndex(
-        (beat) => beat.id === selectedBeat.id
+        (beat) => beat.idBeat === selectedBeat.idBeat
       );
       setPlaying(true);
       setEnded(false);
@@ -157,15 +157,15 @@ export const MusicPlayer = () => {
             <div className="flex flex-col justify-center">
               <img
                 src={`https://img.youtube.com/vi/${selectedBeat.url}/mqdefault.jpg`}
-                alt={`imagen de ${selectedBeat.name}`}
+                alt={`imagen de ${selectedBeat.nombre}`}
                 className="rounded-xl w-full h-[5rem] object-cover"
               />
               <div className="flex flex-col items-baseline gap-1 py-1">
                 <h3 className="text-secundario/80 font-semibold">
-                  {selectedBeat.name}
+                  {selectedBeat.nombre}
                 </h3>
                 <h4 className="text-sm text-secundario/50">
-                  {selectedBeat.producer.name}
+                  {selectedBeat.productor.username}
                 </h4>
               </div>
             </div>
@@ -190,7 +190,7 @@ export const MusicPlayer = () => {
       setEnded(false);
     } else {
       const currentIndex = playlistBeats.findIndex(
-        (beat) => beat.id === selectedBeat.id
+        (beat) => beat.idBeat === selectedBeat.idBeat
       );
       setPlaying(true);
       setEnded(false);
@@ -247,7 +247,7 @@ export const MusicPlayer = () => {
             }}
           />
 
-          {selectedBeat?.structure.map((section, index) => (
+          {selectedBeat?.estructurasBeat.map((section, index) => (
             <div
               key={index}
               className="opacity-0 peer-hover:opacity-100 z-50 h-[.5rem] top-[-1.5rem] absolute duration-100 ease-linear"
@@ -353,10 +353,10 @@ export const MusicPlayer = () => {
             {selectedBeat && (
               <div className="bottom-0 left-0 absolute flex flex-col gap-1 ">
                 <p className="opacity-20 font-bold hover:opacity-100 text-terciario duration-100">
-                  {selectedBeat.name}
+                  {selectedBeat.nombre}
                 </p>
                 <p className="opacity-20 hover:opacity-100 text-terciario duration-100">
-                  Por {selectedBeat.producer.name}
+                  Por {selectedBeat.productor.username}
                 </p>
                 <p className="opacity-20 text-sm hover:opacity-100 text-terciario duration-100">
                   Playlist: {playlist.name}

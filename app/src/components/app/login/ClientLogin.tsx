@@ -5,21 +5,24 @@ import {
   getLocalStorage,
   setLocalStorage,
 } from "@/components/utils/handleLocalStorage";
+import { $IsLogged, $IsProducer } from "@/stores/users";
+import { useStore } from "@nanostores/react";
 import { Button } from "@nextui-org/react";
 import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 
 export const ClientLogin = () => {
-  const [isProducer, setIsProducer] = useState(false);
-  const [isLogged, setIsLogged] = useState(false);
+  const isProducer = useStore($IsProducer);
+  const isLogged = useStore($IsLogged);
   useEffect(() => {
-    setIsProducer(getLocalStorage("isProducer"));
+    if (getLocalStorage("isProducer"))
+      $IsProducer.set(getLocalStorage("isProducer"));
   }, []);
   useEffect(() => {
-    setIsLogged(getLocalStorage("isLogged"));
+    if (getLocalStorage("isLogged")) $IsLogged.set(getLocalStorage("isLogged"));
   }, []);
 
   const { status, error, data, mutate } = useMutation({
@@ -35,7 +38,9 @@ export const ClientLogin = () => {
     if (status === "success") {
       toast.success("Sesión iniciada con éxito");
       setLocalStorage("isLogged", true);
-      setIsLogged(true);
+      $IsLogged.set(true);
+      console.log(data);
+      redirect("/");
     }
     if (status === "error") {
       toast.error("Error al iniciar sesión");
@@ -70,7 +75,7 @@ export const ClientLogin = () => {
             color="danger"
             onPress={() => {
               setLocalStorage("isLogged", false);
-              setIsLogged(false);
+              $IsLogged.set(false);
             }}
           >
             Cerrar sesión
@@ -81,6 +86,7 @@ export const ClientLogin = () => {
           <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             Iniciar sesión
           </h1>
+          <option value=""></option>
           <form
             className="space-y-4 md:space-y-6"
             method="POST"
