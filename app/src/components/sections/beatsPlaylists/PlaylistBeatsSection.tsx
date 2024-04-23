@@ -32,18 +32,18 @@ export const PlaylistBeatsSection = ({
           className={`shadow-md hover:shadow-lg ${
             selectedBeat?.idBeat === beat.idBeat &&
             playList.name === PlayListName &&
-            "shadow-xl ring-1 ring-secundario/10 scale-105"
+            "shadow ring-1 ring-secundario/10 scale-105"
           } bg-blanco w-[20rem] relative cursor-pointer flex flex-col gap-1 p-4 rounded-xl transition-all duration-300 ease-in-out overflow-hidden`}
         >
           <div className="flex items-center justify-center">
             <div className="w-1/2">
-              <h3 className="text-sm text-secundario/50">
+              <h3 className=" text-xs font-bold text-black uppercase leading-none">
                 {beat.productor.username}
               </h3>
-              <small className="">
+              <small className="text-zinc-500 text-[12.80px] leading-tight">
                 {beat.genero}
               </small>
-              <h4 className="text-secundario/80 font-semibold text-lg">
+              <h4 className="text-secundario font-bold text-lg leading-7">
                 {beat.nombre}
               </h4>
             </div>
@@ -57,12 +57,12 @@ export const PlaylistBeatsSection = ({
             className="rounded-[14px] w-full h-[10rem] object-cover"
           />
           <div className="flex absolute bg-secundario/10 text-slate-200 gap-2 justify-center p-1 rounded-xl right-4">
-            <small>{beat.tiempoBpm}bpm,</small>
-            <small>{beat.tonalidad}</small>
+            {/* <small>{beat.tiempoBpm}bpm,</small> */}
+            {/* <small>{beat.tonalidad}</small> */}
           </div>
-          <small className="flex absolute bg-secundario/10 text-slate-200 gap-2 justify-center p-1 rounded-xl left-4">
+          {/* <small className="flex absolute bg-secundario/10 text-slate-200 gap-2 justify-center p-1 rounded-xl left-4">
             {beat.genero}
-          </small>
+          </small> */}
         </div>
       ))}
     </div>
