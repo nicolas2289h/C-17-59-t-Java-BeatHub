@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 export const BeatsCountShoppingCart = () => {
   const shoppingCart = useStore($ShoppingCart);
-  const total = shoppingCart?.reduce((acc, beat) => acc + beat.price, 0) || 0;
+  const total = shoppingCart?.reduce((acc, beat) => acc + beat.precio, 0) || 0;
   const cuentaBeats = shoppingCart?.length;
 
   useEffect(() => {
