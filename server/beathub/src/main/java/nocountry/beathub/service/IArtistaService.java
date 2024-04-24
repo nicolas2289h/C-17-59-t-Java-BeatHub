@@ -1,5 +1,6 @@
 package nocountry.beathub.service;
 
+import nocountry.beathub.dto.response.ArtistaDTORes;
 import nocountry.beathub.exception.ArtistaExistException;
 import nocountry.beathub.exception.HibernateOperationException;
 import nocountry.beathub.exception.IncorrectPasswordException;
@@ -11,7 +12,7 @@ import java.util.List;
 public interface IArtistaService {
     boolean registerArtista(Artista artista)throws ArtistaExistException,HibernateOperationException;
 
-    boolean loginUser(String username, String password)throws UsernameNotFoundException, IncorrectPasswordException, HibernateOperationException;
+    ArtistaDTORes loginUser(String username, String password)throws UsernameNotFoundException, IncorrectPasswordException, HibernateOperationException;
 
     List<Artista> findAllArtistas();
 

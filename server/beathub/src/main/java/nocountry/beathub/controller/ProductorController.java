@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import nocountry.beathub.dto.request.AddBeatRequestDTO;
 import nocountry.beathub.dto.request.UsuarioLoginDTO;
+import nocountry.beathub.dto.response.ProductorDTORes;
 import nocountry.beathub.exception.*;
 import nocountry.beathub.model.Beat;
 import nocountry.beathub.model.Productor;
@@ -55,9 +56,9 @@ public class ProductorController {
     @PostMapping("/login")
     public ResponseEntity<Object> loginUser(@RequestBody @Valid UsuarioLoginDTO usuarioLogin) {
         try {
-            boolean authenticated = productorService.loginUser(usuarioLogin.getUsername(), usuarioLogin.getPassword());
-            if (authenticated) {
-                return ResponseEntity.ok().body("{\"message\": \"Usuario autenticado\"}");
+            ProductorDTORes authenticated = productorService.loginUser(usuarioLogin.getUsername(), usuarioLogin.getPassword());
+            if (authenticated != null) {
+                return ResponseEntity.ok().body(authenticated);
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"error\": \"Nombre de usuario o contraseña incorrectos\"}");
             }

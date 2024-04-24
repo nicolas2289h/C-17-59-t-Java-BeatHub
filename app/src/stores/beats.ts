@@ -876,9 +876,9 @@ interface Beat {
   };
 }
 interface ShoppingCartBeat {
-  id: number;
-  name: string;
-  price: number;
+  idBeat: number;
+  nombre: string;
+  precio: number;
   url: string;
 }
 interface PlayList {

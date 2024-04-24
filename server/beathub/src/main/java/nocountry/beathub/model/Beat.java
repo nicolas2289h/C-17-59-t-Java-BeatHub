@@ -38,7 +38,8 @@ public class Beat {
 
     private Boolean comprado = false;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "licencia_id")
     private Licencia miLicencia;
 
     @ManyToOne(fetch = FetchType.EAGER)
