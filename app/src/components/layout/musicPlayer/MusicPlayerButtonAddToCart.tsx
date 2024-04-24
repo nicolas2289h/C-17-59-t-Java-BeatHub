@@ -65,7 +65,7 @@ export const MusicPlayerButtonAddToCart = ({ beat }: { beat: PropsBeat }) => {
             ? true
             : false
         }
-        className="disabled:opacity-65 disabled:hover:opacity-65 disabled:scale-100 disabled:shadow-md disabled:active:scale-100 w-[5rem] h-[2.7rem] p-2 flex items-center justify-center gap-1 rounded-lg shadow-md ring-1 bg-slate-50 text-secundario ring-secundario/5 active:scale-95 duration-100 ease-out hover:shadow-lg hover:scale-105 text-lg"
+        className="disabled:opacity-65 border border-neutral-400 disabled:hover:opacity-65 disabled:scale-100 disabled:shadow-md disabled:active:scale-100 w-[5rem] h-[2.7rem] px-2 py-8 flex items-center justify-center gap-1 rounded-[5px] shadow-md ring-1 bg-slate-50 text-secundario ring-secundario/5 active:scale-95 duration-100 ease-out hover:shadow-lg hover:scale-105 text-lg"
         onClick={handleAddBeatToCart}
       >
         {/* <IconShoppingCartPlus
@@ -74,8 +74,8 @@ export const MusicPlayerButtonAddToCart = ({ beat }: { beat: PropsBeat }) => {
         /> */}
 
         <div className="flex flex-col items-center justify-center gap-1 w-3/4 rounded-r-lg text-zinc-500 ">
-          <span className="text-sm">Comprar</span>
-          <small className="text-sm p-0 m-0 font-bold">
+          <span className="text-sm font-normal">Comprar</span>
+          <small className="text-sm p-0 m-0 font-normal">
             $ {formatNumber(beat.precio)}
           </small>
         </div>

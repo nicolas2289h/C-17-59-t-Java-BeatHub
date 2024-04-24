@@ -10,7 +10,7 @@ export const ClientHome = () => {
   const beatsDestacados = beats.filter((beat) => beat.featured);
   return (
     <section className="flex flex-col gap-16 font-roboto">
-      <div className="mb-[10rem]">
+      <div className="mb-[5rem]">
         <h2 className="font-roboto text-black font-normal text-2xl mb-4">Destacados</h2>
         <PlaylistBeatsSection
           beats={beatsDestacados}
