@@ -9,7 +9,7 @@ export default function NotFound() {
       </div>
       <div>
         <Image
-          src={"/assets/imgs/error.png"}
+          src={"/assets/icons/icons-error.png"}
           alt="error"
           width={300}
           height={300}

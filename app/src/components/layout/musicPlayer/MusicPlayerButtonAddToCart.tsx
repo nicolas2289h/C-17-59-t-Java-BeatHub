@@ -13,7 +13,8 @@ import toast from "react-hot-toast";
 export const MusicPlayerButtonAddToCart = ({ beat }: { beat: PropsBeat }) => {
   const shoppingCart = useStore($ShoppingCart);
   const handleAddBeatToCart = () => {
-    if (shoppingCart && shoppingCart.find((b) => b.id === beat.idBeat)) return;
+    if (shoppingCart && shoppingCart.find((b) => b.idBeat === beat.idBeat))
+      return;
     if (shoppingCart && shoppingCart.length >= 5) {
       return toast.error("Máximo 5 beats en el carrito", {
         position: "top-center",
@@ -23,9 +24,9 @@ export const MusicPlayerButtonAddToCart = ({ beat }: { beat: PropsBeat }) => {
     if (!shoppingCart) {
       $ShoppingCart.set([
         {
-          id: beat.idBeat,
-          name: beat.nombre,
-          price: beat.precio,
+          idBeat: beat.idBeat,
+          nombre: beat.nombre,
+          precio: beat.precio,
           url: beat.url,
         },
       ]);
@@ -33,9 +34,9 @@ export const MusicPlayerButtonAddToCart = ({ beat }: { beat: PropsBeat }) => {
       $ShoppingCart.set([
         ...shoppingCart,
         {
-          id: beat.idBeat,
-          name: beat.nombre,
-          price: beat.precio,
+          idBeat: beat.idBeat,
+          nombre: beat.nombre,
+          precio: beat.precio,
           url: beat.url,
         },
       ]);
@@ -61,7 +62,7 @@ export const MusicPlayerButtonAddToCart = ({ beat }: { beat: PropsBeat }) => {
         disabled={
           shoppingCart === null
             ? false
-            : shoppingCart.find((b) => b.id === beat.idBeat)
+            : shoppingCart.find((b) => b.idBeat === beat.idBeat)
             ? true
             : false
         }

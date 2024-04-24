@@ -22,12 +22,14 @@ import { use, useEffect, useState } from "react";
 export const ModalShoppingCart = () => {
   const shoppingCart = useStore($ShoppingCart);
   const isLogged = useStore($IsLogged);
-  const total = shoppingCart?.reduce((acc, beat) => acc + beat.price, 0) || 0;
+  const total = shoppingCart?.reduce((acc, beat) => acc + beat.precio, 0) || 0;
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [clickPagar, setClickPagar] = useState(false);
 
   const handleDeleteBeat = (beatId: number) => {
-    const newShoppingCart = shoppingCart?.filter((beat) => beat.id !== beatId);
+    const newShoppingCart = shoppingCart?.filter(
+      (beat) => beat.idBeat !== beatId
+    );
     if (!newShoppingCart) return;
     $ShoppingCart.set(newShoppingCart);
     setLocalStorage(`localShoppingCart`, newShoppingCart);
@@ -78,23 +80,23 @@ export const ModalShoppingCart = () => {
               <ModalBody>
                 <ul>
                   {shoppingCart?.map((beat) => (
-                    <li key={beat.id}>
+                    <li key={beat.idBeat}>
                       <div className="relative h-[7rem] shadow-md rounded-md flex items-center justify-between p-3">
                         <div className="flex justify-center items-center gap-2">
                           <img
                             src={`https://img.youtube.com/vi/${beat.url}/mqdefault.jpg`}
-                            alt={`imagen de ${beat.name}`}
+                            alt={`imagen de ${beat.nombre}`}
                             className="w-[6rem] h-[4rem] object-cover rounded-md"
                           />
-                          <span>{beat.name}</span>
+                          <span>{beat.nombre}</span>
                         </div>
                         <button
-                          onClick={() => handleDeleteBeat(beat.id)}
+                          onClick={() => handleDeleteBeat(beat.idBeat)}
                           className="absolute top-1 right-1 flex items-center justify-center hover:text-red-500 duration-100 active:scale-90 p-1"
                         >
                           x
                         </button>
-                        <span>$ {formatNumber(beat.price)}</span>
+                        <span>$ {formatNumber(beat.precio)}</span>
                       </div>
                     </li>
                   ))}
