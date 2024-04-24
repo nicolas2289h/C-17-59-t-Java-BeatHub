@@ -4,12 +4,12 @@ import HitsSection from "@/components/sections/HitsSection";
 
 export default function Home() {
   return (
-    <>
-      <HeroSection/>
+    <div className="mb-7">
+      <HeroSection />
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <ClientHome />
       </main>
-      <HitsSection/>
-    </>
+      <HitsSection />
+    </div>
   );
 }
