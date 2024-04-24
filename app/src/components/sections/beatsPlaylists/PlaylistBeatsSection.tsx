@@ -4,6 +4,7 @@ import { setLocalStorage } from "@/components/utils/handleLocalStorage";
 import { $PlayList, PropsBeat } from "@/stores/beats";
 import { $SelectedBeat } from "@/stores/beats";
 import { useStore } from "@nanostores/react";
+import styles from "./PlaylistBeatsSection.module.css";
 
 export const PlaylistBeatsSection = ({
   beats,
@@ -56,10 +57,10 @@ export const PlaylistBeatsSection = ({
             alt={`imagen de ${beat.nombre}`}
             className="rounded-[14px] w-full h-[10rem] object-cover"
           />
-          <div className="flex absolute bg-secundario/10 text-slate-200 gap-2 justify-center p-1 rounded-xl right-4">
-            {/* <small>{beat.tiempoBpm}bpm,</small> */}
-            {/* <small>{beat.tonalidad}</small> */}
-          </div>
+          {/* <div className="flex absolute bg-secundario/10 text-slate-200 gap-2 justify-center p-1 rounded-xl right-4">
+            <small>{beat.tiempoBpm}bpm,</small>
+             <small>{beat.tonalidad}</small>
+          </div> */}
           {/* <small className="flex absolute bg-secundario/10 text-slate-200 gap-2 justify-center p-1 rounded-xl left-4">
             {beat.genero}
           </small> */}

@@ -24,7 +24,7 @@ export const Header = () => {
           href="/"
         >
           <Image
-            src={"/assets/imgs/imgBeathub2B.png"}
+            src={"/assets/imgs/imgBeatHub2B.png"}
             alt="Beat Hub"
             height={150}
             width={150}
