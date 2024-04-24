@@ -70,10 +70,8 @@ public class BeatController {
             String messageError = "{\"message\": \"Id del productor o licencia incorrecta\"}";
             return ResponseEntity.status(HttpStatus.CONFLICT).body(messageError);
         } catch (DataIntegrityViolationException e) {
-            if (e.getMessage().contains("Duplicate entry")) {
-                throw new LicenciaDuplicadaException("{\"message\": \"No se puede duplicar la licencia.\"}");
-            } else if(e.getMessage().contains("foreign key constraint fails")){
-                throw new LicenciaNoExisteException("{\"message\": \"No se pudo encontrar el id del productor.\"}");
+            if(e.getMessage().contains("foreign key constraint fails")){
+                throw new LicenciaNoExisteException("{\"message\": \"No se pudo encontrar el id del productor o id de la licencia.\"}");
             }else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
             }
