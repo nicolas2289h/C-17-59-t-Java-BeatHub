@@ -56,7 +56,11 @@ export const PlaylistBeatsSection = ({
           <div className=" mt-2">
             <Image
               isBlurred
-              src={`https://img.youtube.com/vi/${beat.url}/mqdefault.jpg`}
+              src={
+                beat.url !== ""
+                  ? `https://img.youtube.com/vi/${beat.url}/mqdefault.jpg`
+                  : ""
+              }
               alt={`imagen de ${beat.nombre}`}
               className="rounded-[10px] w-full h-[10rem] object-cover z-0"
             />
