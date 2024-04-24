@@ -63,13 +63,6 @@ const beats = [
       email: "trafalgarbeats@example.com", // Correo electrónico ficticio
       description: "Productor experto en Trap", // Descripción ficticia
     },
-    miLicencia: {
-      idLic: 1,
-      miPago: {
-        nombre: "Licencia Exclusiva",
-        idPago: 1,
-      },
-    },
   },
   {
     idBeat: 2,
@@ -132,13 +125,6 @@ const beats = [
       username: "Trafalgar Beats", // Nombre de usuario ficticio
       email: "trafalgarbeats@example.com", // Correo electrónico ficticio
       description: "Productor experto en Trap", // Descripción ficticia
-    },
-    miLicencia: {
-      idLic: 1,
-      miPago: {
-        nombre: "Licencia Exclusiva",
-        idPago: 1,
-      },
     },
   },
   {
@@ -203,13 +189,6 @@ const beats = [
       email: "jhondoe@example.com", // Correo electrónico ficticio
       description: "Productor experto en Drill", // Descripción ficticia
     },
-    miLicencia: {
-      idLic: 1,
-      miPago: {
-        nombre: "Licencia Exclusiva",
-        idPago: 1,
-      },
-    },
   },
   {
     idBeat: 4,
@@ -272,13 +251,6 @@ const beats = [
       username: "Jhon Doe", // Nombre de usuario ficticio
       email: "jhondoe@example.com", // Correo electrónico ficticio
       description: "Productor especializado en Reggaeton", // Descripción ficticia
-    },
-    miLicencia: {
-      idLic: 1,
-      miPago: {
-        nombre: "Licencia Exclusiva",
-        idPago: 1,
-      },
     },
   },
   {
@@ -343,13 +315,6 @@ const beats = [
       email: "djpablito@example.com", // Correo electrónico ficticio
       description: "Productor experto en Dancehall", // Descripción ficticia
     },
-    miLicencia: {
-      idLic: 1,
-      miPago: {
-        nombre: "Licencia Exclusiva",
-        idPago: 1,
-      },
-    },
   },
   {
     idBeat: 7,
@@ -412,13 +377,6 @@ const beats = [
       username: "Ocean Rhythms", // Nombre de usuario ficticio
       email: "oceanrhythms@example.com", // Correo electrónico ficticio
       description: "Productor especializado en Dancehall", // Descripción ficticia
-    },
-    miLicencia: {
-      idLic: 1,
-      miPago: {
-        nombre: "Licencia Exclusiva",
-        idPago: 1,
-      },
     },
   },
   {
@@ -483,13 +441,6 @@ const beats = [
       email: "harmony@example.com", // Correo electrónico ficticio
       description: "Productor especializado en Hip Hop", // Descripción ficticia
     },
-    miLicencia: {
-      idLic: 1,
-      miPago: {
-        nombre: "Licencia Exclusiva",
-        idPago: 1,
-      },
-    },
   },
   {
     idBeat: 9,
@@ -552,13 +503,6 @@ const beats = [
       username: "Melody Forge", // Nombre de usuario ficticio
       email: "melodyforge@example.com", // Correo electrónico ficticio
       description: "Productor especializado en Hip Hop", // Descripción ficticia
-    },
-    miLicencia: {
-      idLic: 1,
-      miPago: {
-        nombre: "Licencia Exclusiva",
-        idPago: 1,
-      },
     },
   },
   {
@@ -623,13 +567,6 @@ const beats = [
       email: "rhythm@example.com", // Correo electrónico ficticio
       description: "Productor especializado en Dancehall", // Descripción ficticia
     },
-    miLicencia: {
-      idLic: 1,
-      miPago: {
-        nombre: "Licencia Exclusiva",
-        idPago: 1,
-      },
-    },
   },
   {
     idBeat: 11,
@@ -692,13 +629,6 @@ const beats = [
       username: "Beat Crafters", // Nombre de usuario ficticio
       email: "beatcrafters@example.com", // Correo electrónico ficticio
       description: "Productor experto en el género Trap", // Descripción ficticia
-    },
-    miLicencia: {
-      idLic: 1,
-      miPago: {
-        nombre: "Licencia Exclusiva",
-        idPago: 1,
-      },
     },
   },
 
@@ -764,13 +694,6 @@ const beats = [
       email: "cadence@example.com",
       description: "Productor experimentado en Dancehall",
     },
-    miLicencia: {
-      idLic: 1,
-      miPago: {
-        nombre: "Licencia Exclusiva",
-        idPago: 1,
-      },
-    },
   },
   {
     idBeat: 13,
@@ -834,13 +757,6 @@ const beats = [
       email: "beatsarchitects@prueba.com",
       description: "Productor de beats",
     },
-    miLicencia: {
-      idLic: 1,
-      miPago: {
-        nombre: "Licencia Exclusiva",
-        idPago: 1,
-      },
-    },
   },
 ];
 interface Beat {
@@ -867,13 +783,6 @@ interface Beat {
     email: string;
     description: string;
   };
-  miLicencia: {
-    idLic: number;
-    miPago: {
-      nombre: string;
-      idPago: number;
-    };
-  };
 }
 interface ShoppingCartBeat {
   idBeat: number;
@@ -889,7 +798,35 @@ interface PlayList {
 export type PropsPlayList = PlayList;
 export type PropsBeat = Beat;
 export type PropsShoppingCartBeat = ShoppingCartBeat;
-export const $Beats = atom<PropsBeat[]>(beats);
+export const $Beats = atom<PropsBeat[]>([
+  {
+    idBeat: 0,
+    nombre: "",
+    url: "",
+    tiempoBpm: 0,
+    tonalidad: "C",
+    mood: "",
+    genero: "",
+    featured: false,
+    precio: 0,
+    estructurasBeat: [
+      {
+        id: 0,
+        name: "",
+        start: 0,
+        end: 1,
+      },
+    ],
+    productor: {
+      id: 0,
+      name: "",
+      lastname: "",
+      username: "",
+      email: "",
+      description: "",
+    },
+  },
+]);
 export const $SelectedBeat = atom<PropsBeat | null>(null);
 export const $PlayList = atom<PropsPlayList>({
   name: mainPlayListName,

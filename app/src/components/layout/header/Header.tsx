@@ -7,15 +7,26 @@ import { getLocalStorage } from "@/components/utils/handleLocalStorage";
 import { $IsLogged, $User } from "@/stores/users";
 import { useStore } from "@nanostores/react";
 import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
+import { fetchAPI } from "@/components/utils/fetchAPI";
 
 export const Header = () => {
   const user = useStore($User);
   const isLogged = useStore($IsLogged);
+  const { status, data, isLoading, refetch } = useQuery({
+    queryKey: ["beats"],
+    queryFn: async () =>
+      await fetchAPI({
+        url: `beat/beats`,
+      }),
+    retry: 2,
+  });
   useEffect(() => {
     if (getLocalStorage("isLogged")) {
       $IsLogged.set(getLocalStorage("isLogged"));
     }
   }, []);
+
   return (
     <header className="z-50 w-full h-[3rem] flex bg-secundario text-primario fixed px-[10rem]">
       <nav className="w-full gap-8 flex justify-between items-center text-base">
