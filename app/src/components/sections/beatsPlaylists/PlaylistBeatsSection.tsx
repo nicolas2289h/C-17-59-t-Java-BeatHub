@@ -55,7 +55,7 @@ export const PlaylistBeatsSection = ({
           <img
             src={`https://img.youtube.com/vi/${beat.url}/mqdefault.jpg`}
             alt={`imagen de ${beat.nombre}`}
-            className={styles.imageProperties}
+            className="rounded-[14px] w-full h-[10rem] object-cover"
           />
           {/* <div className="flex absolute bg-secundario/10 text-slate-200 gap-2 justify-center p-1 rounded-xl right-4">
             <small>{beat.tiempoBpm}bpm,</small>
