@@ -2,14 +2,14 @@
 import { IconSearch } from "@tabler/icons-react";
 import Link from "next/link";
 import { NavBarButtonCart } from "./NavBarButtonCart";
-import { use, useEffect } from "react";
+import { useEffect } from "react";
 import { getLocalStorage } from "@/components/utils/handleLocalStorage";
 import { $IsLogged, $User } from "@/stores/users";
 import { useStore } from "@nanostores/react";
-import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAPI } from "@/components/utils/fetchAPI";
 import { $Beats } from "@/stores/beats";
+import { Image } from "@nextui-org/react";
 
 export const Header = () => {
   const user = useStore($User);
@@ -45,6 +45,7 @@ export const Header = () => {
             alt="Beat Hub"
             height={150}
             width={150}
+            className="z-50"
           />
         </Link>
         <Link
