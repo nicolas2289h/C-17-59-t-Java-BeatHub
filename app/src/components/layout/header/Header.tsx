@@ -38,7 +38,7 @@ export const Header = () => {
       <nav className="w-full gap-8 flex justify-between items-center text-base">
         <Link className="flex items-center justify-center z-50" href="/">
           <Image
-            src={"/assets/imgs/imgBeatHub2B.png"}
+            src={"/assets/imgs/imgBeatHub2B.webp"}
             alt="Beat Hub"
             height={150}
             width={150}
