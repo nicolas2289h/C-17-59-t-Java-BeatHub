@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
-import Image from "next/image";
 import { FooterLinks } from "./FooterLinks";
 import Link from "next/link";
 export const Footer = () => {
@@ -8,8 +8,8 @@ export const Footer = () => {
       className={`[grid-area-footer] flex items-start justify-between w-full py-5 px-60 bg-secundario text-primario`}
     >
       <Link href="/">
-        <Image
-          src="/assets/imgs/imgbeathub1b.png"
+        <img
+          src="/assets/imgs/imgbeathub1b2.png"
           alt="BeatHub-logo"
           width={150}
           height={150}
