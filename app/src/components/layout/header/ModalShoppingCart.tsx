@@ -14,12 +14,12 @@ import { setLocalStorage } from "@/components/utils/handleLocalStorage";
 import toast from "react-hot-toast";
 import { $ShoppingCart } from "@/stores/beats";
 import { useStore } from "@nanostores/react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { $IsLogged } from "@/stores/users";
-import Link from "next/link";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export const ModalShoppingCart = () => {
+  const router = useRouter();
   const shoppingCart = useStore($ShoppingCart);
   const isLogged = useStore($IsLogged);
   const total = shoppingCart?.reduce((acc, beat) => acc + beat.precio, 0) || 0;
@@ -44,7 +44,6 @@ export const ModalShoppingCart = () => {
   };
   useEffect(() => {
     if (clickPagar) {
-      onOpenChange();
       setTimeout(() => {
         setClickPagar(false);
       }, 1000);
@@ -52,14 +51,15 @@ export const ModalShoppingCart = () => {
   }, [clickPagar, onOpenChange]);
   useEffect(() => {
     if (clickPagar && isLogged && total > 0) {
-      redirect("/pago");
+      router.push("/pago");
     } else if (clickPagar && !isLogged) {
-      redirect("/login");
+      router.push("/login");
     }
-  }, [clickPagar, isLogged, total]);
+  }, [clickPagar, isLogged, total, router]);
 
   const handlePagar = (e: any) => {
     e.preventDefault();
+    onOpenChange();
     setClickPagar(true);
   };
   return (

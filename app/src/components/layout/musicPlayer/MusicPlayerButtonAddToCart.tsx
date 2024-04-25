@@ -6,7 +6,6 @@ import {
 import { $ShoppingCart, PropsBeat } from "@/stores/beats";
 import { useStore } from "@nanostores/react";
 import { Button, Tooltip } from "@nextui-org/react";
-import { IconShoppingCartPlus } from "@tabler/icons-react";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 
@@ -69,11 +68,6 @@ export const MusicPlayerButtonAddToCart = ({ beat }: { beat: PropsBeat }) => {
         className="disabled:opacity-65 border border-neutral-400 disabled:hover:opacity-65 disabled:scale-100 disabled:shadow-md disabled:active:scale-100 w-[5rem] h-[2.7rem] px-2 py-8 flex items-center justify-center gap-1 rounded-[5px] shadow-md ring-1 bg-slate-50 text-secundario ring-secundario/5 active:scale-95 duration-100 ease-out hover:shadow-lg hover:scale-105 text-lg"
         onClick={handleAddBeatToCart}
       >
-        {/* <IconShoppingCartPlus
-          className="w-1/4 flex justify-center items-center text-red-500"
-          size={30}
-        /> */}
-
         <div className="flex flex-col items-center justify-center gap-1 w-3/4 rounded-r-lg text-zinc-500 ">
           <span className="text-sm font-normal">Comprar</span>
           <small className="text-sm p-0 m-0 font-normal">

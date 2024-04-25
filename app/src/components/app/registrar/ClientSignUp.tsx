@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { fetchAPI } from "@/components/utils/fetchAPI";
 import { setLocalStorage } from "@/components/utils/handleLocalStorage";
@@ -5,11 +6,12 @@ import { $IsProducer } from "@/stores/users";
 import { useStore } from "@nanostores/react";
 import { Button } from "@nextui-org/react";
 import { useMutation } from "@tanstack/react-query";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const ClientSignUp = () => {
+  const router = useRouter();
   const isProducer = useStore($IsProducer);
   const [checkInput, setCheckInput] = useState({
     passwordOk: true,
@@ -28,12 +30,12 @@ const ClientSignUp = () => {
     if (status === "success") {
       toast.success("Usuario creado con éxito");
       setLocalStorage("isProducer", isProducer ? true : false);
-      redirect("/login");
+      router.push("/login");
     }
     if (status === "error") {
       toast.error("Error al crear usuario");
     }
-  }, [status, data, error, isProducer]);
+  }, [status, data, error, isProducer, router]);
 
   const handleSignUp = (e: any) => {
     e.preventDefault();
@@ -70,9 +72,6 @@ const ClientSignUp = () => {
   return (
     <div className=" bg-blanco md:mt-0 sm:max-w-xl xl:p-0 w-full">
       <div className="space-y-2 md:space-y-3 sm:p-2">
-        <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-          BeatHub
-        </h1>
         <div className="w-[300px] h-[150px] mx-auto">
           <img src="/assets/imgs/imgBeathub2N.png" alt="" />
         </div>

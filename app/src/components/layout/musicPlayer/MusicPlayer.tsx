@@ -11,6 +11,8 @@ import { useStore } from "@nanostores/react";
 import {
   IconPlayerPauseFilled,
   IconPlayerPlayFilled,
+  IconPlayerSkipBackFilled,
+  IconPlayerSkipForwardFilled,
   IconPlayerTrackNextFilled,
   IconPlayerTrackPrevFilled,
   IconVolume,
@@ -212,8 +214,8 @@ export const MusicPlayer = () => {
   return (
     <>
       {selectedBeat && (
-        <section className="sticky flex justify-center items-center w-full h-[6rem] bottom-0 bg-secundario">
-          <div className=" absolute hover:top-[-1rem] top-0 w-full z-30 flex opacity-70 hover:opacity-100 overflow-hidden duration-200 h-1 hover:h-[2rem] peer">
+        <section className="[grid-area:musicPlayer] sticky flex justify-center items-center w-full h-[4rem] bottom-0 bg-secundario">
+          <div className=" absolute hover:top-[-2rem] top-[-4px] w-full z-30 flex opacity-85 hover:opacity-100 overflow-hidden duration-200 h-1 hover:h-[2rem] peer">
             <div
               className=" z-40 h-[2rem] absolute left-0 bg-[#DF2935] ease-linear duration-1000"
               style={{ width: `${progress * 100}%` }}
@@ -240,7 +242,7 @@ export const MusicPlayer = () => {
           </div>
 
           <div
-            className="opacity-100 peer-hover:opacity-0 top-[-.2rem] pointer-events-none z-30 h-[.7rem] w-[.7rem] rounded-full absolute bg-[#DF2935]"
+            className="opacity-100 peer-hover:opacity-0 top-[-.4rem] pointer-events-none z-30 h-[.7rem] w-[.7rem] rounded-full absolute bg-[#DF2935]"
             style={{
               left: `${progress * 100 - 0.3}%`,
               transition: "left 1s linear",
@@ -250,7 +252,7 @@ export const MusicPlayer = () => {
           {selectedBeat?.estructurasBeat.map((section, index) => (
             <div
               key={index}
-              className="opacity-0 peer-hover:opacity-100 z-50 h-[.5rem] top-[-1.5rem] absolute duration-100 ease-linear"
+              className="opacity-0 peer-hover:opacity-100 z-50 h-[.5rem] top-[-2.5rem] absolute duration-100 ease-linear"
               style={{
                 left: `${section.start * 100}%`,
                 width: `${(section.end - section.start) * 100}%`,
@@ -259,12 +261,12 @@ export const MusicPlayer = () => {
                     .color,
               }}
             >
-              <small className="flex items-center justify-center top-[-1rem] bg-primario/70 rounded-md p-1 text-center absolute left-1/2 transform -translate-x-1/2 shadow-xl">
+              <small className="flex items-center justify-center top-[-1.5rem] bg-primario rounded-sm p-1 text-center absolute left-1/2 transform -translate-x-1/2 shadow-small">
                 {beatStructure[section.name as keyof typeof beatStructure].name}
               </small>
             </div>
           ))}
-          <div className="flex absolute justify-center items-center w-full h-[6rem] overflow-hidden">
+          <div className="flex absolute justify-center items-center w-full h-[4rem] overflow-hidden">
             <div className="absolute blur-3xl z-10 pointer-events-none w-screen h-screen">
               <ReactPlayer
                 className="scale-x-150 opacity-20"
@@ -293,47 +295,49 @@ export const MusicPlayer = () => {
           </div>
           <div className="z-20 flex flex-col items-center justify-center gap-2 ">
             <div className="flex items-center justify-center gap-5">
-              <button type="button" className="" onClick={handlePrevSong}>
-                <IconPlayerTrackPrevFilled
-                  className="text-terciario duration-75 active:scale-125 opacity-75 hover:opacity-100 hover:scale-105"
-                  size={30}
+              <button
+                type="button"
+                className="p-1 rounded-full active:scale-90 opacity-75 hover:opacity-100 flex items-center justify-center duration-75 ease-in-out"
+                onClick={handlePrevSong}
+              >
+                <IconPlayerSkipBackFilled
+                  className="text-terciario"
+                  size={15}
                 />
               </button>
               <button
                 type="button"
-                className=""
+                className=" w-12 h-12 rounded-full active:scale-90 bg-primario opacity-75 hover:opacity-100 flex items-center justify-center duration-75 ease-in-out"
                 onClick={handlePlayButtonClick}
               >
                 {playing && selectedBeat && (
                   <IconPlayerPauseFilled
-                    className="text-primario active:scale-125 opacity-75 hover:opacity-100 hover:scale-105 duration-75"
-                    size={60}
+                    className="text-secundario"
+                    size={20}
                   />
                 )}
                 {(!playing || !selectedBeat) && (
-                  <IconPlayerPlayFilled
-                    className="text-primario active:scale-125 opacity-75 hover:opacity-100 hover:scale-105 duration-75"
-                    size={60}
-                  />
+                  <IconPlayerPlayFilled className="text-secundario" size={20} />
                 )}
               </button>
-              <button type="button" className="z-20" onClick={handleNextSong}>
-                <IconPlayerTrackNextFilled
-                  className="text-terciario duration-75 active:scale-125 opacity-75 hover:opacity-100 hover:scale-105"
-                  size={30}
+              <button
+                type="button"
+                className="p-1 rounded-full active:scale-90 opacity-75 hover:opacity-100 flex items-center justify-center duration-75 ease-in-out"
+                onClick={handleNextSong}
+              >
+                <IconPlayerSkipForwardFilled
+                  className="text-terciario"
+                  size={15}
                 />
               </button>
             </div>
-            <div className="flex gap-1 justify-center items-center w-[10rem]">
+            <div className="flex gap-1 justify-center items-center absolute right-[8rem] w-[10rem]">
               {volume === 0 ? (
-                <IconVolumeOff
-                  className="text-terciario opacity-75"
-                  size={20}
-                />
+                <IconVolumeOff className="text-terciario" size={20} />
               ) : volume > 0 && volume < 0.5 ? (
-                <IconVolume2 className="text-terciario opacity-75" size={20} />
+                <IconVolume2 className="text-terciario" size={20} />
               ) : (
-                <IconVolume className="text-terciario opacity-75" size={20} />
+                <IconVolume className="text-terciario" size={20} />
               )}
               <input
                 type="range"
@@ -342,24 +346,19 @@ export const MusicPlayer = () => {
                 step={0.1}
                 value={volume !== null ? volume : 0.5}
                 onChange={(e) => setVolume(parseFloat(e.target.value))}
-                className="MusicPlayer-volumen duration-75 opacity-75 hover:opacity-100 hover:scale-105"
+                className="MusicPlayer-volumen duration-75 opacity-75 hover:opacity-100"
               />
             </div>
-            <div className="absolute right-4">
+            <div className="absolute scale-75 right-4">
               {selectedBeat && (
                 <MusicPlayerButtonAddToCart beat={selectedBeat} />
               )}
             </div>
             {selectedBeat && (
-              <div className="bottom-0 left-0 absolute flex flex-col gap-1 ">
-                <p className="opacity-20 font-bold hover:opacity-100 text-terciario duration-100">
-                  {selectedBeat.nombre}
-                </p>
-                <p className="opacity-20 hover:opacity-100 text-terciario duration-100">
-                  Por {selectedBeat.productor.username}
-                </p>
-                <p className="opacity-20 text-sm hover:opacity-100 text-terciario duration-100">
-                  Playlist: {playlist.name}
+              <div className="bottom-1/2 transform translate-y-1/2 left-2 absolute flex flex-col gap-1 ">
+                <p className="opacity-60 text-sm hover:opacity-100 text-terciario duration-100">
+                  {selectedBeat.nombre} por {selectedBeat.productor.username},{" "}
+                  {playlist.name}
                 </p>
               </div>
             )}

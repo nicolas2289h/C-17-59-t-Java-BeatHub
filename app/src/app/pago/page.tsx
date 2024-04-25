@@ -1,11 +1,9 @@
 import ClientBuy from "@/components/app/pago/ClientBuy";
 
-const Buy = () => {
+export default function Buy() {
   return (
     <main className="flex min-h-screen items-center px-24">
       <ClientBuy />
     </main>
   );
-};
-
-export default Buy;
+}
