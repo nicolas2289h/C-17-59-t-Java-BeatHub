@@ -7,7 +7,7 @@
   grid-template-areas:
     "main"
     "footer";
-  grid-template-rows: 1fr 6rem;
+  grid-template-rows: 1fr 4rem;
 }
 
 @font-face {
@@ -20,8 +20,7 @@
 
 @font-face {
   font-family: "Roboto";
-  src: url(/fonts/Roboto/Roboto-Medium.ttf)
-
+  src: url(/fonts/Roboto/Roboto-Medium.ttf);
 }
 
 .font-milker {
@@ -66,7 +65,7 @@
   z-index: 10;
   -webkit-appearance: none;
   appearance: none;
-  height: 0.5rem;
+  height: 0.3rem;
   outline: none;
   background-color: #fafafa;
   border-radius: 5px;
@@ -75,8 +74,8 @@
 
 .MusicPlayer-volumen::-webkit-slider-thumb {
   -webkit-appearance: none;
-  height: 1rem;
-  width: 0.9rem;
+  height: 0.8rem;
+  width: 0.6rem;
   border-radius: 5px;
   background-color: #fafafa;
 }
