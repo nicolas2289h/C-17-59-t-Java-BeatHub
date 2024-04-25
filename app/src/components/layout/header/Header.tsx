@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { IconSearch } from "@tabler/icons-react";
 import Link from "next/link";
@@ -9,7 +10,6 @@ import { useStore } from "@nanostores/react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAPI } from "@/components/utils/fetchAPI";
 import { $Beats } from "@/stores/beats";
-import { Image } from "@nextui-org/react";
 
 export const Header = () => {
   const user = useStore($User);
@@ -37,12 +37,12 @@ export const Header = () => {
     <header className="z-50 w-full h-[3rem] flex bg-secundario text-primario fixed px-[10rem]">
       <nav className="w-full gap-8 flex justify-between items-center text-base">
         <Link className="flex items-center justify-center z-50" href="/">
-          <Image
-            src={"/assets/imgs/imgBeatHub2B.webp"}
+          <img
+            src="/assets/imgs/img-beat-hub-2b.webp"
             alt="Beat Hub"
             height={150}
             width={150}
-            className="rounded-none"
+            className="rounded-none text-blanco"
           />
         </Link>
         <Link className="hover:text-slate-200 duration-100 ease-out" href="/">

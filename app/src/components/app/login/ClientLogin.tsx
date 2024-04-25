@@ -10,12 +10,13 @@ import { useStore } from "@nanostores/react";
 import { Button } from "@nextui-org/react";
 import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
 
 export const ClientLogin = () => {
+  const router = useRouter();
   const isProducer = useStore($IsProducer);
   const isLogged = useStore($IsLogged);
   useEffect(() => {
@@ -41,12 +42,12 @@ export const ClientLogin = () => {
       setLocalStorage("isLogged", true);
       $IsLogged.set(true);
       console.log(data);
-      redirect("/");
+      router.push("/");
     }
     if (status === "error") {
       toast.error("Error al iniciar sesión");
     }
-  }, [status, data, error]);
+  }, [status, data, error, router]);
 
   const handleLogin = (e: any) => {
     e.preventDefault();
