@@ -214,7 +214,7 @@ export const MusicPlayer = () => {
   return (
     <>
       {selectedBeat && (
-        <section className="sticky flex justify-center items-center w-full h-[4rem] bottom-0 bg-secundario">
+        <section className="[grid-area:musicPlayer] sticky flex justify-center items-center w-full h-[4rem] bottom-0 bg-secundario">
           <div className=" absolute hover:top-[-2rem] top-[-4px] w-full z-30 flex opacity-85 hover:opacity-100 overflow-hidden duration-200 h-1 hover:h-[2rem] peer">
             <div
               className=" z-40 h-[2rem] absolute left-0 bg-[#DF2935] ease-linear duration-1000"

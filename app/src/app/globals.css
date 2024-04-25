@@ -2,13 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-#app {
+/* #app {
   display: grid;
   grid-template-areas:
     "main"
+    "musicPlayer"
     "footer";
-  grid-template-rows: 1fr 4rem;
-}
+  grid-template-rows: 1fr 4rem 15rem;
+} */
 
 @font-face {
   font-family: "Milker";

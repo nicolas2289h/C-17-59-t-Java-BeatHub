@@ -34,14 +34,14 @@ export const Header = () => {
   }, []);
 
   return (
-    <header className="z-50 w-full h-[3rem] flex bg-secundario text-primario fixed px-[10rem]">
+    <header className="z-50 w-full h-[3rem] flex bg-secundario text-primario fixed top-0 px-[10rem]">
       <nav className="w-full gap-8 flex justify-between items-center text-base">
         <Link className="flex items-center justify-center z-50" href="/">
           <img
-            src="/assets/imgs/img-beat-hub-2b.webp"
+            src="/assets/imgs/beathub2-sin-fondo.png"
             alt="Beat Hub"
-            height={150}
-            width={150}
+            height={40}
+            width={40}
             className="rounded-none text-blanco"
           />
         </Link>
