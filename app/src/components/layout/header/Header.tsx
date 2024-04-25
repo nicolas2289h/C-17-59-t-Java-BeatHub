@@ -36,34 +36,22 @@ export const Header = () => {
   return (
     <header className="z-50 w-full h-[3rem] flex bg-secundario text-primario fixed px-[10rem]">
       <nav className="w-full gap-8 flex justify-between items-center text-base">
-        <Link
-          className="hover:text-slate-200 text-xl duration-100 ease-out flex items-center justify-center gap-1"
-          href="/"
-        >
+        <Link className="flex items-center justify-center z-50" href="/">
           <Image
             src={"/assets/imgs/imgBeatHub2B.png"}
             alt="Beat Hub"
             height={150}
             width={150}
-            className="z-50 rounded-none"
+            className="rounded-none"
           />
         </Link>
-        <Link
-          className="hover:text-slate-200 duration-100 ease-out"
-          href="/feed"
-        >
+        <Link className="hover:text-slate-200 duration-100 ease-out" href="/">
           Feed
         </Link>
-        <Link
-          className="hover:text-slate-200 duration-100 ease-out"
-          href="/beats"
-        >
+        <Link className="hover:text-slate-200 duration-100 ease-out" href="/">
           Beats
         </Link>
-        <Link
-          className="hover:text-slate-200 duration-100 ease-out"
-          href="/info"
-        >
+        <Link className="hover:text-slate-200 duration-100 ease-out" href="/">
           Info
         </Link>
         <Link
@@ -81,10 +69,7 @@ export const Header = () => {
             </small>
           </div>
         </Link>
-        <Link
-          className="hover:text-slate-200 duration-100 ease-out"
-          href="/buscar"
-        >
+        <Link className="hover:text-slate-200 duration-100 ease-out" href="/">
           <IconSearch stroke={2} size={30} />
         </Link>
         <NavBarButtonCart />
