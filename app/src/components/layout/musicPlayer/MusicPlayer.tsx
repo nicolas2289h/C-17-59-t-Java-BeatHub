@@ -23,6 +23,7 @@ import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import ReactPlayer from "react-player";
 import { MusicPlayerButtonAddToCart } from "./MusicPlayerButtonAddToCart";
+import { Button } from "@nextui-org/react";
 
 export const MusicPlayer = () => {
   const beats = useStore($Beats);
@@ -305,21 +306,26 @@ export const MusicPlayer = () => {
                   size={15}
                 />
               </button>
-              <button
+              <Button
                 type="button"
-                className=" w-12 h-12 rounded-full active:scale-90 bg-primario opacity-75 hover:opacity-100 flex items-center justify-center duration-75 ease-in-out"
+                radius="full"
+                className=" bg-primario w-12 h-12 p-0 m-0 min-w-0 opacity-75 hover:opacity-100 flex items-center justify-center duration-75 ease-in-out"
                 onClick={handlePlayButtonClick}
               >
                 {playing && selectedBeat && (
                   <IconPlayerPauseFilled
-                    className="text-secundario"
+                    className="text-secundario  p-0 m-0"
                     size={20}
                   />
                 )}
                 {(!playing || !selectedBeat) && (
-                  <IconPlayerPlayFilled className="text-secundario" size={20} />
+                  <IconPlayerPlayFilled
+                    className="text-secundario  p-0 m-0"
+                    size={20}
+                  />
                 )}
-              </button>
+              </Button>
+
               <button
                 type="button"
                 className="p-1 rounded-full active:scale-90 opacity-75 hover:opacity-100 flex items-center justify-center duration-75 ease-in-out"
