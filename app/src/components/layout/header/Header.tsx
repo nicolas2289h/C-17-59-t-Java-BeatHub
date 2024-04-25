@@ -45,7 +45,7 @@ export const Header = () => {
             alt="Beat Hub"
             height={150}
             width={150}
-            className="z-50"
+            className="z-50 rounded-none"
           />
         </Link>
         <Link
