@@ -5,7 +5,7 @@ import Link from "next/link";
 export const Footer = () => {
   return (
     <footer
-      className={`[grid-area-footer] flex items-start justify-between w-full py-5 px-60 bg-secundario text-primario`}
+      className={`sm:[grid-area-footer] flex items-center sm:items-start gap-[1rem] sm:justify-between w-full py-5 sm:px-60 bg-secundario text-primario`}
     >
       <Link href="/">
         <img
@@ -13,6 +13,7 @@ export const Footer = () => {
           alt="BeatHub-logo"
           width={150}
           height={150}
+          className="hidden sm:blocks"
         />
       </Link>
       <FooterLinks

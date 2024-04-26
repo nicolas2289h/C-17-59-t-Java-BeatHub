@@ -1,6 +1,6 @@
 .heroHome {
     background-image: url("/assets/imgs/HeroHome.webp");
-    width: 100%;
+    width: 100vw;
     height: auto;
     background-size: cover;
 }
