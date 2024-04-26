@@ -41,7 +41,6 @@ export const ClientLogin = () => {
       toast.success("Sesión iniciada con éxito");
       setLocalStorage("isLogged", true);
       $IsLogged.set(true);
-      console.log(data);
       router.push("/");
     }
     if (status === "error") {

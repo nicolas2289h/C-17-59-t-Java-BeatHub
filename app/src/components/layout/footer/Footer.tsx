@@ -28,7 +28,7 @@ export const Footer = () => {
         links={[
           { href: "#", title: "Precios" },
           { href: "#", title: "Ventas" },
-          { href: "#", title: "Métodos de pagos" },
+          { href: "#", title: "Métodos de pago" },
           { href: "#", title: "Registro" },
           { href: "#", title: "Contacto" },
           { href: "#", title: "Preferencias de Cookies" },

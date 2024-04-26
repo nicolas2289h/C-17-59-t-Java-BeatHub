@@ -35,7 +35,6 @@ export async function fetchAPI<T>({
   try {
     const response = await fetch(`${baseUrl}${url}`, config);
     const data = await response.json();
-    console.log(data);
     if (response.status >= 200 && response.status < 300) {
       return data;
     } else if (response.status === 429) {

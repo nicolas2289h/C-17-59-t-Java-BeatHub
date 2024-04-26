@@ -23,9 +23,6 @@ export const useFilterBeats = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [beatsRaw]);
-  useEffect(() => {
-    console.log(filtros);
-  }, [filtros]);
   const filtrarCanciones = ({ beatsRaw }: { beatsRaw: PropsBeat[] }) => {
     let beats: PropsBeat[] = beatsRaw;
     let beatsFiltradosTemp: PropsBeat[] = [];
