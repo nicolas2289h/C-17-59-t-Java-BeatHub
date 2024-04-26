@@ -13,7 +13,7 @@ export const Footer = () => {
           alt="BeatHub-logo"
           width={150}
           height={150}
-          className="hidden sm:blocks"
+          className="hidden sm:block"
         />
       </Link>
       <FooterLinks

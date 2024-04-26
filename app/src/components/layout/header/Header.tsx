@@ -34,8 +34,8 @@ export const Header = () => {
   }, []);
 
   return (
-    <header className="z-50 w-full flex h-[3rem] bg-secundario text-primario fixed top-0 sm:px-[3rem] md:px-[10rem]">
-      <nav className="w-full sm:gap-8 flex justify-between items-center text-sm md:text-base">
+    <header className="z-50 w-full h-[3rem] bg-secundario text-primario fixed top-0 sm:px-[3rem] md:px-[10rem]">
+      <nav className="w-full h-full sm:gap-8 flex place-content-evenly items-center text-sm md:text-base">
         <Link className="flex items-center justify-center z-50" href="/">
           <img
             src="/assets/imgs/beathub2-sin-fondo.png"
@@ -69,7 +69,7 @@ export const Header = () => {
             </small>
           </div>
         </Link>
-        <Link className="hover:text-slate-200 duration-100 ease-out" href="/">
+        <Link className="hover:text-slate-200 duration-100 ease-out hidden md:inline" href="/">
           <IconSearch stroke={2} size={30} />
         </Link>
         <NavBarButtonCart />
