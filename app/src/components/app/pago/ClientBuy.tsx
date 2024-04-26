@@ -47,8 +47,8 @@ const ClientBuy = () => {
   }, []);
   if (!isLogged) {
     return (
-      <div className="">
-        <h2 className="">Iniciá sesión</h2>
+      <div className="width-[50%]">
+        <h2 className="text-3xl">Iniciá sesión</h2>
         <p className="">
           Para poder pagar, tenés que iniciar sesión con tu cuenta de usuario,
           ademas tener al menos un beat en el carrito.

@@ -9,7 +9,7 @@ const HeroSection = () => {
                     <h1 className=" text-5xl md:text-8xl text-white font-bold mb-5 text-center md:text-start">BeatHub</h1>
                     <HeroComponent 
                         portada="Beats únicos y originales." 
-                        parrafo="Consigue el beat que te ayudará a crear tu próximo hit. Una vez que adquieras el beat sólo tu lo tendrás."
+                        parrafo="Consigue el beat que te ayudará a crear tu próximo hit. Una vez que adquieras el beat sólo tú lo tendrás."
                     />
                     <HeroComponent 
                         portada="Experiencia de compra perfecta." 
@@ -21,7 +21,7 @@ const HeroSection = () => {
                     />  
                     <HeroComponent 
                         portada="Una comunidad que te entiende." 
-                        parrafo="Somos creadores como tú. Ya sea que necesites nuestro equipo de soporte o desees colaborar con creativos con ideas afines, hay un hogar para usted."
+                        parrafo="Somos creadores como tú. Ya sea que necesites nuestro equipo de soporte o desees colaborar con creativos con ideas afines, hay un hogar para tí."
                     />  
                 </div>
 
