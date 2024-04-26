@@ -33,8 +33,8 @@ const RegisterComponent = ({
         />
       </figure>
       <div className="col-span-3">
-        <h3 className="my-5 mx-10">{title}</h3>
-        <ul className="list-disc mx-10">
+        <h3 className="my-5 mx-10 text-xl">{title}</h3>
+        <ul className="list-disc mx-10 pb-5 md:pb-0">
           <li>{regInfo1}</li>
           <li>{regInfo2}</li>
           <li>{regInfo3}</li>
