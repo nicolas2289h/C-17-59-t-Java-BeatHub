@@ -7,7 +7,7 @@
 ### Equipo: 
 
 	FrontEnd:
-		Leonardo Serrano - leovpc@gmail.com
+		Leonardo Serrano - leovpc@gmail.com (Project Manager)
 
 		Agustín Piuca - aguspiucaquevedo@gmail.com
 
@@ -25,6 +25,7 @@
 
 	QA:
 		Clarisa Gorostidi - clarisa.gorostidi@gmail.com	
+
 
 ## Link del Demo desplegado:
 https://beat-hub-app.vercel.app/
