@@ -1,12 +1,15 @@
-import Image from "next/image";
+import { ClientHome } from "@/components/app/home/ClientHome";
+import HeroSection from "@/components/sections/HeroSection";
+import HitsSection from "@/components/sections/HitsSection";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>
-        <h1>BeatHub</h1>
-        <p>Ahora si bro a trabajar se ha dichooo!</p>
-      </div>
-    </main>
+    <div className="min-h-screen">
+      <HeroSection />
+      <main className="flex flex-col items-center justify-between p-24">
+        <ClientHome />
+      </main>
+      <HitsSection />
+    </div>
   );
 }
