@@ -5,10 +5,13 @@
  En el mundo de la música, la creación de ritmos y melodías únicas es una expresión artística que define el estilo y la identidad de los artistas. Con el objetivo de facilitar la conexión entre productores musicales y artistas, se ofrece una plataforma digital innovadora diseñada para impulsar la colaboración y la creatividad en la industria musical donde los productores pueden compartir sus beats originales y los artistas pueden descubrir y adquirir la música perfecta para complementar sus proyectos. 
 
 [![Image 1](https://res.cloudinary.com/dd8pefa3c/image/upload/v1720752126/beathub1_xoakh4.png)](https://res.cloudinary.com/dd8pefa3c/image/upload/v1720752126/beathub1_xoakh4.png)
+<hr/>
 
 [![Image 2](https://res.cloudinary.com/dd8pefa3c/image/upload/v1720752146/beathub2_bup0fe.png)](https://res.cloudinary.com/dd8pefa3c/image/upload/v1720752146/beathub2_bup0fe.png)
+<hr/>
 
 [![Image 3](https://res.cloudinary.com/dd8pefa3c/image/upload/v1720752112/beathub3_bjggt5.png)](https://res.cloudinary.com/dd8pefa3c/image/upload/v1720752112/beathub3_bjggt5.png)
+<hr/>
 
 [![Image 4](https://res.cloudinary.com/dd8pefa3c/image/upload/v1720753156/beathub4_qpdi7c.png)](https://res.cloudinary.com/dd8pefa3c/image/upload/v1720753156/beathub4_qpdi7c.png)
  
